@@ -6,10 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ActrackAppDelegate.h"
+#import "Activity_TrackerAppDelegate.h"
 #import "Settings.h"
 
-@implementation ActrackAppDelegate
+@implementation Activity_TrackerAppDelegate
 
 @synthesize window;
 
@@ -40,6 +40,7 @@
 
 - (void)updateTimerInfoMenuItem
 {
+    
     if ([scheduler isRunning])
     {
         int sec = [scheduler remainingTime] % 60;

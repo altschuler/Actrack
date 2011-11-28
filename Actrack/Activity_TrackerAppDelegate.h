@@ -13,7 +13,7 @@
 #import "SettingsWindowController.h"
 #import "ScheduleController.h"
 
-@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, ScheduleControllerDelegate> 
+@interface Activity_TrackerAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, ScheduleControllerDelegate> 
 {
     QuitWindowController* quitWindowController;
     QuestionWindowController* questionWindowController;

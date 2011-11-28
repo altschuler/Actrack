@@ -7,12 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1392010B1484145B00CFF802 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201061484145B00CFF802 /* FMDatabase.m */; };
+		1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201081484145B00CFF802 /* FMDatabaseAdditions.m */; };
+		1392010D1484145B00CFF802 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392010A1484145B00CFF802 /* FMResultSet.m */; };
+		139201111484147000CFF802 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 139201101484147000CFF802 /* InfoPlist.strings */; };
+		139201161484148C00CFF802 /* Logo_alternative.png in Resources */ = {isa = PBXBuildFile; fileRef = 139201121484148C00CFF802 /* Logo_alternative.png */; };
+		139201171484148C00CFF802 /* Logo_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 139201131484148C00CFF802 /* Logo_normal.png */; };
+		139201181484148C00CFF802 /* Logo_paused_alternative.png in Resources */ = {isa = PBXBuildFile; fileRef = 139201141484148C00CFF802 /* Logo_paused_alternative.png */; };
+		139201191484148C00CFF802 /* Logo_paused_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 139201151484148C00CFF802 /* Logo_paused_normal.png */; };
+		1392012E1484149F00CFF802 /* LogWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392011B1484149F00CFF802 /* LogWindow.xib */; };
+		1392012F1484149F00CFF802 /* LogWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392011D1484149F00CFF802 /* LogWindowController.m */; };
+		139201301484149F00CFF802 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392011E1484149F00CFF802 /* main.m */; };
+		139201311484149F00CFF802 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392011F1484149F00CFF802 /* MainMenu.xib */; };
+		139201321484149F00CFF802 /* QuestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139201201484149F00CFF802 /* QuestionWindow.xib */; };
+		139201331484149F00CFF802 /* QuestionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201221484149F00CFF802 /* QuestionWindowController.m */; };
+		139201341484149F00CFF802 /* QuitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139201231484149F00CFF802 /* QuitWindow.xib */; };
+		139201351484149F00CFF802 /* QuitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201251484149F00CFF802 /* QuitWindowController.m */; };
+		139201361484149F00CFF802 /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201271484149F00CFF802 /* ScheduleController.m */; };
+		139201371484149F00CFF802 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201291484149F00CFF802 /* Settings.m */; };
+		139201381484149F00CFF802 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392012A1484149F00CFF802 /* SettingsWindow.xib */; };
+		139201391484149F00CFF802 /* SettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392012C1484149F00CFF802 /* SettingsWindowController.m */; };
+		1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */; };
+		1392013D148414A800CFF802 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392013C148414A800CFF802 /* DBManager.m */; };
+		13920140148414B800CFF802 /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392013F148414B800CFF802 /* ActivityModel.m */; };
+		139201411484170B00CFF802 /* ActrackAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAA31E14841289006A90EC /* ActrackAppDelegate.m */; };
+		139201431484173700CFF802 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 139201421484173700CFF802 /* libsqlite3.dylib */; };
+		13920145148418CA00CFF802 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13920144148418CA00CFF802 /* Sparkle.framework */; };
+		139201471484191A00CFF802 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13920144148418CA00CFF802 /* Sparkle.framework */; };
 		13CAA30C14841289006A90EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA30B14841289006A90EC /* Cocoa.framework */; };
-		13CAA31614841289006A90EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA31414841289006A90EC /* InfoPlist.strings */; };
-		13CAA31814841289006A90EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAA31714841289006A90EC /* main.m */; };
 		13CAA31C14841289006A90EC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA31A14841289006A90EC /* Credits.rtf */; };
-		13CAA31F14841289006A90EC /* ActrackAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAA31E14841289006A90EC /* ActrackAppDelegate.m */; };
-		13CAA3221484128A006A90EC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA3201484128A006A90EC /* MainMenu.xib */; };
 		13CAA32A1484128A006A90EC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA3291484128A006A90EC /* SenTestingKit.framework */; };
 		13CAA32B1484128A006A90EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA30B14841289006A90EC /* Cocoa.framework */; };
 		13CAA3331484128A006A90EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA3311484128A006A90EC /* InfoPlist.strings */; };
@@ -30,23 +53,70 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		139201461484191600CFF802 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				139201471484191A00CFF802 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		139201071484145B00CFF802 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		139201081484145B00CFF802 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		139201091484145B00CFF802 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		1392010A1484145B00CFF802 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		139201101484147000CFF802 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		139201121484148C00CFF802 /* Logo_alternative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_alternative.png; sourceTree = "<group>"; };
+		139201131484148C00CFF802 /* Logo_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_normal.png; sourceTree = "<group>"; };
+		139201141484148C00CFF802 /* Logo_paused_alternative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_paused_alternative.png; sourceTree = "<group>"; };
+		139201151484148C00CFF802 /* Logo_paused_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_paused_normal.png; sourceTree = "<group>"; };
+		1392011B1484149F00CFF802 /* LogWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogWindow.xib; sourceTree = "<group>"; };
+		1392011C1484149F00CFF802 /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
+		1392011D1484149F00CFF802 /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
+		1392011E1484149F00CFF802 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1392011F1484149F00CFF802 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		139201201484149F00CFF802 /* QuestionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionWindow.xib; sourceTree = "<group>"; };
+		139201211484149F00CFF802 /* QuestionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowController.h; sourceTree = "<group>"; };
+		139201221484149F00CFF802 /* QuestionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionWindowController.m; sourceTree = "<group>"; };
+		139201231484149F00CFF802 /* QuitWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuitWindow.xib; sourceTree = "<group>"; };
+		139201241484149F00CFF802 /* QuitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuitWindowController.h; sourceTree = "<group>"; };
+		139201251484149F00CFF802 /* QuitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuitWindowController.m; sourceTree = "<group>"; };
+		139201261484149F00CFF802 /* ScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
+		139201271484149F00CFF802 /* ScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
+		139201281484149F00CFF802 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		139201291484149F00CFF802 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		1392012A1484149F00CFF802 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
+		1392012B1484149F00CFF802 /* SettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindowController.h; sourceTree = "<group>"; };
+		1392012C1484149F00CFF802 /* SettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindowController.m; sourceTree = "<group>"; };
+		1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
+		1392013B148414A800CFF802 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		1392013C148414A800CFF802 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		1392013E148414B800CFF802 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
+		1392013F148414B800CFF802 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
+		139201421484173700CFF802 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		13920144148418CA00CFF802 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		13CAA30714841289006A90EC /* Actrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Actrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CAA30B14841289006A90EC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		13CAA30E14841289006A90EC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		13CAA30F14841289006A90EC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		13CAA31014841289006A90EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		13CAA31314841289006A90EC /* Actrack-Info.plist */ = {isa = PBXFileReference; path = "Actrack-Info.plist"; sourceTree = "<group>"; };
-		13CAA31514841289006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		13CAA31314841289006A90EC /* Actrack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Actrack-Info.plist"; sourceTree = "<group>"; };
 		13CAA31714841289006A90EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		13CAA31914841289006A90EC /* Actrack-Prefix.pch */ = {isa = PBXFileReference; path = "Actrack-Prefix.pch"; sourceTree = "<group>"; };
+		13CAA31914841289006A90EC /* Actrack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Actrack-Prefix.pch"; sourceTree = "<group>"; };
 		13CAA31B14841289006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		13CAA31D14841289006A90EC /* ActrackAppDelegate.h */ = {isa = PBXFileReference; path = ActrackAppDelegate.h; sourceTree = "<group>"; };
+		13CAA31D14841289006A90EC /* ActrackAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActrackAppDelegate.h; sourceTree = "<group>"; };
 		13CAA31E14841289006A90EC /* ActrackAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActrackAppDelegate.m; sourceTree = "<group>"; };
-		13CAA3211484128A006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		13CAA3281484128A006A90EC /* ActrackTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActrackTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CAA3291484128A006A90EC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		13CAA3301484128A006A90EC /* ActrackTests-Info.plist */ = {isa = PBXFileReference; path = "ActrackTests-Info.plist"; sourceTree = "<group>"; };
+		13CAA3301484128A006A90EC /* ActrackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ActrackTests-Info.plist"; sourceTree = "<group>"; };
 		13CAA3321484128A006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		13CAA3341484128A006A90EC /* ActrackTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActrackTests.h; sourceTree = "<group>"; };
 		13CAA3361484128A006A90EC /* ActrackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActrackTests.m; sourceTree = "<group>"; };
@@ -57,7 +127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				139201431484173700CFF802 /* libsqlite3.dylib in Frameworks */,
 				13CAA30C14841289006A90EC /* Cocoa.framework in Frameworks */,
+				13920145148418CA00CFF802 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +145,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		138C902C14842B5600646A04 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				1392011B1484149F00CFF802 /* LogWindow.xib */,
+				1392011F1484149F00CFF802 /* MainMenu.xib */,
+				139201201484149F00CFF802 /* QuestionWindow.xib */,
+				139201231484149F00CFF802 /* QuitWindow.xib */,
+				1392012A1484149F00CFF802 /* SettingsWindow.xib */,
+			);
+			name = Xib;
+			sourceTree = "<group>";
+		};
+		138C902D14842B6900646A04 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1392011C1484149F00CFF802 /* LogWindowController.h */,
+				1392011D1484149F00CFF802 /* LogWindowController.m */,
+				139201211484149F00CFF802 /* QuestionWindowController.h */,
+				139201221484149F00CFF802 /* QuestionWindowController.m */,
+				139201241484149F00CFF802 /* QuitWindowController.h */,
+				139201251484149F00CFF802 /* QuitWindowController.m */,
+				139201261484149F00CFF802 /* ScheduleController.h */,
+				139201271484149F00CFF802 /* ScheduleController.m */,
+				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
+				1392012C1484149F00CFF802 /* SettingsWindowController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		138C902E14842B7800646A04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1392013E148414B800CFF802 /* ActivityModel.h */,
+				1392013F148414B800CFF802 /* ActivityModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		138C902F148444BE00646A04 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				13CAA31D14841289006A90EC /* ActrackAppDelegate.h */,
+				13CAA31E14841289006A90EC /* ActrackAppDelegate.m */,
+				1392011E1484149F00CFF802 /* main.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		1392010F1484145F00CFF802 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				139201051484145B00CFF802 /* FMDatabase.h */,
+				139201061484145B00CFF802 /* FMDatabase.m */,
+				139201071484145B00CFF802 /* FMDatabaseAdditions.h */,
+				139201081484145B00CFF802 /* FMDatabaseAdditions.m */,
+				139201091484145B00CFF802 /* FMResultSet.h */,
+				1392010A1484145B00CFF802 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
+		1392011A1484148F00CFF802 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				139201121484148C00CFF802 /* Logo_alternative.png */,
+				139201131484148C00CFF802 /* Logo_normal.png */,
+				139201141484148C00CFF802 /* Logo_paused_alternative.png */,
+				139201151484148C00CFF802 /* Logo_paused_normal.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
 		13CAA2FC14841289006A90EC = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +239,8 @@
 		13CAA30A14841289006A90EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				139201421484173700CFF802 /* libsqlite3.dylib */,
+				13920144148418CA00CFF802 /* Sparkle.framework */,
 				13CAA30B14841289006A90EC /* Cocoa.framework */,
 				13CAA3291484128A006A90EC /* SenTestingKit.framework */,
 				13CAA30D14841289006A90EC /* Other Frameworks */,
@@ -115,9 +261,15 @@
 		13CAA31114841289006A90EC /* Actrack */ = {
 			isa = PBXGroup;
 			children = (
-				13CAA31D14841289006A90EC /* ActrackAppDelegate.h */,
-				13CAA31E14841289006A90EC /* ActrackAppDelegate.m */,
-				13CAA3201484128A006A90EC /* MainMenu.xib */,
+				138C902F148444BE00646A04 /* Main */,
+				138C902D14842B6900646A04 /* Controller */,
+				139201281484149F00CFF802 /* Settings.h */,
+				139201291484149F00CFF802 /* Settings.m */,
+				1392013B148414A800CFF802 /* DBManager.h */,
+				1392013C148414A800CFF802 /* DBManager.m */,
+				138C902E14842B7800646A04 /* Model */,
+				138C902C14842B5600646A04 /* Xib */,
+				1392010F1484145F00CFF802 /* FMDB */,
 				13CAA31214841289006A90EC /* Supporting Files */,
 			);
 			path = Actrack;
@@ -126,8 +278,10 @@
 		13CAA31214841289006A90EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1392011A1484148F00CFF802 /* Graphics */,
+				1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */,
 				13CAA31314841289006A90EC /* Actrack-Info.plist */,
-				13CAA31414841289006A90EC /* InfoPlist.strings */,
+				139201101484147000CFF802 /* InfoPlist.strings */,
 				13CAA31714841289006A90EC /* main.m */,
 				13CAA31914841289006A90EC /* Actrack-Prefix.pch */,
 				13CAA31A14841289006A90EC /* Credits.rtf */,
@@ -164,6 +318,7 @@
 				13CAA30314841289006A90EC /* Sources */,
 				13CAA30414841289006A90EC /* Frameworks */,
 				13CAA30514841289006A90EC /* Resources */,
+				139201461484191600CFF802 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -221,9 +376,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13CAA31614841289006A90EC /* InfoPlist.strings in Resources */,
 				13CAA31C14841289006A90EC /* Credits.rtf in Resources */,
-				13CAA3221484128A006A90EC /* MainMenu.xib in Resources */,
+				139201111484147000CFF802 /* InfoPlist.strings in Resources */,
+				139201161484148C00CFF802 /* Logo_alternative.png in Resources */,
+				139201171484148C00CFF802 /* Logo_normal.png in Resources */,
+				139201181484148C00CFF802 /* Logo_paused_alternative.png in Resources */,
+				139201191484148C00CFF802 /* Logo_paused_normal.png in Resources */,
+				1392012E1484149F00CFF802 /* LogWindow.xib in Resources */,
+				139201311484149F00CFF802 /* MainMenu.xib in Resources */,
+				139201321484149F00CFF802 /* QuestionWindow.xib in Resources */,
+				139201341484149F00CFF802 /* QuitWindow.xib in Resources */,
+				139201381484149F00CFF802 /* SettingsWindow.xib in Resources */,
+				1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +423,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13CAA31814841289006A90EC /* main.m in Sources */,
-				13CAA31F14841289006A90EC /* ActrackAppDelegate.m in Sources */,
+				1392010B1484145B00CFF802 /* FMDatabase.m in Sources */,
+				139201411484170B00CFF802 /* ActrackAppDelegate.m in Sources */,
+				1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */,
+				1392010D1484145B00CFF802 /* FMResultSet.m in Sources */,
+				1392012F1484149F00CFF802 /* LogWindowController.m in Sources */,
+				139201301484149F00CFF802 /* main.m in Sources */,
+				139201331484149F00CFF802 /* QuestionWindowController.m in Sources */,
+				139201351484149F00CFF802 /* QuitWindowController.m in Sources */,
+				139201361484149F00CFF802 /* ScheduleController.m in Sources */,
+				139201371484149F00CFF802 /* Settings.m in Sources */,
+				139201391484149F00CFF802 /* SettingsWindowController.m in Sources */,
+				1392013D148414A800CFF802 /* DBManager.m in Sources */,
+				13920140148414B800CFF802 /* ActivityModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,28 +458,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		13CAA31414841289006A90EC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13CAA31514841289006A90EC /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		13CAA31A14841289006A90EC /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
 				13CAA31B14841289006A90EC /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		13CAA3201484128A006A90EC /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13CAA3211484128A006A90EC /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		13CAA3311484128A006A90EC /* InfoPlist.strings */ = {
@@ -366,6 +525,10 @@
 		13CAA33B1484128A006A90EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Actrack/Actrack-Prefix.pch";
 				INFOPLIST_FILE = "Actrack/Actrack-Info.plist";
@@ -377,6 +540,10 @@
 		13CAA33C1484128A006A90EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Actrack/Actrack-Prefix.pch";
 				INFOPLIST_FILE = "Actrack/Actrack-Info.plist";
@@ -432,6 +599,7 @@
 				13CAA33C1484128A006A90EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13CAA33D1484128A006A90EC /* Build configuration list for PBXNativeTarget "ActrackTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +608,7 @@
 				13CAA33F1484128A006A90EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
