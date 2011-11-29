@@ -70,6 +70,30 @@
     return logs;
 }
 
+- (BOOL) validateDatabase
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    
+    [database open];
+    
+    NSError* err = nil;
+    
+    BOOL success = [database executeUpdate:@"create table if not exists settings (askInterval int, archiveTime int)" error:&err withArgumentsInArray:nil orVAList:nil];
+    
+    success = success ? [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:&err withArgumentsInArray:nil orVAList:nil] : false;
+    
+    if (success == NO)
+    {
+        NSAlert *theAlert = [NSAlert alertWithError:err];
+        [theAlert runModal];
+    }
+    
+    [database close];
+    
+    return success;  
+    
+}
+
 - (BOOL) insertActivity:(ActivityModel*)activity
 {
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];

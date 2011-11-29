@@ -35,7 +35,6 @@
 		13920145148418CA00CFF802 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13920144148418CA00CFF802 /* Sparkle.framework */; };
 		139201471484191A00CFF802 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13920144148418CA00CFF802 /* Sparkle.framework */; };
 		13CAA30C14841289006A90EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA30B14841289006A90EC /* Cocoa.framework */; };
-		13CAA31C14841289006A90EC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA31A14841289006A90EC /* Credits.rtf */; };
 		13CAA32A1484128A006A90EC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA3291484128A006A90EC /* SenTestingKit.framework */; };
 		13CAA32B1484128A006A90EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CAA30B14841289006A90EC /* Cocoa.framework */; };
 		13CAA3331484128A006A90EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA3311484128A006A90EC /* InfoPlist.strings */; };
@@ -111,7 +110,6 @@
 		13CAA31314841289006A90EC /* Actrack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Actrack-Info.plist"; sourceTree = "<group>"; };
 		13CAA31714841289006A90EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		13CAA31914841289006A90EC /* Actrack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Actrack-Prefix.pch"; sourceTree = "<group>"; };
-		13CAA31B14841289006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		13CAA31D14841289006A90EC /* ActrackAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActrackAppDelegate.h; sourceTree = "<group>"; };
 		13CAA31E14841289006A90EC /* ActrackAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActrackAppDelegate.m; sourceTree = "<group>"; };
 		13CAA3281484128A006A90EC /* ActrackTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActrackTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,7 +282,6 @@
 				139201101484147000CFF802 /* InfoPlist.strings */,
 				13CAA31714841289006A90EC /* main.m */,
 				13CAA31914841289006A90EC /* Actrack-Prefix.pch */,
-				13CAA31A14841289006A90EC /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -376,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13CAA31C14841289006A90EC /* Credits.rtf in Resources */,
 				139201111484147000CFF802 /* InfoPlist.strings in Resources */,
 				139201161484148C00CFF802 /* Logo_alternative.png in Resources */,
 				139201171484148C00CFF802 /* Logo_normal.png in Resources */,
@@ -458,14 +454,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		13CAA31A14841289006A90EC /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13CAA31B14841289006A90EC /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 		13CAA3311484128A006A90EC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

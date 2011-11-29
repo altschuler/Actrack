@@ -16,10 +16,11 @@
     
 }
 
+- (BOOL) validateDatabase;
 - (BOOL) updateArchivedStatus;
 - (BOOL) insertActivity:(ActivityModel*)activity;
+- (BOOL) removeActivity:(ActivityModel*)activity;
 
 - (NSMutableArray*) getActsForQuery:(NSString*)query;
--(BOOL)removeActivity:(ActivityModel*)activity;
 
 @end

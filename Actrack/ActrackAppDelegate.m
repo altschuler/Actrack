@@ -8,6 +8,7 @@
 
 #import "ActrackAppDelegate.h"
 #import "Settings.h"
+#import "DBManager.h"
 
 @implementation ActrackAppDelegate
 
@@ -15,6 +16,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {   
+    DBManager* dbman = [[DBManager alloc] init];
+    BOOL databaseIsValid = [dbman validateDatabase];
+    
+    if (!databaseIsValid)
+        NSLog(@"Database is not valid");
+    
+    [dbman release];
+    
     scheduler = [[ScheduleController alloc] initWithDelegate:self];
     
     [scheduler start:YES];
@@ -76,6 +85,7 @@
 
 - (IBAction)menuItemDidClick:(NSMenuItem*)sender
 {
+    
     if (sender.tag == 1)
     {
         [scheduler toggle];
