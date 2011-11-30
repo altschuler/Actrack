@@ -20,7 +20,7 @@
     BOOL databaseIsValid = [dbman validateDatabase];
     
     if (!databaseIsValid)
-        NSLog(@"Database is not valid");
+        [[NSAlert alertWithMessageText:@"Database is invalid" defaultButton:@"Damn" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"The database structure could not be verified, please tell simon@altschuler.dk"] runModal];
     
     [dbman release];
     
@@ -138,7 +138,7 @@
     
     [relatedWindowController showWindow:self];
     [NSApp arrangeInFront:relatedWindowController.window];
-    [relatedWindowController.window makeKeyAndOrderFront:nil];
+    [relatedWindowController.window makeMainWindow];
 }
 
 - (void)dealloc

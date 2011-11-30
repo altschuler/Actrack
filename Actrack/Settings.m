@@ -98,7 +98,7 @@
             break;
             
         default:
-            return nil;
+            return -1;
     }
 }
 

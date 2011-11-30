@@ -13,7 +13,7 @@
     IBOutlet NSTextField* intervalTextField;
     IBOutlet NSTextField* archiveTimeTextField;
     IBOutlet NSView* view;
-    
+    IBOutlet NSButton *autoStartCheckBox;
 }
 
 - (void)initUI:(NSTimer*)timer;

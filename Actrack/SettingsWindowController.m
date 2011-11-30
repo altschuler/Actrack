@@ -36,6 +36,7 @@
 
 -(IBAction)saveButtonDidClick:(id)sender
 {
+    
     BOOL success = YES;
     
     success = success ? [Settings setSetting:AskInterval toValue:[intervalTextField stringValue]] : success;
@@ -48,5 +49,7 @@
     else
         NSLog(@"Error saving settings.");
 }
+
+
 
 @end

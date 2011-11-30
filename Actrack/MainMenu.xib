@@ -145,7 +145,7 @@
 					</object>
 					<object class="NSMenuItem" id="796235255">
 						<reference key="NSMenu" ref="147035207"/>
-						<string key="NSTitle">Quit</string>
+						<string key="NSTitle">Quit Actrack</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="511489200"/>

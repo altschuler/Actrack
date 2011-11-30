@@ -76,21 +76,16 @@
     
     [database open];
     
-    NSError* err = nil;
+    BOOL settingsSuccess = [database executeUpdate:@"create table if not exists settings (askInterval int default 3600, archiveTime int default 7)" error:nil withArgumentsInArray:nil orVAList:nil];
     
-    BOOL success = [database executeUpdate:@"create table if not exists settings (askInterval int, archiveTime int)" error:&err withArgumentsInArray:nil orVAList:nil];
+    BOOL actsSuccess = [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:nil withArgumentsInArray:nil orVAList:nil];
     
-    success = success ? [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:&err withArgumentsInArray:nil orVAList:nil] : false;
+    BOOL settingsDefaultSuccess = [database executeUpdate:@"insert into settings values(3600,7)" error:nil withArgumentsInArray:nil orVAList:nil];
     
-    if (success == NO)
-    {
-        NSAlert *theAlert = [NSAlert alertWithError:err];
-        [theAlert runModal];
-    }
     
     [database close];
     
-    return success;  
+    return actsSuccess && settingsSuccess && settingsDefaultSuccess;  
     
 }
 

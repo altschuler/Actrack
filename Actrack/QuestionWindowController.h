@@ -8,13 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface QuestionWindowController : NSWindowController 
+@interface QuestionWindowController : NSWindowController <NSTextFieldDelegate>
 {
     IBOutlet NSTextField* projectTextField;
     IBOutlet NSTextField* commentTextField;
 }
 
--(IBAction)submitButtonDidClick:(id)sender;
+- (IBAction)submitButtonDidClick:(id)sender;
 - (IBAction)skipButtonDidClick:(id)sender;
+
+- (void)submitEntry;
 
 @end

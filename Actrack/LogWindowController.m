@@ -185,6 +185,7 @@
 - (IBAction) runQueryButtonDidClick:(id)sender
 {
     [self updateLogTableView];
+    [self updateComboBoxes];
 }
 
 - (IBAction)deleteButtonDidClick:(id)sender 

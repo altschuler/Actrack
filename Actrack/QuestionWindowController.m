@@ -25,6 +25,20 @@
 
 -(IBAction)submitButtonDidClick:(id)sender
 {
+    [self submitEntry];
+}
+
+-(void)keyUp:(NSEvent *)theEvent
+{
+    if ([theEvent keyCode] == 0x24)
+    {
+        [self submitEntry];
+    }
+        
+}
+
+- (void)submitEntry
+{
     ActivityModel* am = [[ActivityModel alloc] init];
     am.comment = [commentTextField stringValue];
     am.projectId = [projectTextField stringValue];
@@ -33,7 +47,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     am.timeStamp = [formatter stringFromDate:[NSDate date]];
-        
+    
     DBManager* dbman = [[DBManager alloc] init];
     [dbman insertActivity:am];
     
