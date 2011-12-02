@@ -131,8 +131,6 @@
         [SettingsWindowController openWindow];
     else if (windowId == 3) //Log
         [LogWindowController openWindow];
-    else if (windowId == 4) //Quit
-        [QuitWindowController openWindow];
 }
 
 - (void)dealloc

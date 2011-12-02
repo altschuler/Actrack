@@ -24,8 +24,6 @@
 		139201311484149F00CFF802 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392011F1484149F00CFF802 /* MainMenu.xib */; };
 		139201321484149F00CFF802 /* QuestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139201201484149F00CFF802 /* QuestionWindow.xib */; };
 		139201331484149F00CFF802 /* QuestionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201221484149F00CFF802 /* QuestionWindowController.m */; };
-		139201341484149F00CFF802 /* QuitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139201231484149F00CFF802 /* QuitWindow.xib */; };
-		139201351484149F00CFF802 /* QuitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201251484149F00CFF802 /* QuitWindowController.m */; };
 		139201361484149F00CFF802 /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201271484149F00CFF802 /* ScheduleController.m */; };
 		139201371484149F00CFF802 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201291484149F00CFF802 /* Settings.m */; };
 		139201381484149F00CFF802 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392012A1484149F00CFF802 /* SettingsWindow.xib */; };
@@ -93,9 +91,6 @@
 		139201201484149F00CFF802 /* QuestionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionWindow.xib; sourceTree = "<group>"; };
 		139201211484149F00CFF802 /* QuestionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowController.h; sourceTree = "<group>"; };
 		139201221484149F00CFF802 /* QuestionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionWindowController.m; sourceTree = "<group>"; };
-		139201231484149F00CFF802 /* QuitWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuitWindow.xib; sourceTree = "<group>"; };
-		139201241484149F00CFF802 /* QuitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuitWindowController.h; sourceTree = "<group>"; };
-		139201251484149F00CFF802 /* QuitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuitWindowController.m; sourceTree = "<group>"; };
 		139201261484149F00CFF802 /* ScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
 		139201271484149F00CFF802 /* ScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
 		139201281484149F00CFF802 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -157,7 +152,6 @@
 				1392011B1484149F00CFF802 /* LogWindow.xib */,
 				1392011F1484149F00CFF802 /* MainMenu.xib */,
 				139201201484149F00CFF802 /* QuestionWindow.xib */,
-				139201231484149F00CFF802 /* QuitWindow.xib */,
 				1392012A1484149F00CFF802 /* SettingsWindow.xib */,
 			);
 			name = Xib;
@@ -172,8 +166,6 @@
 				1392011D1484149F00CFF802 /* LogWindowController.m */,
 				139201211484149F00CFF802 /* QuestionWindowController.h */,
 				139201221484149F00CFF802 /* QuestionWindowController.m */,
-				139201241484149F00CFF802 /* QuitWindowController.h */,
-				139201251484149F00CFF802 /* QuitWindowController.m */,
 				139201261484149F00CFF802 /* ScheduleController.h */,
 				139201271484149F00CFF802 /* ScheduleController.m */,
 				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
@@ -394,7 +386,6 @@
 				1392012E1484149F00CFF802 /* LogWindow.xib in Resources */,
 				139201311484149F00CFF802 /* MainMenu.xib in Resources */,
 				139201321484149F00CFF802 /* QuestionWindow.xib in Resources */,
-				139201341484149F00CFF802 /* QuitWindow.xib in Resources */,
 				139201381484149F00CFF802 /* SettingsWindow.xib in Resources */,
 				1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */,
 				1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */,
@@ -440,7 +431,6 @@
 				1392012F1484149F00CFF802 /* LogWindowController.m in Sources */,
 				139201301484149F00CFF802 /* main.m in Sources */,
 				139201331484149F00CFF802 /* QuestionWindowController.m in Sources */,
-				139201351484149F00CFF802 /* QuitWindowController.m in Sources */,
 				139201361484149F00CFF802 /* ScheduleController.m in Sources */,
 				139201371484149F00CFF802 /* Settings.m in Sources */,
 				139201391484149F00CFF802 /* SettingsWindowController.m in Sources */,

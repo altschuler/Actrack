@@ -47,9 +47,7 @@ static SettingsWindowController* activeWindowController;
     success = success ? [Settings setSetting:ArchiveTime toValue:[archiveTimeTextField stringValue]] : success;
     
     if (success)
-    {
         [self closeWindow];
-    }
     else
         NSLog(@"Error saving settings.");
 }

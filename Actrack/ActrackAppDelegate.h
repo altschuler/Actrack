@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "QuitWindowController.h"
 #import "QuestionWindowController.h"
 #import "LogWindowController.h"
 #import "SettingsWindowController.h"
@@ -15,9 +14,6 @@
 
 @interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, ScheduleControllerDelegate> 
 {
-    QuitWindowController* quitWindowController;
-    QuestionWindowController* questionWindowController;
-    
     IBOutlet NSMenu* statusMenu;
     NSStatusItem* statusItem;
     ScheduleController* scheduler;
