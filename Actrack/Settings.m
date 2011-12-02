@@ -52,6 +52,8 @@
     
     [database close];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingsDidUpdate" object:[NSNumber numberWithInt:settingId]];
+    
     return success;
 }
                       

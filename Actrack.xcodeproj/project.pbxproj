@@ -146,6 +146,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		132075501488E32500AE7E3A /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1320754D1487C86300AE7E3A /* AbstractWindowController.h */,
+				1320754E1487C86300AE7E3A /* AbstractWindowController.m */,
+				1392011C1484149F00CFF802 /* LogWindowController.h */,
+				1392011D1484149F00CFF802 /* LogWindowController.m */,
+				139201211484149F00CFF802 /* QuestionWindowController.h */,
+				139201221484149F00CFF802 /* QuestionWindowController.m */,
+				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
+				1392012C1484149F00CFF802 /* SettingsWindowController.m */,
+			);
+			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
 		138C902C14842B5600646A04 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,18 +175,11 @@
 		138C902D14842B6900646A04 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1320754D1487C86300AE7E3A /* AbstractWindowController.h */,
-				1320754E1487C86300AE7E3A /* AbstractWindowController.m */,
-				1392011C1484149F00CFF802 /* LogWindowController.h */,
-				1392011D1484149F00CFF802 /* LogWindowController.m */,
-				139201211484149F00CFF802 /* QuestionWindowController.h */,
-				139201221484149F00CFF802 /* QuestionWindowController.m */,
-				139201261484149F00CFF802 /* ScheduleController.h */,
-				139201271484149F00CFF802 /* ScheduleController.m */,
-				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
-				1392012C1484149F00CFF802 /* SettingsWindowController.m */,
+				132075501488E32500AE7E3A /* Window Controllers */,
 				132075471485B08F00AE7E3A /* LoginItem.h */,
 				132075481485B08F00AE7E3A /* LoginItem.m */,
+				139201261484149F00CFF802 /* ScheduleController.h */,
+				139201271484149F00CFF802 /* ScheduleController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

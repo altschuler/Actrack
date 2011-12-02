@@ -33,5 +33,6 @@
 
 - (id)initWithDelegate:(id<ScheduleControllerDelegate>)del;
 
+- (void)settingsDidUpdate:(NSNotification *)notification;
 
 @end

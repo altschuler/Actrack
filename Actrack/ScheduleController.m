@@ -20,9 +20,18 @@
     {   
         delegate = del;
         restTimeFromPause = -1;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidUpdate:) name:@"SettingsDidUpdate" object:nil];
     }
     
     return self;
+}
+
+- (void)settingsDidUpdate:(NSNotification *)notification
+{
+    //Reset the timer if AskInterval has been updated
+    if ([notification object] == [NSNumber numberWithInt:AskInterval])
+        [self start:YES];
 }
 
 -(void)performTask:(NSTimer*)theTimer
@@ -42,7 +51,8 @@
 
 -(void)start:(BOOL)reset
 {
-    if ([[Settings getSetting:AskInterval] intValue] == 0)
+    // "Safety" limit of 10 seconds
+    if ([[Settings getSetting:AskInterval] intValue] < 10)
         return;
     
     int askInterval = [[Settings getSetting:AskInterval] intValue];
@@ -53,13 +63,9 @@
 -(void)toggle
 {
     if ([self isRunning])
-    {
         [self pause];
-    }
     else
-    {
         [self start:NO];
-    }
 }
 
 -(int)remainingTime
@@ -70,6 +76,13 @@
 -(BOOL)isRunning
 {
     return timer != nil;
+}
+
+-(void)dealloc
+{
+    [timer invalidate];
+    
+    [super dealloc];
 }
 
 @end

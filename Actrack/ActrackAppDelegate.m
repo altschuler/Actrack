@@ -93,7 +93,6 @@
 
 - (IBAction)menuItemDidClick:(NSMenuItem*)sender
 {
-    
     if (sender.tag == 1)
     {
         [scheduler toggle];
