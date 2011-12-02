@@ -7,8 +7,9 @@
 //
 
 #import <AppKit/AppKit.h>
+#import "AbstractWindowController.h"
 
-@interface QuitWindowController : NSWindowController
+@interface QuitWindowController : AbstractWindowController
 {
     NSWindow* window;
 }

@@ -7,6 +7,7 @@
 //
 
 //Delegate protocol
+
 @protocol ScheduleControllerDelegate <NSObject>
 
 -(void)performScheduledTask;

@@ -11,6 +11,8 @@
 
 @implementation LogWindowController
 
+static LogWindowController* activeWindowController;
+
 - (id)init
 {
     self = [super initWithWindowNibName:@"LogWindow"];
@@ -200,6 +202,33 @@
     
         [self initUI:nil];
     }
+}
+
++(void)openWindow
+{
+    if (activeWindowController == nil)
+        activeWindowController = [[LogWindowController alloc] init];
+    
+    [activeWindowController showWindow:self];
+    [NSApp arrangeInFront:activeWindowController.window];
+    [activeWindowController.window makeKeyAndOrderFront:nil];
+}
+
+
+-(void)closeWindow
+{
+    //since activeWindowController and self is the same, close first then kill
+    [self close];
+    
+    [activeWindowController release];
+    activeWindowController = nil;
+}
+
+-(BOOL)windowShouldClose:(id)sender
+{
+    [self closeWindow];
+    
+    return NO;
 }
 
 @end

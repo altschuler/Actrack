@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AbstractWindowController.h"
 
-@interface SettingsWindowController : NSWindowController
+@interface SettingsWindowController : AbstractWindowController
 {
     IBOutlet NSTextField* intervalTextField;
     IBOutlet NSTextField* archiveTimeTextField;
@@ -20,5 +21,8 @@
 - (IBAction)saveButtonDidClick:(id)sender;
 - (IBAction)cancelButtonDidClick:(id)sender;
 - (void)initUI:(NSTimer *)timer;
+
++ (void)openWindow;
+- (void)closeWindow;
 
 @end

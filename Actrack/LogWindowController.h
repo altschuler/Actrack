@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AbstractWindowController.h"
 
 
-@interface LogWindowController : NSWindowController<NSTableViewDelegate, NSTableViewDataSource, NSComboBoxDelegate, NSComboBoxDataSource>
+@interface LogWindowController : AbstractWindowController<NSTableViewDelegate, NSTableViewDataSource, NSComboBoxDelegate, NSComboBoxDataSource, NSWindowDelegate>
 {
     NSMutableArray* logs;
     NSMutableArray* dates;
@@ -28,5 +29,8 @@
 - (NSString*)buildQueryFromUI;
 - (void)updateLogTableView;
 - (void)updateComboBoxes;
+
++ (void)openWindow;
+- (void)closeWindow;
 
 @end

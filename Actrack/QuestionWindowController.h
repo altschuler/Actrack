@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AbstractWindowController.h"
 
-@interface QuestionWindowController : NSWindowController <NSTextFieldDelegate>
+@interface QuestionWindowController : AbstractWindowController <NSTextFieldDelegate, NSWindowDelegate>
 {
     IBOutlet NSTextField* projectTextField;
     IBOutlet NSTextField* commentTextField;
@@ -16,6 +17,9 @@
 
 - (IBAction)submitButtonDidClick:(id)sender;
 - (IBAction)skipButtonDidClick:(id)sender;
+
++ (void)openWindow;
+- (void)closeWindow;
 
 - (void)submitEntry;
 

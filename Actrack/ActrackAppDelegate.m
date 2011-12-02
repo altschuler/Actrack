@@ -26,6 +26,14 @@
     
     scheduler = [[ScheduleController alloc] initWithDelegate:self];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:@"FirstTimeRun"] == 0)
+    {
+        NSLog(@"Firstimer");
+        [defaults setBool:YES forKey:@"FirstTimeRun"];
+    }
+    
     [scheduler start:YES];
 }
 
@@ -117,28 +125,14 @@
 
 -(void)showWindow:(int)windowId
 {
-    NSWindowController* relatedWindowController;
-    
     if (windowId == 0) //Ask now
-    {
-        relatedWindowController = [[QuestionWindowController alloc] init];
-    }
+        [QuestionWindowController openWindow];
     else if (windowId == 2) //Settings
-    {
-        relatedWindowController = [[SettingsWindowController alloc] init];
-    }
+        [SettingsWindowController openWindow];
     else if (windowId == 3) //Log
-    {
-        relatedWindowController = [[LogWindowController alloc] init];
-    }
+        [LogWindowController openWindow];
     else if (windowId == 4) //Quit
-    {
-        relatedWindowController = [[QuitWindowController alloc] init];
-    }
-    
-    [relatedWindowController showWindow:self];
-    [NSApp arrangeInFront:relatedWindowController.window];
-    [relatedWindowController.window makeMainWindow];
+        [QuitWindowController openWindow];
 }
 
 - (void)dealloc

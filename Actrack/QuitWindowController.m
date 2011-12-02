@@ -29,7 +29,7 @@
     }
     else if (sender.tag == 1) //Cancel
     {
-        [self close];
+        [self closeWindow];
     }
 }
 @end
