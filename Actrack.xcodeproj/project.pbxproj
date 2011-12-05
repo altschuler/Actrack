@@ -24,12 +24,12 @@
 		139201311484149F00CFF802 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392011F1484149F00CFF802 /* MainMenu.xib */; };
 		139201321484149F00CFF802 /* QuestionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 139201201484149F00CFF802 /* QuestionWindow.xib */; };
 		139201331484149F00CFF802 /* QuestionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201221484149F00CFF802 /* QuestionWindowController.m */; };
-		139201361484149F00CFF802 /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201271484149F00CFF802 /* ScheduleController.m */; };
+		139201361484149F00CFF802 /* AskingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201271484149F00CFF802 /* AskingController.m */; };
 		139201371484149F00CFF802 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201291484149F00CFF802 /* Settings.m */; };
 		139201381484149F00CFF802 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1392012A1484149F00CFF802 /* SettingsWindow.xib */; };
 		139201391484149F00CFF802 /* SettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392012C1484149F00CFF802 /* SettingsWindowController.m */; };
 		1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */; };
-		1392013D148414A800CFF802 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392013C148414A800CFF802 /* DBManager.m */; };
+		1392013D148414A800CFF802 /* DatabaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392013C148414A800CFF802 /* DatabaseService.m */; };
 		13920140148414B800CFF802 /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392013F148414B800CFF802 /* ActivityModel.m */; };
 		139201411484170B00CFF802 /* ActrackAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAA31E14841289006A90EC /* ActrackAppDelegate.m */; };
 		139201431484173700CFF802 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 139201421484173700CFF802 /* libsqlite3.dylib */; };
@@ -71,6 +71,7 @@
 		132075481485B08F00AE7E3A /* LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItem.m; sourceTree = "<group>"; };
 		1320754D1487C86300AE7E3A /* AbstractWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWindowController.h; sourceTree = "<group>"; };
 		1320754E1487C86300AE7E3A /* AbstractWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWindowController.m; sourceTree = "<group>"; };
+		133D688E148CFF15000240AA /* QuestionWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowDelegate.h; sourceTree = "<group>"; };
 		1382666C1485411B00BBCDC1 /* Icon128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon128.icns; path = ../Icon128.icns; sourceTree = "<group>"; };
 		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -91,16 +92,16 @@
 		139201201484149F00CFF802 /* QuestionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionWindow.xib; sourceTree = "<group>"; };
 		139201211484149F00CFF802 /* QuestionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowController.h; sourceTree = "<group>"; };
 		139201221484149F00CFF802 /* QuestionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionWindowController.m; sourceTree = "<group>"; };
-		139201261484149F00CFF802 /* ScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
-		139201271484149F00CFF802 /* ScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
+		139201261484149F00CFF802 /* AskingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskingController.h; sourceTree = "<group>"; };
+		139201271484149F00CFF802 /* AskingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskingController.m; sourceTree = "<group>"; };
 		139201281484149F00CFF802 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		139201291484149F00CFF802 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		1392012A1484149F00CFF802 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		1392012B1484149F00CFF802 /* SettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindowController.h; sourceTree = "<group>"; };
 		1392012C1484149F00CFF802 /* SettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindowController.m; sourceTree = "<group>"; };
 		1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
-		1392013B148414A800CFF802 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
-		1392013C148414A800CFF802 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		1392013B148414A800CFF802 /* DatabaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseService.h; sourceTree = "<group>"; };
+		1392013C148414A800CFF802 /* DatabaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseService.m; sourceTree = "<group>"; };
 		1392013E148414B800CFF802 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
 		1392013F148414B800CFF802 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		139201421484173700CFF802 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -153,12 +154,32 @@
 				1320754E1487C86300AE7E3A /* AbstractWindowController.m */,
 				1392011C1484149F00CFF802 /* LogWindowController.h */,
 				1392011D1484149F00CFF802 /* LogWindowController.m */,
+				133D688E148CFF15000240AA /* QuestionWindowDelegate.h */,
 				139201211484149F00CFF802 /* QuestionWindowController.h */,
 				139201221484149F00CFF802 /* QuestionWindowController.m */,
 				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
 				1392012C1484149F00CFF802 /* SettingsWindowController.m */,
 			);
 			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		1320755C148BA2CA00AE7E3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				138C902C14842B5600646A04 /* Xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1320755D148BA2F400AE7E3A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				139201281484149F00CFF802 /* Settings.h */,
+				139201291484149F00CFF802 /* Settings.m */,
+				1392013B148414A800CFF802 /* DatabaseService.h */,
+				1392013C148414A800CFF802 /* DatabaseService.m */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		138C902C14842B5600646A04 /* Xib */ = {
@@ -175,11 +196,12 @@
 		138C902D14842B6900646A04 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				138C902F148444BE00646A04 /* Main */,
 				132075501488E32500AE7E3A /* Window Controllers */,
 				132075471485B08F00AE7E3A /* LoginItem.h */,
 				132075481485B08F00AE7E3A /* LoginItem.m */,
-				139201261484149F00CFF802 /* ScheduleController.h */,
-				139201271484149F00CFF802 /* ScheduleController.m */,
+				139201261484149F00CFF802 /* AskingController.h */,
+				139201271484149F00CFF802 /* AskingController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -272,14 +294,10 @@
 		13CAA31114841289006A90EC /* Actrack */ = {
 			isa = PBXGroup;
 			children = (
-				138C902F148444BE00646A04 /* Main */,
 				138C902D14842B6900646A04 /* Controller */,
-				139201281484149F00CFF802 /* Settings.h */,
-				139201291484149F00CFF802 /* Settings.m */,
-				1392013B148414A800CFF802 /* DBManager.h */,
-				1392013C148414A800CFF802 /* DBManager.m */,
+				1320755D148BA2F400AE7E3A /* Service */,
 				138C902E14842B7800646A04 /* Model */,
-				138C902C14842B5600646A04 /* Xib */,
+				1320755C148BA2CA00AE7E3A /* View */,
 				1392010F1484145F00CFF802 /* FMDB */,
 				13CAA31214841289006A90EC /* Supporting Files */,
 			);
@@ -439,10 +457,10 @@
 				1392012F1484149F00CFF802 /* LogWindowController.m in Sources */,
 				139201301484149F00CFF802 /* main.m in Sources */,
 				139201331484149F00CFF802 /* QuestionWindowController.m in Sources */,
-				139201361484149F00CFF802 /* ScheduleController.m in Sources */,
+				139201361484149F00CFF802 /* AskingController.m in Sources */,
 				139201371484149F00CFF802 /* Settings.m in Sources */,
 				139201391484149F00CFF802 /* SettingsWindowController.m in Sources */,
-				1392013D148414A800CFF802 /* DBManager.m in Sources */,
+				1392013D148414A800CFF802 /* DatabaseService.m in Sources */,
 				13920140148414B800CFF802 /* ActivityModel.m in Sources */,
 				132075491485B08F00AE7E3A /* LoginItem.m in Sources */,
 				1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */,
@@ -535,6 +553,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Actrack/Actrack-Prefix.pch";
 				INFOPLIST_FILE = "Actrack/Actrack-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -551,6 +570,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Actrack/Actrack-Prefix.pch";
 				INFOPLIST_FILE = "Actrack/Actrack-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

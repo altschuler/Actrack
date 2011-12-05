@@ -8,17 +8,26 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AbstractWindowController.h"
+#import "QuestionWindowDelegate.h"
+#import "ActivityModel.h"
 
-@interface QuestionWindowController : AbstractWindowController <NSTextFieldDelegate, NSWindowDelegate>
+@interface QuestionWindowController : AbstractWindowController <NSTextFieldDelegate, NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
 {
     IBOutlet NSTextField* projectTextField;
     IBOutlet NSTextField* commentTextField;
+    IBOutlet NSButton *notTodayCheckbox;
+    IBOutlet NSComboBox *projectComboBox;
+    NSMutableArray* projectIds;
+    ActivityModel* lastAct;
+    id<QuestionWindowDelegate> delegate;
 }
+
+@property (nonatomic, assign) id<QuestionWindowDelegate> delegate;
 
 - (IBAction)submitButtonDidClick:(id)sender;
 - (IBAction)skipButtonDidClick:(id)sender;
 
-+ (void)openWindow;
++ (void)openWindowWithDelegate:(id<QuestionWindowDelegate>)del;
 - (void)closeWindow;
 
 - (void)submitEntry;

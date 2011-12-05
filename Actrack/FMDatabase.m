@@ -594,7 +594,6 @@
 
 - (BOOL)executeBatch:(NSString *)sql {
     int success = sqlite3_exec(db, [sql UTF8String], NULL, nil, nil);    	
-   
     
     return success == SQLITE_OK;
 }

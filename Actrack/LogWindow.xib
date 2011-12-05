@@ -152,7 +152,7 @@
 												<string key="NSReuseIdentifierKey">_NS:66</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSComboBoxCell" key="NSCell" id="548380007">
-													<int key="NSCellFlags">343014976</int>
+													<int key="NSCellFlags">74579521</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="633450162"/>
@@ -260,7 +260,7 @@
 												<string key="NSReuseIdentifierKey">_NS:66</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSComboBoxCell" key="NSCell" id="145641451">
-													<int key="NSCellFlags">343014976</int>
+													<int key="NSCellFlags">74579521</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="633450162"/>
@@ -634,7 +634,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="424126218"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{630, 322}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>

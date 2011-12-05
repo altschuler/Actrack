@@ -7,10 +7,11 @@
 //
 
 #import "QuestionWindowController.h"
-#import "DBManager.h"
+#import "DatabaseService.h"
 #import "ActivityModel.h"
 
 @implementation QuestionWindowController
+@synthesize delegate;
 
 static QuestionWindowController* activeWindowController;
 
@@ -19,10 +20,49 @@ static QuestionWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"QuestionWindow"];
     if (self) 
     {
-        // Initialization code here.
+        DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
+        
+        NSString* query = @"select *,rowid from acts where archived = 0";
+        
+        NSMutableArray* templogs =  [dbman getActsForQuery:query];    
+        
+        projectIds = [[NSMutableArray alloc] init];
+        
+        lastAct = [templogs objectAtIndex:0];
+        
+        for (ActivityModel* act in templogs) 
+        {
+            if (![projectIds containsObject:act.projectId])
+                [projectIds addObject:act.projectId];
+            
+            if (act.actId > lastAct.actId)
+                lastAct = act;
+        }
+        
+        [projectComboBox selectItemAtIndex:[projectIds count]-1];
+        [projectComboBox reloadData];
     }
     
     return self;
+}
+
+-(void)awakeFromNib
+{
+    //set current project to the last detected one (assuming this is the latest) -2 because theres a blank entry (to be fixed)
+    [projectComboBox selectItemAtIndex:[projectComboBox numberOfItems]-2];
+}
+
+
+-(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
+{
+    return [projectIds objectAtIndex:index];
+    
+    return nil;
+}
+
+-(NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox
+{
+    return [projectIds count];
 }
 
 -(IBAction)submitButtonDidClick:(id)sender
@@ -35,8 +75,7 @@ static QuestionWindowController* activeWindowController;
     if ([theEvent keyCode] == 0x24)
     {
         [self submitEntry];
-    }
-        
+    }  
 }
 
 - (void)submitEntry
@@ -50,7 +89,7 @@ static QuestionWindowController* activeWindowController;
     
     am.timeStamp = [formatter stringFromDate:[NSDate date]];
     
-    DBManager* dbman = [[DBManager alloc] init];
+    DatabaseService* dbman = [[DatabaseService alloc] init];
     [dbman insertActivity:am];
     
     [self closeWindow];
@@ -66,10 +105,13 @@ static QuestionWindowController* activeWindowController;
     [super windowDidLoad];
 }
 
-+(void)openWindow
++ (void)openWindowWithDelegate:(id<QuestionWindowDelegate>)del
 {
     if (activeWindowController == nil)
+    {
         activeWindowController = [[QuestionWindowController alloc] init];
+        [activeWindowController setDelegate:del];
+    }
     
     [activeWindowController showWindow:self];
     [NSApp arrangeInFront:activeWindowController.window];
@@ -77,16 +119,18 @@ static QuestionWindowController* activeWindowController;
 }
 
 
--(void)closeWindow
+- (void)closeWindow
 {
-    //since activeWindowController and self is the same, close first then kill
+    if ([notTodayCheckbox state] == NSOnState)
+        [[activeWindowController delegate] pauseWasSelected];
+    
     [self close];
     
     [activeWindowController release];
     activeWindowController = nil;
 }
 
--(BOOL)windowShouldClose:(id)sender
+- (BOOL)windowShouldClose:(id)sender
 {
     [self closeWindow];
     

@@ -6,14 +6,14 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ScheduleController.h"
+#import "AskingController.h"
 #import "Settings.h"
 
-@implementation ScheduleController
+@implementation AskingController
 
 @synthesize delegate;
 
-- (id)initWithDelegate:(id<ScheduleControllerDelegate>)del
+- (id)initWithDelegate:(id<AskingControllerDelegate>)del
 {
     self = [super init];
     if (self) 
@@ -36,7 +36,39 @@
 
 -(void)performTask:(NSTimer*)theTimer
 {
-    [delegate performScheduledTask];
+    if ([self askingIsAllowed])
+        [delegate performScheduledTask];
+}
+
+-(BOOL)askingIsAllowed
+{
+    //Check if the current day is allowed
+    NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
+    NSInteger currentDay = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday];
+    
+    currentDay = --currentDay < 1 ? 7 : currentDay;
+    currentDay = pow(2, currentDay-1);
+    
+    //Since the least significant bit has the value for sunday, we reverse the bit order
+    uint temp = 0;
+    NSInteger length = 7; 
+    while (length-- > 0)
+    {
+        temp = (temp << 1) | (currentDay & 0x01);
+        currentDay >>= 1;
+    }
+    currentDay = temp;
+    
+    //if the current day is not allowed return no
+    if (!(askDays & currentDay))
+        return NO;
+    
+    //Check if the current hour is allowed
+    NSInteger currentHour = [[[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:[NSDate date]] hour];
+    if (!(currentHour >= [[Settings getSetting:AllowedTimeMin] intValue] && currentHour < [[Settings getSetting:AllowedTimeMax] intValue]))
+        return NO;
+    
+    return YES;
 }
 
 -(void)pause

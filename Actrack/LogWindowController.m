@@ -7,7 +7,7 @@
 //
 
 #import "LogWindowController.h"
-#import "DBManager.h"
+#import "DatabaseService.h"
 
 @implementation LogWindowController
 
@@ -18,10 +18,8 @@ static LogWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"LogWindow"];
     if (self)
     {
-        DBManager* dbman = [[[DBManager alloc] init] autorelease];
+        DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
         [dbman updateArchivedStatus];
-        
-        [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(initUI:) userInfo:nil repeats:NO];
     }
     
     return self;
@@ -29,7 +27,7 @@ static LogWindowController* activeWindowController;
 
 - (void)updateComboBoxes
 {
-    DBManager* dbman = [[DBManager alloc] init];
+    DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
     
     NSString* query = @"select *,rowid from acts";
     
@@ -59,14 +57,19 @@ static LogWindowController* activeWindowController;
     [dateComboBox reloadData];
 }
 
--(void)initUI:(NSTimer *)timer
+-(void)awakeFromNib
+{
+    [self updateView];
+}
+
+- (void)updateView
 {
     [self updateComboBoxes];
     
     [dateComboBox selectItemAtIndex:0];
     [projectComboBox selectItemAtIndex:0];
     
-    [self updateLogTableView];
+    [self updateLogTableView]; 
 }
 
 -(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
@@ -104,7 +107,7 @@ static LogWindowController* activeWindowController;
 
 - (void)updateLogTableView
 {
-    DBManager* dbman = [[DBManager alloc] init];
+    DatabaseService* dbman = [[DatabaseService alloc] init];
     
     NSString* query = [self buildQueryFromUI];
     
@@ -194,7 +197,7 @@ static LogWindowController* activeWindowController;
 {
     if ([logTableView selectedRow] != -1)
     {
-        DBManager* dbman = [[DBManager alloc] init];
+        DatabaseService* dbman = [[DatabaseService alloc] init];
     
         ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
     

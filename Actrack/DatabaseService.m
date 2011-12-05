@@ -1,15 +1,18 @@
 //
-//  DBManager.m
+//  DatabaseService.m
 //  Activity Tracker
 //
 //  Created by zupa-sia on 14/11/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "DBManager.h"
+#import "DatabaseService.h"
 #import "Settings.h"
 
-@implementation DBManager
+// String contains helper
+#define contains(str1, str2) ([str1 rangeOfString: str2 ].location != NSNotFound)
+
+@implementation DatabaseService
 
 - (id) init
 {
@@ -23,7 +26,7 @@
 
 -(BOOL)updateArchivedStatus
 {
-    int archiveTime = (int)[[Settings getSetting:ArchiveTime] intValue];
+    int archiveTime = [[Settings getSetting:ArchiveTime] intValue];
     
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     
@@ -75,18 +78,43 @@
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     
     [database open];
-    
-    BOOL settingsSuccess = [database executeUpdate:@"create table if not exists settings (askInterval int default 3600, archiveTime int default 7)" error:nil withArgumentsInArray:nil orVAList:nil];
+    NSString* settingsQuery = @"create table if not exists settings (askInterval int default 3600, archiveTime int default 7, daysToAsk int default 124, allowedTimeSpanMin int default 8, allowedTimeSpanMax int default 20)";
+    BOOL settingsSuccess = [database executeUpdate:settingsQuery error:nil withArgumentsInArray:nil orVAList:nil];
     
     BOOL actsSuccess = [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:nil withArgumentsInArray:nil orVAList:nil];
     
-    BOOL settingsDefaultSuccess = [database executeUpdate:@"insert into settings values(3600,7)" error:nil withArgumentsInArray:nil orVAList:nil];
+    /*
+     
+     Updating older version of the database to latest format
+     
+     */
     
+    //Check whether the settings table has the all required fields
+    FMResultSet* settingsTableResult = [database executeQuery:@"select sql from sqlite_master where tbl_name = 'settings'"];
+    [settingsTableResult next];
+    
+    
+    NSString* settingsSql = [settingsTableResult stringForColumn:@"sql"];
+    if (!contains(settingsSql, @"allowedTimeSpanMin"))
+    {
+        //The settings table is invalid. Drop it and create again.
+        [database closeOpenResultSets];
+        [database executeUpdate:@"drop table settings"];
+        settingsSuccess = [database executeUpdate:settingsQuery error:nil withArgumentsInArray:nil orVAList:nil];
+    }
+    
+    //Make sure settings has a row with data
+    FMResultSet* countResult = [database executeQuery:@"select count(*) from settings"];
+    [countResult next];
+    
+    NSInteger count = [countResult intForColumn:@"count(*)"];
+    
+    if (count == 0)
+        [database executeUpdate:@"insert into settings default values"];
     
     [database close];
     
-    return actsSuccess && settingsSuccess && settingsDefaultSuccess;  
-    
+    return actsSuccess && settingsSuccess;
 }
 
 - (BOOL) insertActivity:(ActivityModel*)activity

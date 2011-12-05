@@ -16,7 +16,7 @@
     [super initialize];
 }
 
-+(id)getSetting:(Setting)settingId
++(NSString*)getSetting:(Setting)settingId
 {
     FMDatabase* db = [FMDatabase databaseWithPath:[self pathForDatabaseFile]];
     
@@ -26,7 +26,7 @@
     
     [result next];
     
-    id settingValue = [result objectForColumnIndex:[Settings getSettingIndexForId:settingId]];
+    NSString* settingValue = [result stringForColumnIndex:[Settings getSettingIndexForId:settingId]];
     
     [db close];
     
@@ -83,6 +83,18 @@
             return @"archiveTime";
             break;
             
+        case DaysToAsk:
+            return @"daysToAsk";
+            break;
+            
+        case AllowedTimeMin:
+            return @"allowedTimeSpanMin";
+            break;
+            
+        case AllowedTimeMax:
+            return @"allowedTimeSpanMax";
+            break;
+            
         default:
             return nil;
     }
@@ -97,6 +109,18 @@
             
         case ArchiveTime:
             return 1;
+            break;
+            
+        case DaysToAsk:
+            return 2;
+            break;
+            
+        case AllowedTimeMin:
+            return 3;
+            break;
+            
+        case AllowedTimeMax:
+            return 4;
             break;
             
         default:

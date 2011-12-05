@@ -10,13 +10,14 @@
 #import "QuestionWindowController.h"
 #import "LogWindowController.h"
 #import "SettingsWindowController.h"
-#import "ScheduleController.h"
+#import "AskingController.h"
+#import "QuestionWindowDelegate.h"
 
-@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, ScheduleControllerDelegate> 
+@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingControllerDelegate, QuestionWindowDelegate> 
 {
     IBOutlet NSMenu* statusMenu;
     NSStatusItem* statusItem;
-    ScheduleController* scheduler;
+    AskingController* askingController;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -25,5 +26,6 @@
 - (void)askNow;
 - (void)showWindow:(int)windowId;
 - (void)updateTimerInfoMenuItem;
+- (void)settingsDidUpdate:(NSNotification *)notification;
 
 @end

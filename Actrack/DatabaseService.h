@@ -11,7 +11,7 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 
-@interface DBManager : NSObject
+@interface DatabaseService : NSObject
 {
     
 }

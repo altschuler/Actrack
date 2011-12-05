@@ -27,8 +27,10 @@
 - (IBAction)deleteButtonDidClick:(id)sender;
 
 - (NSString*)buildQueryFromUI;
+
 - (void)updateLogTableView;
 - (void)updateComboBoxes;
+- (void)updateView;
 
 + (void)openWindow;
 - (void)closeWindow;

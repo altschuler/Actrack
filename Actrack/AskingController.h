@@ -8,30 +8,34 @@
 
 //Delegate protocol
 
-@protocol ScheduleControllerDelegate <NSObject>
+@protocol AskingControllerDelegate <NSObject>
 
 -(void)performScheduledTask;
 
 @end
 
-@interface ScheduleController : NSObject
+@interface AskingController : NSObject
 {
     int restTimeFromPause;
     
     NSTimer* timer;
-    id<ScheduleControllerDelegate> delegate;
+    id<AskingControllerDelegate> delegate;
 }
 
-@property (nonatomic, assign) id<ScheduleControllerDelegate>delegate;
+@property (nonatomic, assign) id<AskingControllerDelegate>delegate;
+
+
 
 -(void)pause;
 -(void)start:(BOOL)reset;
 -(void)performTask:(NSTimer*)theTimer;
 -(void)toggle;
 -(BOOL)isRunning;
+-(BOOL)askingIsAllowed;
 -(int)remainingTime;
 
-- (id)initWithDelegate:(id<ScheduleControllerDelegate>)del;
+
+- (id)initWithDelegate:(id<AskingControllerDelegate>)del;
 
 - (void)settingsDidUpdate:(NSNotification *)notification;
 

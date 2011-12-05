@@ -8,7 +8,7 @@
 
 #import "ActrackAppDelegate.h"
 #import "Settings.h"
-#import "DBManager.h"
+#import "DatabaseService.h"
 
 @implementation ActrackAppDelegate
 
@@ -16,31 +16,38 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {   
-    DBManager* dbman = [[DBManager alloc] init];
-    BOOL databaseIsValid = [dbman validateDatabase];
+    DatabaseService* databaseService = [[DatabaseService alloc] init];
+    BOOL databaseIsValid = [databaseService validateDatabase];
     
     if (!databaseIsValid)
-        [[NSAlert alertWithMessageText:@"Database is invalid" defaultButton:@"Damn" alternateButton:@"OK" otherButton:nil informativeTextWithFormat:@"The database structure could not be verified, please tell simon@altschuler.dk"] runModal];
+        [[NSAlert alertWithMessageText:@"Database is invalid" defaultButton:@"Damn" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The database structure could not be verified"] runModal];
     
-    [dbman release];
+    [databaseService release];
     
-    scheduler = [[ScheduleController alloc] initWithDelegate:self];
+    askingController = [[AskingController alloc] initWithDelegate:self];
+    [askingController start:YES];
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidUpdate:) name:@"SettingsDidUpdate" object:nil];
     
-    if ([defaults boolForKey:@"FirstTimeRun"] == 0)
-    {
-        NSLog(@"Firstimer");
-        [defaults setBool:YES forKey:@"FirstTimeRun"];
-    }
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    BOOL isReturningUser = [defaults boolForKey:@"isReturningUser"];
+//    if (!isReturningUser)
+//    {
+//        NSLog(@"Firstimer");
+//        [defaults setBool:YES forKey:@"isReturningUser"];
+//    }
     
-    [scheduler start:YES];
+    
+}
+- (void)settingsDidUpdate:(NSNotification *)notification
+{
+    [self updateTimerInfoMenuItem];
 }
 
 -(void)performScheduledTask
 {
     [self askNow];
-    [scheduler start:YES];
+    [askingController start:YES];
 }
 
 -(void)awakeFromNib
@@ -57,11 +64,15 @@
 
 - (void)updateTimerInfoMenuItem
 {
-    if ([scheduler isRunning])
+    if (![askingController askingIsAllowed])
     {
-        int sec = [scheduler remainingTime] % 60;
-        int min = (([scheduler remainingTime] - sec) / 60) % 60;
-        int hour = ([scheduler remainingTime] - ([scheduler remainingTime] % 3600)) / 3600;
+        [[statusMenu itemWithTag:5] setTitle:@"Wont ask right now"]; 
+    }
+    else if ([askingController isRunning])
+    {
+        int sec = [askingController remainingTime] % 60;
+        int min = (([askingController remainingTime] - sec) / 60) % 60;
+        int hour = ([askingController remainingTime] - ([askingController remainingTime] % 3600)) / 3600;
         
         NSString* timeLabel = @"Will ask in ";
         if (hour > 0)
@@ -95,10 +106,10 @@
 {
     if (sender.tag == 1)
     {
-        [scheduler toggle];
+        [askingController toggle];
         
         NSString* logoName;   
-        if ([scheduler isRunning])
+        if ([askingController isRunning])
         {
             logoName = @"Logo";
             [[statusMenu itemWithTag:1] setTitle:@"Pause asking"];
@@ -125,11 +136,21 @@
 -(void)showWindow:(int)windowId
 {
     if (windowId == 0) //Ask now
-        [QuestionWindowController openWindow];
+        [QuestionWindowController openWindowWithDelegate:self];
     else if (windowId == 2) //Settings
         [SettingsWindowController openWindow];
     else if (windowId == 3) //Log
         [LogWindowController openWindow];
+}
+
+-(void)pauseWasSelected
+{
+    [askingController pause];
+    
+    [[statusMenu itemWithTag:1] setTitle:@"Resume asking"];
+    
+    [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_paused_normal.png"]]];
+    [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_paused_alternative.png"]]];
 }
 
 - (void)dealloc

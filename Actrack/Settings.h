@@ -10,7 +10,10 @@
 
 typedef enum {
     AskInterval = 1,
-    ArchiveTime = 2
+    ArchiveTime = 2,
+    DaysToAsk = 3,
+    AllowedTimeMin = 4,
+    AllowedTimeMax = 5
 } Setting;
 
 @interface Settings : NSObject

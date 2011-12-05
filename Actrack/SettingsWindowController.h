@@ -9,18 +9,39 @@
 #import <Cocoa/Cocoa.h>
 #import "AbstractWindowController.h"
 
-@interface SettingsWindowController : AbstractWindowController
+@interface SettingsWindowController : AbstractWindowController <NSWindowDelegate>
 {
-    IBOutlet NSTextField* intervalTextField;
-    IBOutlet NSTextField* archiveTimeTextField;
-    IBOutlet NSView* view;
+    IBOutlet NSTextField* appVersionTextField;
     IBOutlet NSButton *autoStartCheckBox;
+    IBOutlet NSSlider *intervalSlider;
+    IBOutlet NSSlider *archiveTimeSlider;
+    
+    IBOutlet NSButton *askMon;
+    IBOutlet NSButton *askTue;
+    IBOutlet NSButton *askWed;
+    IBOutlet NSButton *askThu;
+    IBOutlet NSButton *askFri;
+    IBOutlet NSButton *askSat;
+    IBOutlet NSButton *askSun;
+    
+    IBOutlet NSSlider *allowedTimeKnobMin;
+    IBOutlet NSSlider *allowedTimeKnobMax;
+    
+    IBOutlet NSTextField *selectedAskInterval;
+    IBOutlet NSTextField *selectedArchiveTime;
+    
+    IBOutlet NSTextField *selectedTimeMin;
+    IBOutlet NSTextField *selectedTimeMax;
 }
 
-- (void)initUI:(NSTimer*)timer;
 - (IBAction)saveButtonDidClick:(id)sender;
 - (IBAction)cancelButtonDidClick:(id)sender;
-- (void)initUI:(NSTimer *)timer;
+- (IBAction)sliderDidChange:(id)sender;
+
+- (void)updateView;
+- (void)initView;
+
+- (NSInteger)askDayStatesToInt;
 
 + (void)openWindow;
 - (void)closeWindow;
