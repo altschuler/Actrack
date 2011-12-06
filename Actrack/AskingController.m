@@ -42,7 +42,17 @@
 
 -(BOOL)askingIsAllowed
 {
-    //Check if the current day is allowed
+    /* 
+     Validation priority: ask interval is 0, current day is allowed, current time is allowed 
+     */
+    
+    /* Check if ask interval is 0 (=never ask) */
+    if ([[Settings getSetting:AskInterval] intValue] == 0)
+    {
+        return NO;
+    }
+    
+    /* Check if the current day is allowed */
     NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
     NSInteger currentDay = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday];
     
@@ -63,7 +73,7 @@
     if (!(askDays & currentDay))
         return NO;
     
-    //Check if the current hour is allowed
+    /* Check if the current hour is allowed */
     NSInteger currentHour = [[[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:[NSDate date]] hour];
     if (!(currentHour >= [[Settings getSetting:AllowedTimeMin] intValue] && currentHour < [[Settings getSetting:AllowedTimeMax] intValue]))
         return NO;
