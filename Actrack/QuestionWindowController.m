@@ -70,9 +70,10 @@ static QuestionWindowController* activeWindowController;
     [self submitEntry];
 }
 
+/* Listen for key up to enable submitting by pressing return when inputs have focus */
 -(void)keyUp:(NSEvent *)theEvent
 {
-    if ([theEvent keyCode] == 0x24)
+    if ([theEvent keyCode] == 0x24) // 0x24 == RETURN
     {
         [self submitEntry];
     }  
@@ -82,7 +83,7 @@ static QuestionWindowController* activeWindowController;
 {
     ActivityModel* am = [[ActivityModel alloc] init];
     am.comment = [commentTextField stringValue];
-    am.projectId = [projectTextField stringValue];
+    am.projectId = [projectComboBox stringValue];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

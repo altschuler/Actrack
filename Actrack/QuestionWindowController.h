@@ -13,7 +13,6 @@
 
 @interface QuestionWindowController : AbstractWindowController <NSTextFieldDelegate, NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
 {
-    IBOutlet NSTextField* projectTextField;
     IBOutlet NSTextField* commentTextField;
     IBOutlet NSButton *notTodayCheckbox;
     IBOutlet NSComboBox *projectComboBox;

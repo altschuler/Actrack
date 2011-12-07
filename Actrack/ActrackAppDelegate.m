@@ -9,6 +9,7 @@
 #import "ActrackAppDelegate.h"
 #import "Settings.h"
 #import "DatabaseService.h"
+#import "FormattingUtils.h"
 
 @implementation ActrackAppDelegate
 
@@ -52,17 +53,41 @@
 
 -(void)awakeFromNib
 {
+    //Register global hotkey. This must be moved elsewhere!
+    EventHotKeyRef myHotKeyRef;     
+    EventHotKeyID myHotKeyID;     
+    EventTypeSpec eventType;
+    eventType.eventClass=kEventClassKeyboard;     
+    eventType.eventKind=kEventHotKeyPressed;
+    
+    InstallApplicationEventHandler(&myHotKeyHandler,1,&eventType,(void*)self,NULL);
+    
+    myHotKeyID.signature='mhk1';     
+    myHotKeyID.id=1;
+    
+    RegisterEventHotKey(kVK_RightArrow, cmdKey+optionKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
+    
     //Init status item
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-    
     [statusItem setMenu:statusMenu];
-    [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_normal.png"]]];
-    [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_alternative.png"]]];
-    
+    [self setStatusItemImage:@"k"];
     [statusItem setHighlightMode:YES];
 }
 
-- (void)updateTimerInfoMenuItem
+OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) 
+{         
+    ActrackAppDelegate* selfRef = (ActrackAppDelegate*)userData;
+    [selfRef askNow];
+    return noErr; 
+}
+
+- (void)setStatusItemImage:(NSString*)imageId
+{
+    [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_normal.png"]]];
+    [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_alternative.png"]]]; 
+}
+
+-(void)updateTimerInfoMenuItem
 {
     if (![askingController askingIsAllowed])
     {
@@ -70,21 +95,7 @@
     }
     else if ([askingController isRunning])
     {
-        int sec = [askingController remainingTime] % 60;
-        int min = (([askingController remainingTime] - sec) / 60) % 60;
-        int hour = ([askingController remainingTime] - ([askingController remainingTime] % 3600)) / 3600;
-        
-        NSString* timeLabel = @"Will ask in ";
-        if (hour > 0)
-            timeLabel = [timeLabel stringByAppendingFormat:@"%ih",hour];
-        
-        if (min > 0 || hour != 0)
-            timeLabel = [timeLabel stringByAppendingFormat:@"%im",min];
-        
-        timeLabel = [timeLabel stringByAppendingFormat:@"%is",sec];
-        
-        
-        [[statusMenu itemWithTag:5] setTitle:timeLabel];
+        [[statusMenu itemWithTag:5] setTitle:[FormattingUtils secondsToTimeString:[askingController remainingTime]]];
     }
     else
     {

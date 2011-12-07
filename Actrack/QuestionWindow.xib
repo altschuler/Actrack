@@ -49,7 +49,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {414, 123}}</string>
 				<int key="NSWTFlags">544735232</int>
-				<string key="NSWindowTitle">Watcha doin?</string>
+				<string key="NSWindowTitle">What's up?</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
@@ -66,7 +66,7 @@
 							<string key="NSFrame">{{17, 84}, {446, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
+							<reference key="NSNextKeyView" ref="203562870"/>
 							<string key="NSReuseIdentifierKey">_NS:3936</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="7258117">
@@ -263,6 +263,7 @@
 							<string key="NSFrame">{{104, 79}, {293, 26}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="365703344"/>
 							<string key="NSReuseIdentifierKey">_NS:66</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSComboBoxCell" key="NSCell" id="1015651660">
@@ -759,14 +760,12 @@
 							<string>commentTextField</string>
 							<string>notTodayCheckbox</string>
 							<string>projectComboBox</string>
-							<string>projectTextField</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTextField</string>
 							<string>NSButton</string>
 							<string>NSComboBox</string>
-							<string>NSTextField</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -776,7 +775,6 @@
 							<string>commentTextField</string>
 							<string>notTodayCheckbox</string>
 							<string>projectComboBox</string>
-							<string>projectTextField</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -791,10 +789,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">projectComboBox</string>
 								<string key="candidateClassName">NSComboBox</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">projectTextField</string>
-								<string key="candidateClassName">NSTextField</string>
 							</object>
 						</object>
 					</object>

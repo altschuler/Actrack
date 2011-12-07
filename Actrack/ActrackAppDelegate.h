@@ -12,6 +12,7 @@
 #import "SettingsWindowController.h"
 #import "AskingController.h"
 #import "QuestionWindowDelegate.h"
+#import "Carbon/Carbon.h"
 
 @interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingControllerDelegate, QuestionWindowDelegate> 
 {
@@ -27,5 +28,8 @@
 - (void)showWindow:(int)windowId;
 - (void)updateTimerInfoMenuItem;
 - (void)settingsDidUpdate:(NSNotification *)notification;
+- (void)setStatusItemImage:(NSString*)imageId;
+
+OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData);
 
 @end

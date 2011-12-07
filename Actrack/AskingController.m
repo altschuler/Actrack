@@ -43,14 +43,15 @@
 -(BOOL)askingIsAllowed
 {
     /* 
-     Validation priority: ask interval is 0, current day is allowed, current time is allowed 
+     Validation priority: 
+     1. ask interval is 0
+     2. current day is allowed
+     3. current time is allowed 
      */
     
     /* Check if ask interval is 0 (=never ask) */
     if ([[Settings getSetting:AskInterval] intValue] == 0)
-    {
         return NO;
-    }
     
     /* Check if the current day is allowed */
     NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];

@@ -116,8 +116,6 @@ static LogWindowController* activeWindowController;
     logs = [dbman getActsForQuery:query];
     
     [logTableView reloadData];
-
-    //[query release];
 }
 
 - (NSString*)buildQueryFromUI
@@ -203,7 +201,7 @@ static LogWindowController* activeWindowController;
     
         [dbman removeActivity:am];
     
-        [self initUI:nil];
+        [self updateView];
     }
 }
 
