@@ -30,18 +30,18 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidUpdate:) name:@"SettingsDidUpdate" object:nil];
     
-//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-//    BOOL isReturningUser = [defaults boolForKey:@"isReturningUser"];
-//    if (!isReturningUser)
-//    {
-//        NSLog(@"Firstimer");
-//        [defaults setBool:YES forKey:@"isReturningUser"];
-//    }
-    
-    
+    hotKeyController = [[HotKeyController alloc] initWithDelegate:self];
+    [hotKeyController registerKeyFromSettings];
 }
+
+-(void)hotKeyActivated
+{
+    [self askNow];
+}
+
 - (void)settingsDidUpdate:(NSNotification *)notification
 {
+    [hotKeyController registerKeyFromSettings];
     [self updateTimerInfoMenuItem];
 }
 
@@ -53,32 +53,12 @@
 
 -(void)awakeFromNib
 {
-    //Register global hotkey. This must be moved elsewhere!
-    EventHotKeyRef myHotKeyRef;     
-    EventHotKeyID myHotKeyID;     
-    EventTypeSpec eventType;
-    eventType.eventClass=kEventClassKeyboard;     
-    eventType.eventKind=kEventHotKeyPressed;
-    
-    InstallApplicationEventHandler(&myHotKeyHandler,1,&eventType,(void*)self,NULL);
-    
-    myHotKeyID.signature='mhk1';     
-    myHotKeyID.id=1;
-    
-    RegisterEventHotKey(kVK_RightArrow, cmdKey+optionKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
-    
+       
     //Init status item
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
     [self setStatusItemImage:@"k"];
     [statusItem setHighlightMode:YES];
-}
-
-OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) 
-{         
-    ActrackAppDelegate* selfRef = (ActrackAppDelegate*)userData;
-    [selfRef askNow];
-    return noErr; 
 }
 
 - (void)setStatusItemImage:(NSString*)imageId

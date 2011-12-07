@@ -13,7 +13,8 @@ typedef enum {
     ArchiveTime = 2,
     DaysToAsk = 3,
     AllowedTimeMin = 4,
-    AllowedTimeMax = 5
+    AllowedTimeMax = 5,
+    HotKey = 6
 } Setting;
 
 @interface Settings : NSObject

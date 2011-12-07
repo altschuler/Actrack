@@ -12,13 +12,14 @@
 #import "SettingsWindowController.h"
 #import "AskingController.h"
 #import "QuestionWindowDelegate.h"
-#import "Carbon/Carbon.h"
+#import "HotKeyController.h"
 
-@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingControllerDelegate, QuestionWindowDelegate> 
+@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingControllerDelegate, QuestionWindowDelegate, HotKeyControllerDelegate> 
 {
     IBOutlet NSMenu* statusMenu;
     NSStatusItem* statusItem;
     AskingController* askingController;
+    HotKeyController* hotKeyController;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -30,6 +31,5 @@
 - (void)settingsDidUpdate:(NSNotification *)notification;
 - (void)setStatusItemImage:(NSString*)imageId;
 
-OSStatus myHotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData);
 
 @end

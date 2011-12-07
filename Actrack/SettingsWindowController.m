@@ -53,12 +53,29 @@ static SettingsWindowController* activeWindowController;
     
     NSInteger timeMax = [[Settings getSetting:AllowedTimeMax] intValue];
     [allowedTimeKnobMax setIntegerValue:timeMax];
+    
+    NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
+    [askSun setState:askDays & 1];
+    [askSat setState:askDays & 2];
+    [askFri setState:askDays & 4];
+    [askThu setState:askDays & 8];
+    [askWed setState:askDays & 16];
+    [askTue setState:askDays & 32];
+    [askMon setState:askDays & 64];
+    
+    NSString* hotkey = [Settings getSetting:HotKey];
+    if (![hotkey isEqualToString:@"none"]) // kill magic string!
+    {
+        [hotkeyCheckbox setState:NSOnState];
+        [hotkeyTextField setSelectedKeyCode:[hotkey intValue]];
+    }
+    else
+        [hotkeyCheckbox setState:NSOffState];
 }
 
-//Updates labels
+//Updates dependant ui (labels, enabled, etc)
 - (void)updateView
 {
-    //Update slider labels
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setMaximumFractionDigits:1];
     [formatter setRoundingMode: NSNumberFormatterRoundHalfEven];
@@ -71,14 +88,6 @@ static SettingsWindowController* activeWindowController;
     NSString* archiveTimeLabel = [NSString stringWithFormat:@"%@ days",[archiveTimeSlider stringValue]];
     [selectedArchiveTime setStringValue:archiveTimeLabel];
     
-    NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
-    [askSun setState:askDays & 1];
-    [askSat setState:askDays & 2];
-    [askFri setState:askDays & 4];
-    [askThu setState:askDays & 8];
-    [askWed setState:askDays & 16];
-    [askTue setState:askDays & 32];
-    [askMon setState:askDays & 64];
 
     [allowedTimeKnobMin setIntegerValue:MIN([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
     
@@ -88,6 +97,15 @@ static SettingsWindowController* activeWindowController;
     [allowedTimeKnobMax setIntegerValue:MAX([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
     NSString* timeMaxLabel = [NSString stringWithFormat:@"%i",[allowedTimeKnobMax intValue]];
     [selectedTimeMax setStringValue:timeMaxLabel];
+    
+    BOOL enabled = [hotkeyCheckbox state] == NSOnState;
+    [hotkeyLabel setTextColor:enabled ? [NSColor blackColor] : [NSColor disabledControlTextColor]];
+    [hotkeyTextField setEnabled:enabled];
+}
+
+- (IBAction)hotkeyCheckBoxDidClick:(id)sender 
+{
+    [self updateView];
 }
 
 - (IBAction)sliderDidChange:(id)sender
@@ -111,7 +129,16 @@ static SettingsWindowController* activeWindowController;
     BOOL allowedTimeMinSuccess = [Settings setSetting:AllowedTimeMin toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMin intValue]]];
     BOOL allowedTimeMaxSuccess = [Settings setSetting:AllowedTimeMax toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMax intValue]]];
     
-    if (askIntervalSuccess && archiveTimeSuccess && daysToAskSuccess && allowedTimeMinSuccess && allowedTimeMaxSuccess)
+    NSString* hotKeySetting;
+    if ([hotkeyCheckbox state] == NSOffState)
+        hotKeySetting = @"'none'"; //THIS IS A MAJOR FUCKING HACK!
+    else
+        hotKeySetting = [NSString stringWithFormat:@"%i",[hotkeyTextField selectedKeyCode]];
+    
+    BOOL hotKeySuccess = [Settings setSetting:HotKey toValue:hotKeySetting];
+    
+    
+    if (askIntervalSuccess && archiveTimeSuccess && daysToAskSuccess && allowedTimeMinSuccess && allowedTimeMaxSuccess & hotKeySuccess)
         [self closeWindow];
     else
         NSLog(@"Error saving settings.");
@@ -123,8 +150,15 @@ static SettingsWindowController* activeWindowController;
         activeWindowController = [[SettingsWindowController alloc] init];
     
     [activeWindowController showWindow:self];
-    [NSApp arrangeInFront:activeWindowController.window];
+    [NSApp activateIgnoringOtherApps:YES];
     [activeWindowController.window makeKeyAndOrderFront:nil];
+}
+
+-(void)showWindow:(id)sender
+{
+    [[self window] makeFirstResponder:intervalSlider];
+    
+    [super showWindow:sender];
 }
 
 

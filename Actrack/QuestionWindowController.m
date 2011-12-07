@@ -114,11 +114,18 @@ static QuestionWindowController* activeWindowController;
         [activeWindowController setDelegate:del];
     }
     
+    [NSApp activateIgnoringOtherApps:YES];    
     [activeWindowController showWindow:self];
-    [NSApp arrangeInFront:activeWindowController.window];
-    [activeWindowController.window makeKeyAndOrderFront:nil];
+    [[activeWindowController window] makeKeyAndOrderFront:nil];
+    [NSApp arrangeInFront:[activeWindowController window]];
 }
 
+-(void)showWindow:(id)sender
+{
+    [super showWindow:sender];
+    [[self window] makeKeyWindow];
+    [[self window] makeFirstResponder:projectComboBox];
+}
 
 - (void)closeWindow
 {

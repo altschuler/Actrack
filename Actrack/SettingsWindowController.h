@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AbstractWindowController.h"
+#import "HotKeyTextField.h"
 
-@interface SettingsWindowController : AbstractWindowController <NSWindowDelegate>
+@interface SettingsWindowController : AbstractWindowController <NSWindowDelegate, NSTextFieldDelegate>
 {
     IBOutlet NSTextField* appVersionTextField;
     IBOutlet NSButton *autoStartCheckBox;
@@ -26,14 +27,19 @@
     
     IBOutlet NSSlider *allowedTimeKnobMin;
     IBOutlet NSSlider *allowedTimeKnobMax;
-    
+
     IBOutlet NSTextField *selectedAskInterval;
     IBOutlet NSTextField *selectedArchiveTime;
     
     IBOutlet NSTextField *selectedTimeMin;
     IBOutlet NSTextField *selectedTimeMax;
+    
+    IBOutlet NSButton *hotkeyCheckbox;
+    IBOutlet HotKeyTextField *hotkeyTextField;
+    IBOutlet NSTextField *hotkeyLabel;
 }
 
+- (IBAction)hotkeyCheckBoxDidClick:(id)sender;
 - (IBAction)saveButtonDidClick:(id)sender;
 - (IBAction)cancelButtonDidClick:(id)sender;
 - (IBAction)sliderDidChange:(id)sender;

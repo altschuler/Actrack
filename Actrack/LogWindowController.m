@@ -212,7 +212,15 @@ static LogWindowController* activeWindowController;
     
     [activeWindowController showWindow:self];
     [NSApp arrangeInFront:activeWindowController.window];
+    [NSApp activateIgnoringOtherApps:YES];
     [activeWindowController.window makeKeyAndOrderFront:nil];
+}
+
+-(void)showWindow:(id)sender
+{
+    [[self window] makeFirstResponder:projectComboBox];
+    
+    [super showWindow:sender];
 }
 
 

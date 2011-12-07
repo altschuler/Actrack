@@ -11,6 +11,8 @@
 		1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1320754E1487C86300AE7E3A /* AbstractWindowController.m */; };
 		134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DB4CE148E235200AF9BB0 /* FormattingUtils.m */; };
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
+		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
+		13501197148FFCC600835626 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501196148FFCC600835626 /* HotKeyController.m */; };
 		1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1382666C1485411B00BBCDC1 /* Icon128.icns */; };
 		1392010B1484145B00CFF802 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201061484145B00CFF802 /* FMDatabase.m */; };
 		1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201081484145B00CFF802 /* FMDatabaseAdditions.m */; };
@@ -77,6 +79,10 @@
 		134DB4CD148E235100AF9BB0 /* FormattingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattingUtils.h; sourceTree = "<group>"; };
 		134DB4CE148E235200AF9BB0 /* FormattingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattingUtils.m; sourceTree = "<group>"; };
 		134DB4D2148E36E600AF9BB0 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		13501192148FF35D00835626 /* HotKeyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyTextField.h; sourceTree = "<group>"; };
+		13501193148FF35D00835626 /* HotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyTextField.m; sourceTree = "<group>"; };
+		13501195148FFCC600835626 /* HotKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyController.h; sourceTree = "<group>"; };
+		13501196148FFCC600835626 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
 		1382666C1485411B00BBCDC1 /* Icon128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon128.icns; path = ../Icon128.icns; sourceTree = "<group>"; };
 		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -173,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				138C902C14842B5600646A04 /* Xib */,
+				13501192148FF35D00835626 /* HotKeyTextField.h */,
+				13501193148FF35D00835626 /* HotKeyTextField.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -217,6 +225,8 @@
 				132075481485B08F00AE7E3A /* LoginItem.m */,
 				139201261484149F00CFF802 /* AskingController.h */,
 				139201271484149F00CFF802 /* AskingController.m */,
+				13501195148FFCC600835626 /* HotKeyController.h */,
+				13501196148FFCC600835626 /* HotKeyController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -268,7 +278,6 @@
 		13CAA2FC14841289006A90EC = {
 			isa = PBXGroup;
 			children = (
-				134DB4D2148E36E600AF9BB0 /* Carbon.framework */,
 				13CAA31114841289006A90EC /* Actrack */,
 				13CAA32E1484128A006A90EC /* ActrackTests */,
 				13CAA30A14841289006A90EC /* Frameworks */,
@@ -289,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				139201421484173700CFF802 /* libsqlite3.dylib */,
+				134DB4D2148E36E600AF9BB0 /* Carbon.framework */,
 				13920144148418CA00CFF802 /* Sparkle.framework */,
 				13CAA30B14841289006A90EC /* Cocoa.framework */,
 				13CAA3291484128A006A90EC /* SenTestingKit.framework */,
@@ -482,6 +492,8 @@
 				132075491485B08F00AE7E3A /* LoginItem.m in Sources */,
 				1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */,
 				134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */,
+				13501194148FF35D00835626 /* HotKeyTextField.m in Sources */,
+				13501197148FFCC600835626 /* HotKeyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

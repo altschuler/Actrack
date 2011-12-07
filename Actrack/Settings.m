@@ -95,6 +95,10 @@
             return @"allowedTimeSpanMax";
             break;
             
+        case HotKey:
+            return @"hotkey";
+            break;
+            
         default:
             return nil;
     }
@@ -121,6 +125,10 @@
             
         case AllowedTimeMax:
             return 4;
+            break;
+            
+        case HotKey:
+            return 5;
             break;
             
         default:

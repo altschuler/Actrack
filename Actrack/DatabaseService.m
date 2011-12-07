@@ -78,7 +78,7 @@
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     
     [database open];
-    NSString* settingsQuery = @"create table if not exists settings (askInterval int default 3600, archiveTime int default 7, daysToAsk int default 124, allowedTimeSpanMin int default 8, allowedTimeSpanMax int default 20)";
+    NSString* settingsQuery = @"create table if not exists settings (askInterval int default 3600, archiveTime int default 7, daysToAsk int default 124, allowedTimeSpanMin int default 8, allowedTimeSpanMax int default 20, hotkey text default 'none')";
     BOOL settingsSuccess = [database executeUpdate:settingsQuery error:nil withArgumentsInArray:nil orVAList:nil];
     
     BOOL actsSuccess = [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:nil withArgumentsInArray:nil orVAList:nil];
@@ -95,7 +95,7 @@
     
     
     NSString* settingsSql = [settingsTableResult stringForColumn:@"sql"];
-    if (!contains(settingsSql, @"allowedTimeSpanMin"))
+    if (!contains(settingsSql, @"hotkey"))
     {
         //The settings table is invalid. Drop it and create again.
         [database closeOpenResultSets];

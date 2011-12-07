@@ -159,6 +159,7 @@
 													<string key="NSCellIdentifier">_NS:66</string>
 													<reference key="NSControlView" ref="22403878"/>
 													<bool key="NSDrawsBackground">YES</bool>
+													<int key="NSTextBezelStyle">1</int>
 													<object class="NSColor" key="NSBackgroundColor" id="733410166">
 														<int key="NSColorSpace">6</int>
 														<string key="NSCatalogName">System</string>
@@ -267,6 +268,7 @@
 													<string key="NSCellIdentifier">_NS:66</string>
 													<reference key="NSControlView" ref="1050505019"/>
 													<bool key="NSDrawsBackground">YES</bool>
+													<int key="NSTextBezelStyle">1</int>
 													<reference key="NSBackgroundColor" ref="733410166"/>
 													<reference key="NSTextColor" ref="430631980"/>
 													<int key="NSVisibleItemCount">5</int>
