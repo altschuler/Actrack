@@ -22,9 +22,7 @@ static QuestionWindowController* activeWindowController;
     {
         DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
         
-        NSString* query = @"select *,rowid from acts where archived = 0";
-        
-        NSMutableArray* templogs =  [dbman getActsForQuery:query];    
+        NSMutableArray* templogs =  [dbman getActs:NO];    
         
         projectIds = [[NSMutableArray alloc] init];
         

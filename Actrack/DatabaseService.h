@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ActivityModel.h"
+#import "ActQueryFilter.h"
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 
@@ -21,6 +22,11 @@
 - (BOOL) insertActivity:(ActivityModel*)activity;
 - (BOOL) removeActivity:(ActivityModel*)activity;
 
-- (NSMutableArray*) getActsForQuery:(NSString*)query;
+- (NSMutableArray*) getActs:(BOOL)archived;
+- (NSMutableArray*) getActsWithFilter:(ActQueryFilter*)filter;
+
+- (NSMutableArray*) getDistinctDates:(BOOL)archived;
+- (NSMutableArray*) getDistinctProjectIds:(BOOL)archived;
+
 
 @end

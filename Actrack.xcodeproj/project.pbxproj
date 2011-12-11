@@ -13,6 +13,7 @@
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
 		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
 		13501197148FFCC600835626 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501196148FFCC600835626 /* HotKeyController.m */; };
+		1350119E1494C08400835626 /* ActQueryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1350119D1494C08400835626 /* ActQueryFilter.m */; };
 		1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1382666C1485411B00BBCDC1 /* Icon128.icns */; };
 		1392010B1484145B00CFF802 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201061484145B00CFF802 /* FMDatabase.m */; };
 		1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201081484145B00CFF802 /* FMDatabaseAdditions.m */; };
@@ -83,6 +84,8 @@
 		13501193148FF35D00835626 /* HotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyTextField.m; sourceTree = "<group>"; };
 		13501195148FFCC600835626 /* HotKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyController.h; sourceTree = "<group>"; };
 		13501196148FFCC600835626 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
+		1350119C1494C08400835626 /* ActQueryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActQueryFilter.h; sourceTree = "<group>"; };
+		1350119D1494C08400835626 /* ActQueryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActQueryFilter.m; sourceTree = "<group>"; };
 		1382666C1485411B00BBCDC1 /* Icon128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon128.icns; path = ../Icon128.icns; sourceTree = "<group>"; };
 		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 			children = (
 				1392013E148414B800CFF802 /* ActivityModel.h */,
 				1392013F148414B800CFF802 /* ActivityModel.m */,
+				1350119C1494C08400835626 /* ActQueryFilter.h */,
+				1350119D1494C08400835626 /* ActQueryFilter.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */,
 				13501194148FF35D00835626 /* HotKeyTextField.m in Sources */,
 				13501197148FFCC600835626 /* HotKeyController.m in Sources */,
+				1350119E1494C08400835626 /* ActQueryFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

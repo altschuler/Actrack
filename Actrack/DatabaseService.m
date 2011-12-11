@@ -41,13 +41,17 @@
     return success;
 }
 
-- (NSMutableArray*) getActsForQuery:(NSString*)query
+- (NSMutableArray*) getActsWithFilter:(ActQueryFilter*)filter
 {
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     
     [database open];
+
+    NSString* archived = filter.archived ? @"%" : [[NSNumber numberWithBool:filter.archived] stringValue];
+    NSString* projectId = filter.projectId == nil ? [NSString stringWithString:@"%"] : filter.projectId;
+    NSString* dateString = filter.dateString == nil ? [NSString stringWithString:@"%"] : [NSString stringWithFormat:@"%@%%",filter.dateString];
     
-    FMResultSet* result = [database executeQuery:query];
+    FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ? and projectId like ? and timeStamp like ?", archived, projectId, dateString];
     
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
@@ -66,6 +70,79 @@
         }
         
         [logs addObject:am];
+    }
+    
+    [database close];
+    
+    return logs;
+}
+
+- (NSMutableArray*) getActs:(BOOL)archived
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    
+    [database open];
+    
+    FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ?",archived ? @"%" : [NSNumber numberWithBool:archived]];
+    
+    NSMutableArray* logs = [[NSMutableArray alloc] init];
+    
+    while ([result next])
+    {
+        ActivityModel* am = [[ActivityModel alloc] init];
+        am.projectId = [result stringForColumn:@"projectId"];
+        am.comment = [result stringForColumn:@"comment"];
+        am.timeStamp = [result stringForColumn:@"timeStamp"];
+        am.actId = [result stringForColumn:@"rowid"];
+        
+        if (am.timeStamp == nil)
+        {
+            NSLog(@"Skipping log due to invalid date");
+            continue;
+        }
+        
+        [logs addObject:am];
+    }
+    
+    [database close];
+    
+    return logs;
+}
+
+
+- (NSMutableArray*) getDistinctDates:(BOOL)archived
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    
+    [database open];
+    
+    FMResultSet* result = [database executeQuery:@"select distinct substr(timeStamp,1,10) from acts where archived like ?",archived ? @"%" : [NSNumber numberWithBool:archived]];
+    
+    NSMutableArray* logs = [[NSMutableArray alloc] init];
+    
+    while ([result next])
+    {   
+        [logs addObject:[result stringForColumn:@"substr(timeStamp,1,10)"]];
+    }
+    
+    [database close];
+    
+    return logs;
+}
+
+- (NSMutableArray*) getDistinctProjectIds:(BOOL)archived
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    
+    [database open];
+    
+    FMResultSet* result = [database executeQuery:@"select distinct projectId from acts where archived like ?",archived ? @"%" : [NSNumber numberWithBool:archived]];
+    
+    NSMutableArray* logs = [[NSMutableArray alloc] init];
+    
+    while ([result next])
+    {   
+        [logs addObject:[result stringForColumn:@"projectId"]];
     }
     
     [database close];

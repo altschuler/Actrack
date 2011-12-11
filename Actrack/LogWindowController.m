@@ -8,6 +8,7 @@
 
 #import "LogWindowController.h"
 #import "DatabaseService.h"
+#import "ActQueryFilter.h"
 
 @implementation LogWindowController
 
@@ -29,29 +30,15 @@ static LogWindowController* activeWindowController;
 {
     DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
     
-    NSString* query = @"select *,rowid from acts";
-    
-    if ([archiveCheckBox state] == NSOffState)
-    {
-        query = [query stringByAppendingString:@" where archived = 0"]; 
-    }
-    
-    NSMutableArray* templogs =  [dbman getActsForQuery:query];    
-    
+    BOOL archived = [archiveCheckBox state] == NSOnState;
+
     dates = [[NSMutableArray alloc] init];
     [dates addObject:@"All"];
+    [dates addObjectsFromArray:[dbman getDistinctDates:archived]];
     
     projectIds = [[NSMutableArray alloc] init];
     [projectIds addObject:@"All"];
-    
-    for (ActivityModel* act in templogs) 
-    {
-        if (![dates containsObject:act.timeStringDay])
-            [dates addObject:act.timeStringDay];
-        
-        if (![projectIds containsObject:act.projectId])
-            [projectIds addObject:act.projectId];
-    }
+    [projectIds addObjectsFromArray:[dbman getDistinctProjectIds:archived]];
     
     [projectComboBox reloadData];
     [dateComboBox reloadData];
@@ -109,55 +96,22 @@ static LogWindowController* activeWindowController;
 {
     DatabaseService* dbman = [[DatabaseService alloc] init];
     
-    NSString* query = [self buildQueryFromUI];
-    
-    [queryTextField setStringValue:query];
-    
-    logs = [dbman getActsForQuery:query];
+    logs = [dbman getActsWithFilter:[self buildFilterFromUI]];
     
     [logTableView reloadData];
 }
 
-- (NSString*)buildQueryFromUI
+- (ActQueryFilter*)buildFilterFromUI
 { 
-    NSString* query = [[NSString alloc] initWithString:@"select *,rowid from acts"];
-    BOOL firstParam = YES;
+    ActQueryFilter* filter = [[ActQueryFilter alloc] init];
     
-    if (![[dateComboBox stringValue] isEqualToString:@"All"])
-    {
-        if (firstParam)
-            query = [query stringByAppendingString:@" where"];
-        
-        firstParam = NO;
-        
-        query = [query stringByAppendingFormat:@" timeStamp like '%@%%'",[dateComboBox stringValue]];
-    }
+    filter.dateString = [[dateComboBox stringValue] isEqualToString:@"All"] ? nil : [dateComboBox stringValue];
     
-    if (![[projectComboBox stringValue] isEqualToString:@"All"])
-    {
-        if (firstParam)
-            query = [query stringByAppendingString:@" where"];
-        else
-            query = [query stringByAppendingString:@" and"];
-        
-        firstParam = NO;
-        
-        query = [query stringByAppendingFormat:@" projectId = %@",[projectComboBox stringValue]];
-    }
+    filter.projectId = [[projectComboBox stringValue] isEqualToString:@"All"] ? nil : [projectComboBox stringValue];
     
-    if ([archiveCheckBox state] == NSOffState)
-    {
-        if (firstParam)
-            query = [query stringByAppendingString:@" where"];
-        else
-            query = [query stringByAppendingString:@" and"];
-        
-        firstParam = NO;
-        
-        query = [query stringByAppendingString:@" archived = 0"];
-    }
-    
-    return query;
+    filter.archived = [archiveCheckBox state] == NSOnState;
+
+    return filter;
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row 
