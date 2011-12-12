@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ActQueryFilter : NSObject
+@interface ActivityQueryFilter : NSObject
 {
     BOOL archived;
     NSString* projectId;

@@ -6,9 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ActQueryFilter.h"
+#import "ActivityQueryFilter.h"
 
-@implementation ActQueryFilter
+@implementation ActivityQueryFilter
 
 @synthesize archived, projectId, dateString;
 

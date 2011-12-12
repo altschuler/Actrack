@@ -9,6 +9,8 @@
 #import "Settings.h"
 #import "FMDatabase.h"
 
+static NSString* databaseFilePath = nil;
+
 @implementation Settings
 
 +(void)initialize
@@ -19,14 +21,14 @@
 +(NSString*)getSetting:(Setting)settingId
 {
     FMDatabase* db = [FMDatabase databaseWithPath:[self pathForDatabaseFile]];
-    
+
     [db open];
     
     FMResultSet* result = [db executeQuery:@"select * from settings"];
-    
-    [result next];
-    
-    NSString* settingValue = [result stringForColumnIndex:[Settings getSettingIndexForId:settingId]];
+
+    NSString* settingValue;
+    if ([result next])
+        settingValue = [result stringForColumn:[Settings getSettingStringForId:settingId]];
     
     [db close];
     
@@ -38,27 +40,53 @@
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     
     [database open];
-    
-    NSError* err = nil;
-    NSString* query = [NSString stringWithFormat:@"update settings set %@ = %@ where rowid = 1", [Settings getSettingStringForId:settingId],newValue];
-    
-    BOOL success = [database executeUpdate:query error:&err withArgumentsInArray:nil orVAList:nil];
-    
-    if (success == NO)
-    {
-        NSAlert *theAlert = [NSAlert alertWithError:err];
-        [theAlert runModal]; // Ignore return value.
+
+    BOOL success;
+    switch (settingId) {
+        case AskInterval:
+            success = [database executeUpdate:@"update settings set askInterval = ?", newValue];
+            break;
+            
+        case ArchiveTime:
+            success = [database executeUpdate:@"update settings set archiveTime = ?", newValue];
+            break;
+            
+        case DaysToAsk:
+            success = [database executeUpdate:@"update settings set daysToAsk = ?", newValue];
+            break;
+            
+        case AllowedTimeMin:
+            success = [database executeUpdate:@"update settings set allowedTimeSpanMin = ?", newValue];
+            break;
+            
+        case AllowedTimeMax:
+            success = [database executeUpdate:@"update settings set allowedTimeSpanMax = ?", newValue];
+            break;
+            
+        case HotKey:
+            success = [database executeUpdate:@"update settings set hotkey = ?", newValue];
+            break;
+            
+        default:
+            success = NO;
+            break;
     }
+
     
     [database close];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingsDidUpdate" object:[NSNumber numberWithInt:settingId]];
+    if (success)
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingsDidUpdate" object:[NSNumber numberWithInt:settingId]];
     
     return success;
 }
                       
 +(NSString*)pathForDatabaseFile
 {
+    if (databaseFilePath != nil)
+    {
+        [databaseFilePath retain];
+        return databaseFilePath;
+    }
     NSFileManager *fileManager = [NSFileManager defaultManager];
         
     NSString *folder = @"~/Library/Application Support/Actrack/";
@@ -68,8 +96,10 @@
     {
         [fileManager createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
     }
-        
-    return [folder stringByAppendingPathComponent:@"appdb.db"];    
+    
+    databaseFilePath = [folder stringByAppendingPathComponent:@"appdb.db"];
+    
+    return databaseFilePath;
 }
 
 +(NSString *)getSettingStringForId:(Setting)settingId

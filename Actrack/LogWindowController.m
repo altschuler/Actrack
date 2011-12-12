@@ -8,7 +8,7 @@
 
 #import "LogWindowController.h"
 #import "DatabaseService.h"
-#import "ActQueryFilter.h"
+#import "ActivityQueryFilter.h"
 
 @implementation LogWindowController
 
@@ -101,9 +101,9 @@ static LogWindowController* activeWindowController;
     [logTableView reloadData];
 }
 
-- (ActQueryFilter*)buildFilterFromUI
+- (ActivityQueryFilter*)buildFilterFromUI
 { 
-    ActQueryFilter* filter = [[ActQueryFilter alloc] init];
+    ActivityQueryFilter* filter = [[ActivityQueryFilter alloc] init];
     
     filter.dateString = [[dateComboBox stringValue] isEqualToString:@"All"] ? nil : [dateComboBox stringValue];
     

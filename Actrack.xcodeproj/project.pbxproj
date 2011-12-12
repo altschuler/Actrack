@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		132075491485B08F00AE7E3A /* LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 132075481485B08F00AE7E3A /* LoginItem.m */; };
+		132075491485B08F00AE7E3A /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 132075481485B08F00AE7E3A /* LoginItemManager.m */; };
 		1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1320754E1487C86300AE7E3A /* AbstractWindowController.m */; };
 		134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DB4CE148E235200AF9BB0 /* FormattingUtils.m */; };
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
 		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
 		13501197148FFCC600835626 /* HotKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501196148FFCC600835626 /* HotKeyController.m */; };
-		1350119E1494C08400835626 /* ActQueryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1350119D1494C08400835626 /* ActQueryFilter.m */; };
+		1350119E1494C08400835626 /* ActivityQueryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1350119D1494C08400835626 /* ActivityQueryFilter.m */; };
+		135011A11495733A00835626 /* IntervalParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 135011A01495733A00835626 /* IntervalParser.m */; };
+		135011A41495736000835626 /* ActivityIntervalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 135011A31495736000835626 /* ActivityIntervalModel.m */; };
 		1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1382666C1485411B00BBCDC1 /* Icon128.icns */; };
 		1392010B1484145B00CFF802 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201061484145B00CFF802 /* FMDatabase.m */; };
 		1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201081484145B00CFF802 /* FMDatabaseAdditions.m */; };
@@ -72,8 +74,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		132075471485B08F00AE7E3A /* LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItem.h; sourceTree = "<group>"; };
-		132075481485B08F00AE7E3A /* LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItem.m; sourceTree = "<group>"; };
+		132075471485B08F00AE7E3A /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
+		132075481485B08F00AE7E3A /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		1320754D1487C86300AE7E3A /* AbstractWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWindowController.h; sourceTree = "<group>"; };
 		1320754E1487C86300AE7E3A /* AbstractWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWindowController.m; sourceTree = "<group>"; };
 		133D688E148CFF15000240AA /* QuestionWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowDelegate.h; sourceTree = "<group>"; };
@@ -84,8 +86,12 @@
 		13501193148FF35D00835626 /* HotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyTextField.m; sourceTree = "<group>"; };
 		13501195148FFCC600835626 /* HotKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeyController.h; sourceTree = "<group>"; };
 		13501196148FFCC600835626 /* HotKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeyController.m; sourceTree = "<group>"; };
-		1350119C1494C08400835626 /* ActQueryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActQueryFilter.h; sourceTree = "<group>"; };
-		1350119D1494C08400835626 /* ActQueryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActQueryFilter.m; sourceTree = "<group>"; };
+		1350119C1494C08400835626 /* ActivityQueryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityQueryFilter.h; sourceTree = "<group>"; };
+		1350119D1494C08400835626 /* ActivityQueryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityQueryFilter.m; sourceTree = "<group>"; };
+		1350119F1495733A00835626 /* IntervalParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalParser.h; sourceTree = "<group>"; };
+		135011A01495733A00835626 /* IntervalParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalParser.m; sourceTree = "<group>"; };
+		135011A21495736000835626 /* ActivityIntervalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIntervalModel.h; sourceTree = "<group>"; };
+		135011A31495736000835626 /* ActivityIntervalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIntervalModel.m; sourceTree = "<group>"; };
 		1382666C1485411B00BBCDC1 /* Icon128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon128.icns; path = ../Icon128.icns; sourceTree = "<group>"; };
 		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -224,12 +230,14 @@
 			children = (
 				138C902F148444BE00646A04 /* Main */,
 				132075501488E32500AE7E3A /* Window Controllers */,
-				132075471485B08F00AE7E3A /* LoginItem.h */,
-				132075481485B08F00AE7E3A /* LoginItem.m */,
+				132075471485B08F00AE7E3A /* LoginItemManager.h */,
+				132075481485B08F00AE7E3A /* LoginItemManager.m */,
 				139201261484149F00CFF802 /* AskingController.h */,
 				139201271484149F00CFF802 /* AskingController.m */,
 				13501195148FFCC600835626 /* HotKeyController.h */,
 				13501196148FFCC600835626 /* HotKeyController.m */,
+				1350119F1495733A00835626 /* IntervalParser.h */,
+				135011A01495733A00835626 /* IntervalParser.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -239,8 +247,10 @@
 			children = (
 				1392013E148414B800CFF802 /* ActivityModel.h */,
 				1392013F148414B800CFF802 /* ActivityModel.m */,
-				1350119C1494C08400835626 /* ActQueryFilter.h */,
-				1350119D1494C08400835626 /* ActQueryFilter.m */,
+				1350119C1494C08400835626 /* ActivityQueryFilter.h */,
+				1350119D1494C08400835626 /* ActivityQueryFilter.m */,
+				135011A21495736000835626 /* ActivityIntervalModel.h */,
+				135011A31495736000835626 /* ActivityIntervalModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -494,12 +504,14 @@
 				139201391484149F00CFF802 /* SettingsWindowController.m in Sources */,
 				1392013D148414A800CFF802 /* DatabaseService.m in Sources */,
 				13920140148414B800CFF802 /* ActivityModel.m in Sources */,
-				132075491485B08F00AE7E3A /* LoginItem.m in Sources */,
+				132075491485B08F00AE7E3A /* LoginItemManager.m in Sources */,
 				1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */,
 				134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */,
 				13501194148FF35D00835626 /* HotKeyTextField.m in Sources */,
 				13501197148FFCC600835626 /* HotKeyController.m in Sources */,
-				1350119E1494C08400835626 /* ActQueryFilter.m in Sources */,
+				1350119E1494C08400835626 /* ActivityQueryFilter.m in Sources */,
+				135011A11495733A00835626 /* IntervalParser.m in Sources */,
+				135011A41495736000835626 /* ActivityIntervalModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

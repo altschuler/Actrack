@@ -41,7 +41,7 @@
     return success;
 }
 
-- (NSMutableArray*) getActsWithFilter:(ActQueryFilter*)filter
+- (NSMutableArray*) getActsWithFilter:(ActivityQueryFilter*)filter
 {
     FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
     

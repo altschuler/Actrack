@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ActQueryFilter.h"
+#import "ActivityQueryFilter.h"
 #import "AbstractWindowController.h"
 
 
@@ -27,7 +27,7 @@
 - (IBAction)runQueryButtonDidClick:(id)sender;
 - (IBAction)deleteButtonDidClick:(id)sender;
 
-- (ActQueryFilter*)buildFilterFromUI;
+- (ActivityQueryFilter*)buildFilterFromUI;
 
 - (void)updateLogTableView;
 - (void)updateComboBoxes;

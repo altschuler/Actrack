@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LoginItem : NSObject
+@interface LoginItemManager : NSObject
 + (BOOL) willStartAtLogin:(NSURL *)itemURL;
 + (void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
 @end

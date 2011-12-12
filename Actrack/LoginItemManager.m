@@ -6,9 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "LoginItem.h"
+#import "LoginItemManager.h"
 
-@implementation LoginItem
+@implementation LoginItemManager
 
 + (BOOL) willStartAtLogin:(NSURL *)itemURL
 {

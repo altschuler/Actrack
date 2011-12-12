@@ -8,7 +8,7 @@
 
 #import "SettingsWindowController.h"
 #import "Settings.h"
-#import "LoginItem.h"
+#import "LoginItemManager.h"
 
 @implementation SettingsWindowController
 
@@ -46,7 +46,7 @@ static SettingsWindowController* activeWindowController;
     NSInteger archiveTime = [[Settings getSetting:ArchiveTime] intValue];
     [archiveTimeSlider setIntegerValue:archiveTime];
     
-    [autoStartCheckBox setState:[LoginItem willStartAtLogin:[[NSBundle mainBundle] bundleURL]]];
+    [autoStartCheckBox setState:[LoginItemManager willStartAtLogin:[[NSBundle mainBundle] bundleURL]]];
     
     NSInteger timeMin = [[Settings getSetting:AllowedTimeMin] intValue];
     [allowedTimeKnobMin setIntegerValue:timeMin];
@@ -121,7 +121,7 @@ static SettingsWindowController* activeWindowController;
 
 -(IBAction)saveButtonDidClick:(id)sender
 {
-    [LoginItem setStartAtLogin:[[NSBundle mainBundle] bundleURL] enabled:[autoStartCheckBox state] == NSOnState];
+    [LoginItemManager setStartAtLogin:[[NSBundle mainBundle] bundleURL] enabled:[autoStartCheckBox state] == NSOnState];
             
     BOOL askIntervalSuccess = [Settings setSetting:AskInterval toValue:[[NSNumber numberWithInt:([intervalSlider doubleValue])*3600] stringValue]];
     BOOL archiveTimeSuccess = [Settings setSetting:ArchiveTime toValue:[archiveTimeSlider stringValue]];
