@@ -225,7 +225,7 @@
 						<object class="NSButton" id="781691688">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 11}, {103, 25}}</string>
+							<string key="NSFrame">{{20, 10}, {114, 25}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="820057321"/>
@@ -233,24 +233,13 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="469825103">
 								<int key="NSCellFlags">67239424</int>
-								<int key="NSCellFlags2">0</int>
+								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Pause asking</string>
-								<object class="NSFont" key="NSSupport" id="709977508">
-									<string key="NSName">LucidaGrande</string>
-									<double key="NSSize">12</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="NSSupport" ref="458709587"/>
 								<string key="NSCellIdentifier">_NS:1491</string>
 								<reference key="NSControlView" ref="781691688"/>
-								<int key="NSButtonFlags">1210864127</int>
-								<int key="NSButtonFlags2">2</int>
-								<object class="NSCustomResource" key="NSNormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSSwitch</string>
-								</object>
-								<object class="NSButtonImageSource" key="NSAlternateImage">
-									<string key="NSImageName">NSSwitch</string>
-								</object>
+								<int key="NSButtonFlags">917782783</int>
+								<int key="NSButtonFlags2">35</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">400</int>
@@ -300,7 +289,11 @@
 												<int key="NSCellFlags">75628032</int>
 												<int key="NSCellFlags2">0</int>
 												<string key="NSContents"/>
-												<reference key="NSSupport" ref="709977508"/>
+												<object class="NSFont" key="NSSupport">
+													<string key="NSName">LucidaGrande</string>
+													<double key="NSSize">12</double>
+													<int key="NSfFlags">16</int>
+												</object>
 												<object class="NSColor" key="NSBackgroundColor">
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
@@ -350,6 +343,7 @@
 									<int key="NSTableViewDraggingDestinationStyle">0</int>
 									<int key="NSTableViewGroupRowStyle">1</int>
 								</object>
+								<bool key="NSButtonBordered">NO</bool>
 							</object>
 							<nil key="NSDataSource"/>
 						</object>
@@ -507,8 +501,8 @@
 							<reference ref="194341805"/>
 							<reference ref="820057321"/>
 							<reference ref="572189004"/>
-							<reference ref="781691688"/>
 							<reference ref="203562870"/>
+							<reference ref="781691688"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -807,9 +801,5 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">NSSwitch</string>
-			<string key="NS.object.0">{15, 15}</string>
-		</object>
 	</data>
 </archive>

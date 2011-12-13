@@ -82,11 +82,7 @@ static QuestionWindowController* activeWindowController;
     ActivityModel* am = [[ActivityModel alloc] init];
     am.comment = [commentTextField stringValue];
     am.projectId = [projectComboBox stringValue];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    am.timeStamp = [formatter stringFromDate:[NSDate date]];
+    am.timeStamp = [NSDate date];
     
     DatabaseService* dbman = [[DatabaseService alloc] init];
     [dbman insertActivity:am];

@@ -9,6 +9,7 @@
 #import "SettingsWindowController.h"
 #import "Settings.h"
 #import "LoginItemManager.h"
+#import "FormattingUtils.h"
 
 @implementation SettingsWindowController
 
@@ -80,23 +81,17 @@ static SettingsWindowController* activeWindowController;
     [formatter setMaximumFractionDigits:1];
     [formatter setRoundingMode: NSNumberFormatterRoundHalfEven];
 
-    NSNumber* a = [NSNumber numberWithDouble:[intervalSlider doubleValue]];
-    NSString* intervalLabel = [NSString stringWithFormat:@"%@ hours",[formatter stringForObjectValue:a]];
-    [selectedAskInterval setStringValue:intervalLabel];
+    [selectedAskInterval setStringValue:[NSString stringWithFormat:@"%@ hours",[formatter stringForObjectValue:[NSNumber numberWithDouble:[intervalSlider doubleValue]]]]];
+    
     [formatter release];
     
-    NSString* archiveTimeLabel = [NSString stringWithFormat:@"%@ days",[archiveTimeSlider stringValue]];
-    [selectedArchiveTime setStringValue:archiveTimeLabel];
+    [selectedArchiveTime setStringValue:[NSString stringWithFormat:@"%@ days",[archiveTimeSlider stringValue]]];
     
-
     [allowedTimeKnobMin setIntegerValue:MIN([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
-    
-    NSString* timeMinLabel = [NSString stringWithFormat:@"%i",[allowedTimeKnobMin intValue]];
-    [selectedTimeMin setStringValue:timeMinLabel];
+    [selectedTimeMin setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils niceHour:[NSNumber numberWithInt:[allowedTimeKnobMin intValue]]]]];
     
     [allowedTimeKnobMax setIntegerValue:MAX([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
-    NSString* timeMaxLabel = [NSString stringWithFormat:@"%i",[allowedTimeKnobMax intValue]];
-    [selectedTimeMax setStringValue:timeMaxLabel];
+    [selectedTimeMax setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils niceHour:[NSNumber numberWithInt:[allowedTimeKnobMax intValue]]]]];
     
     BOOL enabled = [hotkeyCheckbox state] == NSOnState;
     [hotkeyLabel setTextColor:enabled ? [NSColor blackColor] : [NSColor disabledControlTextColor]];

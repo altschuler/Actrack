@@ -16,13 +16,29 @@
 {
     NSMutableArray* parsed = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < [list count]; i++) 
+    NSInteger listCount = [list count];
+    
+    for (int i = 0; i < listCount; i++) 
     {
         ActivityIntervalModel* intervalModel = [[ActivityIntervalModel alloc] init];
         
         ActivityModel* activityModel = [list objectAtIndex:i];
         
         intervalModel.activityModel = activityModel;
+        
+        if (i < listCount - 1)
+        {
+            ActivityModel* nextActivityModel = (ActivityModel*)[list objectAtIndex:i + 1];
+            
+            intervalModel.endDate = [nextActivityModel.timeStamp copy];
+            NSLog(@"%@    =     %i",[activityModel timeString],[[intervalModel timeInterval] intValue]);
+        }
+        else
+        {
+            intervalModel.endDate = nil;
+        }
+        
+        [parsed addObject:intervalModel];
         
     }
     

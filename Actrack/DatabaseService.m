@@ -60,7 +60,7 @@
         ActivityModel* am = [[ActivityModel alloc] init];
         am.projectId = [result stringForColumn:@"projectId"];
         am.comment = [result stringForColumn:@"comment"];
-        am.timeStamp = [result stringForColumn:@"timeStamp"];
+        am.timeStamp = [NSDate dateWithNaturalLanguageString:[result stringForColumn:@"timeStamp"]];
         am.actId = [result stringForColumn:@"rowid"];
         
         if (am.timeStamp == nil)
@@ -92,7 +92,7 @@
         ActivityModel* am = [[ActivityModel alloc] init];
         am.projectId = [result stringForColumn:@"projectId"];
         am.comment = [result stringForColumn:@"comment"];
-        am.timeStamp = [result stringForColumn:@"timeStamp"];
+        am.timeStamp = [NSDate dateWithNaturalLanguageString:[result stringForColumn:@"timeStamp"]];
         am.actId = [result stringForColumn:@"rowid"];
         
         if (am.timeStamp == nil)
@@ -201,7 +201,7 @@
     [database open];
     
     NSError* err = nil;
-    NSArray* args = [NSArray arrayWithObjects:activity.projectId, activity.comment, activity.timeStamp, nil];
+    NSArray* args = [NSArray arrayWithObjects:activity.projectId, activity.comment, activity.timeString, nil];
     BOOL success = [database executeUpdate:@"insert into acts (projectId, comment, timeStamp) values (?,?,?)" error:&err withArgumentsInArray:args orVAList:nil];
     
     if (success == NO)

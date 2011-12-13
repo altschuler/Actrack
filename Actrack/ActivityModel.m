@@ -22,9 +22,40 @@
     return self;
 }
 
+-(NSString*)timeString
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd mm:HH:ss"];
+    
+    NSString *dateString = [dateFormatter stringFromDate:[self timeStamp]];
+    
+    [dateFormatter release];
+    
+    return dateString;
+}
+
 -(NSString*)timeStringDay
 {
-    return [self.timeStamp substringToIndex:10];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *dateString = [dateFormatter stringFromDate:[self timeStamp]];
+    
+    [dateFormatter release];
+    
+    return dateString;
+}
+
+-(NSString*)timeStringTime
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    
+    NSString *dateString = [dateFormatter stringFromDate:[self timeStamp]];
+    
+    [dateFormatter release];
+    
+    return dateString;
 }
 
 - (id)copyWithZone:(NSZone *)zone

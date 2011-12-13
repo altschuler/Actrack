@@ -10,7 +10,7 @@
 
 @implementation ActivityIntervalModel
 
-@synthesize activityModel;
+@synthesize activityModel, endDate;
 
 - (id)init
 {
@@ -24,7 +24,10 @@
 
 -(NSNumber*)timeInterval
 {
-    return [NSNumber numberWithDouble:[[self endDate] timeIntervalSince1970] - [[NSDate dateWithString:[activityModel timeStamp] ] timeIntervalSince1970]];
+    int endTime = [[self endDate] timeIntervalSince1970];
+    NSDate* abe = [activityModel timeStamp];
+    int startTime = [abe timeIntervalSince1970];
+    return [NSNumber numberWithInt:endTime - startTime];
 }
 
 -(NSDate*)endDate

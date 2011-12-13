@@ -339,9 +339,9 @@
 				1320755D148BA2F400AE7E3A /* Service */,
 				138C902E14842B7800646A04 /* Model */,
 				1320755C148BA2CA00AE7E3A /* View */,
+				134DB4D1148E235600AF9BB0 /* Utils */,
 				1392010F1484145F00CFF802 /* FMDB */,
 				13CAA31214841289006A90EC /* Supporting Files */,
-				134DB4D1148E235600AF9BB0 /* Utils */,
 			);
 			path = Actrack;
 			sourceTree = "<group>";

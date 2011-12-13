@@ -13,14 +13,16 @@
     NSString* actId;
     NSString* projectId;
     NSString* comment;
-    NSString* timeStamp;
+    NSDate* timeStamp;
 }
 
 @property (nonatomic, copy) NSString* actId;
 @property (nonatomic, copy) NSString* projectId;
 @property (nonatomic, copy) NSString* comment;
-@property (nonatomic, copy) NSString* timeStamp;
+@property (nonatomic, retain) NSDate* timeStamp;
 
 -(NSString*)timeStringDay;
+-(NSString*)timeStringTime;
+-(NSString*)timeString;
 
 @end

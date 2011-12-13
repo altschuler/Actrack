@@ -28,4 +28,12 @@
     return timeLabel;
 }
 
+
++(NSString*)niceHour:(NSNumber*)hours
+{
+    NSString* hoursString = [hours stringValue];
+    
+    return hours > [NSNumber numberWithInt:9] ? [hoursString stringByAppendingString:@":00"] : [[NSString stringWithString:@"0"] stringByAppendingString:[hoursString stringByAppendingString:@":00"]];
+}
+
 @end

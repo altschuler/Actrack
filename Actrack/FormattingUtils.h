@@ -11,5 +11,6 @@
 @interface FormattingUtils : NSObject
 
 +(NSString*)secondsToTimeString:(NSInteger)seconds;
++(NSString*)niceHour:(NSNumber*)hours;
 
 @end

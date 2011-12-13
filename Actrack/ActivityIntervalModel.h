@@ -12,11 +12,12 @@
 @interface ActivityIntervalModel : NSObject
 {
     ActivityModel* activityModel;
+    NSDate* endDate;
 }
 
 @property (nonatomic, retain) ActivityModel* activityModel;
+@property (nonatomic, retain) NSDate* endDate;
 
 -(NSNumber*)timeInterval;
--(NSDate*)endDate;
 
 @end

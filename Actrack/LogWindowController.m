@@ -9,6 +9,8 @@
 #import "LogWindowController.h"
 #import "DatabaseService.h"
 #import "ActivityQueryFilter.h"
+#import "IntervalParser.h"
+#import "ActivityIntervalModel.h"
 
 @implementation LogWindowController
 
@@ -21,6 +23,13 @@ static LogWindowController* activeWindowController;
     {
         DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
         [dbman updateArchivedStatus];
+        
+        IntervalParser* intervalParser = [[IntervalParser alloc] init];
+        NSMutableArray* parsed = [intervalParser parseList:[dbman getActs:NO]];
+        for (ActivityIntervalModel* intervalModel in parsed) 
+        {
+            NSLog(@"%@",intervalModel.timeInterval);
+        }
     }
     
     return self;
@@ -121,20 +130,13 @@ static LogWindowController* activeWindowController;
     ActivityModel* am = [logs objectAtIndex:row];
     
     if ([[tableColumn identifier] isEqualToString: @"comment"])
-    {   
         cell.title = am.comment;
-        [tableColumn.headerCell setTitle:@"Comment"];
-    }
     else if ([[tableColumn identifier] isEqualToString: @"projectId"])
-    {   
         cell.title = am.projectId;
-        [tableColumn.headerCell setTitle:@"Project ID"];
-    }
     else if ([[tableColumn identifier] isEqualToString: @"date"])
-    {   
-        cell.title = am.timeStamp;
-        [tableColumn.headerCell setTitle:@"Date"];
-    }
+        cell.title = am.timeStringDay;
+    else if ([[tableColumn identifier] isEqualToString: @"time"])
+        cell.title = am.timeStringTime;
     
     return cell;
 }
