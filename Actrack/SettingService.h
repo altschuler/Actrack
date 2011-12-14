@@ -17,7 +17,7 @@ typedef enum {
     HotKey = 6
 } Setting;
 
-@interface Settings : NSObject
+@interface SettingService : NSObject
 
 +(id)getSetting:(Setting)settingId;
 +(BOOL)setSetting:(Setting)settingId toValue:(id)newValue;

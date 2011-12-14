@@ -7,10 +7,11 @@
 //
 
 #import "LogWindowController.h"
-#import "DatabaseService.h"
+#import "ActivityService.h"
 #import "ActivityQueryFilter.h"
 #import "IntervalParser.h"
 #import "ActivityIntervalModel.h"
+#import "FormattingUtils.h"
 
 @implementation LogWindowController
 
@@ -21,36 +22,11 @@ static LogWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"LogWindow"];
     if (self)
     {
-        DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
+        ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
         [dbman updateArchivedStatus];
-        
-        IntervalParser* intervalParser = [[IntervalParser alloc] init];
-        NSMutableArray* parsed = [intervalParser parseList:[dbman getActs:NO]];
-        for (ActivityIntervalModel* intervalModel in parsed) 
-        {
-            NSLog(@"%@",intervalModel.timeInterval);
-        }
     }
     
     return self;
-}
-
-- (void)updateComboBoxes
-{
-    DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
-    
-    BOOL archived = [archiveCheckBox state] == NSOnState;
-
-    dates = [[NSMutableArray alloc] init];
-    [dates addObject:@"All"];
-    [dates addObjectsFromArray:[dbman getDistinctDates:archived]];
-    
-    projectIds = [[NSMutableArray alloc] init];
-    [projectIds addObject:@"All"];
-    [projectIds addObjectsFromArray:[dbman getDistinctProjectIds:archived]];
-    
-    [projectComboBox reloadData];
-    [dateComboBox reloadData];
 }
 
 -(void)awakeFromNib
@@ -58,14 +34,48 @@ static LogWindowController* activeWindowController;
     [self updateView];
 }
 
+- (IBAction)viewDidUpdate:(id)sender
+{
+    [self updateView];
+}
+
 - (void)updateView
 {
-    [self updateComboBoxes];
+    ActivityService* activityService = [[ActivityService alloc] init];
     
-    [dateComboBox selectItemAtIndex:0];
-    [projectComboBox selectItemAtIndex:0];
+    BOOL archived = [archiveCheckBox state] == NSOnState;
     
-    [self updateLogTableView]; 
+    dates = [[NSMutableArray alloc] init];
+    [dates addObject:@"All"];
+    [dates addObjectsFromArray:[activityService getDistinctDates:archived]];
+    [dateComboBox reloadData];
+    
+    projectIds = [[NSMutableArray alloc] init];
+    [projectIds addObject:@"All"];
+    [projectIds addObjectsFromArray:[activityService getDistinctProjectIds:archived]];
+    [projectComboBox reloadData];
+    
+    if ([[projectComboBox stringValue] length] == 0)
+        [projectComboBox selectItemAtIndex:0];
+    
+    if ([[dateComboBox stringValue] length] == 0)
+        [dateComboBox selectItemAtIndex:0];
+    
+    logs = [activityService getActsWithFilter:[self buildFilterFromUI]];
+    
+    [logTableView reloadData];
+    
+    IntervalParser* intervalParser = [[IntervalParser alloc] init];
+    NSMutableArray* parsed = [intervalParser parseList:logs];
+
+    [summaryTextfield setStringValue:@""];
+    for (ActivityIntervalModel* intervalModel in parsed) 
+    {
+        NSString* summaryEntry = [NSString stringWithFormat:@"%@Worked on %@ (%@)\n", [summaryTextfield stringValue], intervalModel.activityModel.projectId, 
+                                  [FormattingUtils secondsToTimeString:[intervalModel.timeInterval intValue] delimiter:@":"]];
+        
+        [summaryTextfield setStringValue:summaryEntry];
+    }
 }
 
 -(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
@@ -101,15 +111,6 @@ static LogWindowController* activeWindowController;
     return logs.count;
 }
 
-- (void)updateLogTableView
-{
-    DatabaseService* dbman = [[DatabaseService alloc] init];
-    
-    logs = [dbman getActsWithFilter:[self buildFilterFromUI]];
-    
-    [logTableView reloadData];
-}
-
 - (ActivityQueryFilter*)buildFilterFromUI
 { 
     ActivityQueryFilter* filter = [[ActivityQueryFilter alloc] init];
@@ -141,22 +142,16 @@ static LogWindowController* activeWindowController;
     return cell;
 }
 
-- (IBAction) runQueryButtonDidClick:(id)sender
-{
-    [self updateLogTableView];
-    [self updateComboBoxes];
-}
-
 - (IBAction)deleteButtonDidClick:(id)sender 
 {
     if ([logTableView selectedRow] != -1)
     {
-        DatabaseService* dbman = [[DatabaseService alloc] init];
+        ActivityService* dbman = [[ActivityService alloc] init];
     
         ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
     
         [dbman removeActivity:am];
-    
+        
         [self updateView];
     }
 }

@@ -6,13 +6,13 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "DatabaseService.h"
-#import "Settings.h"
+#import "ActivityService.h"
+#import "SettingService.h"
 
 // String contains helper
 #define contains(str1, str2) ([str1 rangeOfString: str2 ].location != NSNotFound)
 
-@implementation DatabaseService
+@implementation ActivityService
 
 - (id) init
 {
@@ -26,9 +26,9 @@
 
 -(BOOL)updateArchivedStatus
 {
-    int archiveTime = [[Settings getSetting:ArchiveTime] intValue];
+    int archiveTime = [[SettingService getSetting:ArchiveTime] intValue];
     
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     
@@ -43,7 +43,7 @@
 
 - (NSMutableArray*) getActsWithFilter:(ActivityQueryFilter*)filter
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
 
@@ -79,7 +79,7 @@
 
 - (NSMutableArray*) getActs:(BOOL)archived
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     
@@ -112,7 +112,7 @@
 
 - (NSMutableArray*) getDistinctDates:(BOOL)archived
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     
@@ -132,7 +132,7 @@
 
 - (NSMutableArray*) getDistinctProjectIds:(BOOL)archived
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     
@@ -152,7 +152,7 @@
 
 - (BOOL) validateDatabase
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     NSString* settingsQuery = @"create table if not exists settings (askInterval int default 3600, archiveTime int default 7, daysToAsk int default 124, allowedTimeSpanMin int default 8, allowedTimeSpanMax int default 20, hotkey text default 'none')";
@@ -196,7 +196,7 @@
 
 - (BOOL) insertActivity:(ActivityModel*)activity
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     
@@ -217,7 +217,7 @@
 
 -(BOOL)removeActivity:(ActivityModel*)activity
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
     

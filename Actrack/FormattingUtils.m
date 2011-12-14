@@ -10,30 +10,35 @@
 
 @implementation FormattingUtils
 
-+(NSString*)secondsToTimeString:(NSInteger)seconds
++(NSString*)secondsToTimeString:(NSInteger)seconds delimiter:(NSString*)delim
 {
     NSInteger sec = seconds % 60;
     NSInteger min = ((seconds - sec) / 60) % 60;
     NSInteger hour = (seconds - (seconds % 3600)) / 3600;
     
-    NSString* timeLabel = @"Will ask in ";
+    NSString* timeLabel = [[NSString alloc] init];
     if (hour > 0)
-        timeLabel = [timeLabel stringByAppendingFormat:@"%ih",hour];
+        timeLabel = [timeLabel stringByAppendingFormat:hour > 9 ? @"%i%@" : @"0%i%@",hour,delim];
     
     if (min > 0 || hour != 0)
-        timeLabel = [timeLabel stringByAppendingFormat:@"%im",min];
+        timeLabel = [timeLabel stringByAppendingFormat:min > 9 ? @"%i%@" : @"0%i%@",min,delim];
     
-    timeLabel = [timeLabel stringByAppendingFormat:@"%is",sec];  
+    timeLabel = [timeLabel stringByAppendingFormat:sec > 9 ? @"%i" : @"0%i",sec];  
     
     return timeLabel;
 }
 
-
-+(NSString*)niceHour:(NSNumber*)hours
++(NSString*)secondsToClockString:(NSInteger)seconds
 {
-    NSString* hoursString = [hours stringValue];
+    NSInteger sec = seconds % 60;
+    NSInteger min = ((seconds - sec) / 60) % 60;
+    NSInteger hour = (seconds - (seconds % 3600)) / 3600;
     
-    return hours > [NSNumber numberWithInt:9] ? [hoursString stringByAppendingString:@":00"] : [[NSString stringWithString:@"0"] stringByAppendingString:[hoursString stringByAppendingString:@":00"]];
+    NSString* timeLabel = [[NSString alloc] init];
+   timeLabel = [timeLabel stringByAppendingFormat:hour > 9 ? @"%i:" : @"0%i:", hour];
+   timeLabel = [timeLabel stringByAppendingFormat:min > 9 ? @"%i" : @"0%i", min]; 
+    
+    return timeLabel;
 }
 
 @end

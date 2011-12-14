@@ -24,15 +24,12 @@
 
 -(NSNumber*)timeInterval
 {
-    int endTime = [[self endDate] timeIntervalSince1970];
-    NSDate* abe = [activityModel timeStamp];
-    int startTime = [abe timeIntervalSince1970];
-    return [NSNumber numberWithInt:endTime - startTime];
+    return [NSNumber numberWithDouble:[[self endDate] timeIntervalSince1970] - [[self startDate] timeIntervalSince1970]];
 }
 
--(NSDate*)endDate
+-(NSDate*)startDate
 {
-    return [NSDate date];
+    return [[self activityModel] timeStamp];
 }
 
 @end

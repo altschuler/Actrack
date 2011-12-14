@@ -10,7 +10,7 @@
 
 @interface FormattingUtils : NSObject
 
-+(NSString*)secondsToTimeString:(NSInteger)seconds;
-+(NSString*)niceHour:(NSNumber*)hours;
++(NSString*)secondsToTimeString:(NSInteger)seconds delimiter:(NSString*)delim;
++(NSString*)secondsToClockString:(NSInteger)seconds;
 
 @end

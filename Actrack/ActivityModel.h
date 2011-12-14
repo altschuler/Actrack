@@ -25,4 +25,6 @@
 -(NSString*)timeStringTime;
 -(NSString*)timeString;
 
+-(NSComparisonResult) compareDates:(ActivityModel*)activityModel;
+
 @end

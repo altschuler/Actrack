@@ -7,8 +7,8 @@
 //
 
 #import "ActrackAppDelegate.h"
-#import "Settings.h"
-#import "DatabaseService.h"
+#import "SettingService.h"
+#import "ActivityService.h"
 #import "FormattingUtils.h"
 
 @implementation ActrackAppDelegate
@@ -17,7 +17,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {   
-    DatabaseService* databaseService = [[DatabaseService alloc] init];
+    ActivityService* databaseService = [[ActivityService alloc] init];
     BOOL databaseIsValid = [databaseService validateDatabase];
     
     if (!databaseIsValid)
@@ -75,7 +75,7 @@
     }
     else if ([askingController isRunning])
     {
-        [[statusMenu itemWithTag:5] setTitle:[FormattingUtils secondsToTimeString:[askingController remainingTime]]];
+        [[statusMenu itemWithTag:5] setTitle:[NSString stringWithFormat:@"Will ask in %@", [FormattingUtils secondsToTimeString:[askingController remainingTime] delimiter:@":"]]];
     }
     else
     {

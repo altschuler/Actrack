@@ -6,12 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "Settings.h"
+#import "SettingService.h"
 #import "FMDatabase.h"
 
 static NSString* databaseFilePath = nil;
 
-@implementation Settings
+@implementation SettingService
 
 +(void)initialize
 {
@@ -28,7 +28,7 @@ static NSString* databaseFilePath = nil;
 
     NSString* settingValue;
     if ([result next])
-        settingValue = [result stringForColumn:[Settings getSettingStringForId:settingId]];
+        settingValue = [result stringForColumn:[SettingService getSettingStringForId:settingId]];
     
     [db close];
     
@@ -37,7 +37,7 @@ static NSString* databaseFilePath = nil;
 
 +(BOOL)setSetting:(Setting)settingId toValue:(id)newValue
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[Settings pathForDatabaseFile]];
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
 

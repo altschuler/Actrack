@@ -18,25 +18,25 @@
     
     NSInteger listCount = [list count];
     
+    [list sortUsingSelector:@selector(compareDates:)];
+    
+    ActivityModel* lastActivityModel = nil;
+    
     for (int i = 0; i < listCount; i++) 
     {
-        ActivityIntervalModel* intervalModel = [[ActivityIntervalModel alloc] init];
-        
         ActivityModel* activityModel = [list objectAtIndex:i];
         
-        intervalModel.activityModel = activityModel;
+        if (lastActivityModel == nil)
+        {
+            lastActivityModel = activityModel;
+            continue;
+        }
         
-        if (i < listCount - 1)
-        {
-            ActivityModel* nextActivityModel = (ActivityModel*)[list objectAtIndex:i + 1];
-            
-            intervalModel.endDate = [nextActivityModel.timeStamp copy];
-            NSLog(@"%@    =     %i",[activityModel timeString],[[intervalModel timeInterval] intValue]);
-        }
-        else
-        {
-            intervalModel.endDate = nil;
-        }
+        ActivityIntervalModel* intervalModel = [[ActivityIntervalModel alloc] init];
+        intervalModel.activityModel = [lastActivityModel copy];
+        intervalModel.endDate = [activityModel.timeStamp copy];
+        
+        lastActivityModel = activityModel;
         
         [parsed addObject:intervalModel];
         

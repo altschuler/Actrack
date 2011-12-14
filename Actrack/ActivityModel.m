@@ -22,10 +22,15 @@
     return self;
 }
 
+-(NSComparisonResult) compareDates:(ActivityModel*)activityModel
+{
+    return [timeStamp compare:activityModel.timeStamp];
+}
+
 -(NSString*)timeString
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd mm:HH:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     NSString *dateString = [dateFormatter stringFromDate:[self timeStamp]];
     
@@ -61,10 +66,10 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     ActivityModel* am = [[ActivityModel alloc] init];
-    am.comment = self.comment;
-    am.actId = self.actId;
-    am.projectId = self.projectId;
-    am.timeStamp = self.timeStamp;
+    am.comment = [self.comment copy];
+    am.actId = [self.actId copy];
+    am.projectId = [self.projectId copy];
+    am.timeStamp = [self.timeStamp copy];
     
     return am;
 }

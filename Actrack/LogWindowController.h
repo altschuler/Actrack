@@ -17,20 +17,23 @@
     NSMutableArray* dates;
     NSMutableArray* projectIds;
     
+    /* List view */
     IBOutlet NSComboBox *projectComboBox;
     IBOutlet NSComboBox *dateComboBox;
     IBOutlet NSTableView *logTableView;
     IBOutlet NSTextField *queryTextField;
     IBOutlet NSButton* archiveCheckBox;
+    
+    /* Summary view */
+    IBOutlet NSTextField *summaryTextfield;
+    IBOutlet NSTextField *summaryTitleTextfield;
 }
 
-- (IBAction)runQueryButtonDidClick:(id)sender;
 - (IBAction)deleteButtonDidClick:(id)sender;
+- (IBAction)viewDidUpdate:(id)sender;
 
 - (ActivityQueryFilter*)buildFilterFromUI;
 
-- (void)updateLogTableView;
-- (void)updateComboBoxes;
 - (void)updateView;
 
 + (void)openWindow;

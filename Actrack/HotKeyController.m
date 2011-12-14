@@ -7,7 +7,7 @@
 //
 
 #import "HotKeyController.h"
-#import "Settings.h"
+#import "SettingService.h"
 
 @implementation HotKeyController
 
@@ -28,7 +28,7 @@
 {
     UnregisterEventHotKey(myHotKeyRef);
     
-    NSString* hotKeyString = [Settings getSetting:HotKey];
+    NSString* hotKeyString = [SettingService getSetting:HotKey];
     
     if ([hotKeyString isEqualToString:@"none"])
         return;

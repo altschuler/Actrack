@@ -12,10 +12,7 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 
-@interface DatabaseService : NSObject
-{
-    
-}
+@interface ActivityService : NSObject
 
 - (BOOL) validateDatabase;
 - (BOOL) updateArchivedStatus;

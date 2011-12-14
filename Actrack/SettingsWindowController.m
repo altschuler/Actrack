@@ -7,7 +7,7 @@
 //
 
 #import "SettingsWindowController.h"
-#import "Settings.h"
+#import "SettingService.h"
 #import "LoginItemManager.h"
 #import "FormattingUtils.h"
 
@@ -41,21 +41,21 @@ static SettingsWindowController* activeWindowController;
 -(void)initView
 {
     //Update ui states
-    double askinterval = [[Settings getSetting:AskInterval] doubleValue]/3600;
+    double askinterval = [[SettingService getSetting:AskInterval] doubleValue]/3600;
     [intervalSlider setDoubleValue:askinterval];
     
-    NSInteger archiveTime = [[Settings getSetting:ArchiveTime] intValue];
+    NSInteger archiveTime = [[SettingService getSetting:ArchiveTime] intValue];
     [archiveTimeSlider setIntegerValue:archiveTime];
     
     [autoStartCheckBox setState:[LoginItemManager willStartAtLogin:[[NSBundle mainBundle] bundleURL]]];
     
-    NSInteger timeMin = [[Settings getSetting:AllowedTimeMin] intValue];
+    NSInteger timeMin = [[SettingService getSetting:AllowedTimeMin] intValue];
     [allowedTimeKnobMin setIntegerValue:timeMin];
     
-    NSInteger timeMax = [[Settings getSetting:AllowedTimeMax] intValue];
+    NSInteger timeMax = [[SettingService getSetting:AllowedTimeMax] intValue];
     [allowedTimeKnobMax setIntegerValue:timeMax];
     
-    NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
+    NSInteger askDays = [[SettingService getSetting:DaysToAsk] intValue];
     [askSun setState:askDays & 1];
     [askSat setState:askDays & 2];
     [askFri setState:askDays & 4];
@@ -64,7 +64,7 @@ static SettingsWindowController* activeWindowController;
     [askTue setState:askDays & 32];
     [askMon setState:askDays & 64];
     
-    NSString* hotkey = [Settings getSetting:HotKey];
+    NSString* hotkey = [SettingService getSetting:HotKey];
     if (![hotkey isEqualToString:@"none"]) // kill magic string!
     {
         [hotkeyCheckbox setState:NSOnState];
@@ -88,10 +88,10 @@ static SettingsWindowController* activeWindowController;
     [selectedArchiveTime setStringValue:[NSString stringWithFormat:@"%@ days",[archiveTimeSlider stringValue]]];
     
     [allowedTimeKnobMin setIntegerValue:MIN([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
-    [selectedTimeMin setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils niceHour:[NSNumber numberWithInt:[allowedTimeKnobMin intValue]]]]];
+    [selectedTimeMin setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils secondsToClockString:[allowedTimeKnobMin intValue] * 3600]]];
     
     [allowedTimeKnobMax setIntegerValue:MAX([allowedTimeKnobMin intValue], [allowedTimeKnobMax intValue])];
-    [selectedTimeMax setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils niceHour:[NSNumber numberWithInt:[allowedTimeKnobMax intValue]]]]];
+    [selectedTimeMax setStringValue:[NSString stringWithFormat:@"%@",[FormattingUtils secondsToClockString:[allowedTimeKnobMax intValue] * 3600]]];
     
     BOOL enabled = [hotkeyCheckbox state] == NSOnState;
     [hotkeyLabel setTextColor:enabled ? [NSColor blackColor] : [NSColor disabledControlTextColor]];
@@ -118,11 +118,11 @@ static SettingsWindowController* activeWindowController;
 {
     [LoginItemManager setStartAtLogin:[[NSBundle mainBundle] bundleURL] enabled:[autoStartCheckBox state] == NSOnState];
             
-    BOOL askIntervalSuccess = [Settings setSetting:AskInterval toValue:[[NSNumber numberWithInt:([intervalSlider doubleValue])*3600] stringValue]];
-    BOOL archiveTimeSuccess = [Settings setSetting:ArchiveTime toValue:[archiveTimeSlider stringValue]];
-    BOOL daysToAskSuccess = [Settings setSetting:DaysToAsk toValue:[NSString stringWithFormat:@"%i",[self askDayStatesToInt]]];
-    BOOL allowedTimeMinSuccess = [Settings setSetting:AllowedTimeMin toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMin intValue]]];
-    BOOL allowedTimeMaxSuccess = [Settings setSetting:AllowedTimeMax toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMax intValue]]];
+    BOOL askIntervalSuccess = [SettingService setSetting:AskInterval toValue:[[NSNumber numberWithInt:([intervalSlider doubleValue])*3600] stringValue]];
+    BOOL archiveTimeSuccess = [SettingService setSetting:ArchiveTime toValue:[archiveTimeSlider stringValue]];
+    BOOL daysToAskSuccess = [SettingService setSetting:DaysToAsk toValue:[NSString stringWithFormat:@"%i",[self askDayStatesToInt]]];
+    BOOL allowedTimeMinSuccess = [SettingService setSetting:AllowedTimeMin toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMin intValue]]];
+    BOOL allowedTimeMaxSuccess = [SettingService setSetting:AllowedTimeMax toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMax intValue]]];
     
     NSString* hotKeySetting;
     if ([hotkeyCheckbox state] == NSOffState)
@@ -130,7 +130,7 @@ static SettingsWindowController* activeWindowController;
     else
         hotKeySetting = [NSString stringWithFormat:@"%i",[hotkeyTextField selectedKeyCode]];
     
-    BOOL hotKeySuccess = [Settings setSetting:HotKey toValue:hotKeySetting];
+    BOOL hotKeySuccess = [SettingService setSetting:HotKey toValue:hotKeySetting];
     
     
     if (askIntervalSuccess && archiveTimeSuccess && daysToAskSuccess && allowedTimeMinSuccess && allowedTimeMaxSuccess & hotKeySuccess)

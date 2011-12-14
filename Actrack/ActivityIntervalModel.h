@@ -16,7 +16,9 @@
 }
 
 @property (nonatomic, retain) ActivityModel* activityModel;
-@property (nonatomic, retain) NSDate* endDate;
+@property (nonatomic, copy) NSDate* endDate;
+
+-(NSDate*)startDate;
 
 -(NSNumber*)timeInterval;
 

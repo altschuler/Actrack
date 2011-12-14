@@ -7,7 +7,7 @@
 //
 
 #import "AskingController.h"
-#import "Settings.h"
+#import "SettingService.h"
 
 @implementation AskingController
 
@@ -50,11 +50,11 @@
      */
     
     /* Check if ask interval is 0 (=never ask) */
-    if ([[Settings getSetting:AskInterval] intValue] == 0)
+    if ([[SettingService getSetting:AskInterval] intValue] == 0)
         return NO;
     
     /* Check if the current day is allowed */
-    NSInteger askDays = [[Settings getSetting:DaysToAsk] intValue];
+    NSInteger askDays = [[SettingService getSetting:DaysToAsk] intValue];
     NSInteger currentDay = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:[NSDate date]] weekday];
     
     currentDay = --currentDay < 1 ? 7 : currentDay;
@@ -76,7 +76,7 @@
     
     /* Check if the current hour is allowed */
     NSInteger currentHour = [[[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:[NSDate date]] hour];
-    if (!(currentHour >= [[Settings getSetting:AllowedTimeMin] intValue] && currentHour < [[Settings getSetting:AllowedTimeMax] intValue]))
+    if (!(currentHour >= [[SettingService getSetting:AllowedTimeMin] intValue] && currentHour < [[SettingService getSetting:AllowedTimeMax] intValue]))
         return NO;
     
     return YES;
@@ -95,10 +95,10 @@
 -(void)start:(BOOL)reset
 {
     // "Safety" limit of 10 seconds
-    if ([[Settings getSetting:AskInterval] intValue] < 10)
+    if ([[SettingService getSetting:AskInterval] intValue] < 10)
         return;
     
-    int askInterval = [[Settings getSetting:AskInterval] intValue];
+    int askInterval = [[SettingService getSetting:AskInterval] intValue];
    
     timer = [NSTimer scheduledTimerWithTimeInterval:((reset || restTimeFromPause == -1) ? askInterval : restTimeFromPause) target:self selector:@selector(performTask:) userInfo:nil repeats:NO];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "QuestionWindowController.h"
-#import "DatabaseService.h"
+#import "ActivityService.h"
 #import "ActivityModel.h"
 
 @implementation QuestionWindowController
@@ -20,7 +20,7 @@ static QuestionWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"QuestionWindow"];
     if (self) 
     {
-        DatabaseService* dbman = [[[DatabaseService alloc] init] autorelease];
+        ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
         
         NSMutableArray* templogs =  [dbman getActs:NO];    
         
@@ -84,7 +84,7 @@ static QuestionWindowController* activeWindowController;
     am.projectId = [projectComboBox stringValue];
     am.timeStamp = [NSDate date];
     
-    DatabaseService* dbman = [[DatabaseService alloc] init];
+    ActivityService* dbman = [[ActivityService alloc] init];
     [dbman insertActivity:am];
     
     [self closeWindow];
