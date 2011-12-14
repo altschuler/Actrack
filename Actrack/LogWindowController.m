@@ -12,6 +12,7 @@
 #import "IntervalParser.h"
 #import "ActivityIntervalModel.h"
 #import "FormattingUtils.h"
+#import "ProjectSummaryModel.h"
 
 @implementation LogWindowController
 
@@ -66,12 +67,12 @@ static LogWindowController* activeWindowController;
     [logTableView reloadData];
     
     IntervalParser* intervalParser = [[IntervalParser alloc] init];
-    NSMutableArray* parsed = [intervalParser parseList:logs];
+    NSMutableArray* parsed = [intervalParser summarizeForProjects:[intervalParser parse:logs]];
 
     [summaryTextfield setStringValue:@""];
-    for (ActivityIntervalModel* intervalModel in parsed) 
+    for (ProjectSummaryModel* intervalModel in parsed) 
     {
-        NSString* summaryEntry = [NSString stringWithFormat:@"%@Worked on %@ (%@)\n", [summaryTextfield stringValue], intervalModel.activityModel.projectId, 
+        NSString* summaryEntry = [NSString stringWithFormat:@"%@Worked on %@ (%@)\n", [summaryTextfield stringValue], intervalModel.projectId, 
                                   [FormattingUtils secondsToTimeString:[intervalModel.timeInterval intValue] delimiter:@":"]];
         
         [summaryTextfield setStringValue:summaryEntry];

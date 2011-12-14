@@ -16,6 +16,7 @@
 		1350119E1494C08400835626 /* ActivityQueryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1350119D1494C08400835626 /* ActivityQueryFilter.m */; };
 		135011A11495733A00835626 /* IntervalParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 135011A01495733A00835626 /* IntervalParser.m */; };
 		135011A41495736000835626 /* ActivityIntervalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 135011A31495736000835626 /* ActivityIntervalModel.m */; };
+		135011A7149911BF00835626 /* ProjectSummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 135011A6149911BE00835626 /* ProjectSummaryModel.m */; };
 		1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1382666C1485411B00BBCDC1 /* Icon128.icns */; };
 		1392010B1484145B00CFF802 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201061484145B00CFF802 /* FMDatabase.m */; };
 		1392010C1484145B00CFF802 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 139201081484145B00CFF802 /* FMDatabaseAdditions.m */; };
@@ -92,6 +93,8 @@
 		135011A01495733A00835626 /* IntervalParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalParser.m; sourceTree = "<group>"; };
 		135011A21495736000835626 /* ActivityIntervalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIntervalModel.h; sourceTree = "<group>"; };
 		135011A31495736000835626 /* ActivityIntervalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIntervalModel.m; sourceTree = "<group>"; };
+		135011A5149911BE00835626 /* ProjectSummaryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSummaryModel.h; sourceTree = "<group>"; };
+		135011A6149911BE00835626 /* ProjectSummaryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectSummaryModel.m; sourceTree = "<group>"; };
 		1382666C1485411B00BBCDC1 /* Icon128.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon128.icns; path = ../Icon128.icns; sourceTree = "<group>"; };
 		139201051484145B00CFF802 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		139201061484145B00CFF802 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -114,13 +117,13 @@
 		139201221484149F00CFF802 /* QuestionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionWindowController.m; sourceTree = "<group>"; };
 		139201261484149F00CFF802 /* AskingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskingController.h; sourceTree = "<group>"; };
 		139201271484149F00CFF802 /* AskingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskingController.m; sourceTree = "<group>"; };
-		139201281484149F00CFF802 /* SettingService.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SettingService.h; sourceTree = "<group>"; };
+		139201281484149F00CFF802 /* SettingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingService.h; sourceTree = "<group>"; };
 		139201291484149F00CFF802 /* SettingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingService.m; sourceTree = "<group>"; };
 		1392012A1484149F00CFF802 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		1392012B1484149F00CFF802 /* SettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindowController.h; sourceTree = "<group>"; };
 		1392012C1484149F00CFF802 /* SettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindowController.m; sourceTree = "<group>"; };
 		1392012D1484149F00CFF802 /* sparkle_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_dsa_pub.pem; sourceTree = "<group>"; };
-		1392013B148414A800CFF802 /* ActivityService.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ActivityService.h; sourceTree = "<group>"; };
+		1392013B148414A800CFF802 /* ActivityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityService.h; sourceTree = "<group>"; };
 		1392013C148414A800CFF802 /* ActivityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityService.m; sourceTree = "<group>"; };
 		1392013E148414B800CFF802 /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
 		1392013F148414B800CFF802 /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				1350119D1494C08400835626 /* ActivityQueryFilter.m */,
 				135011A21495736000835626 /* ActivityIntervalModel.h */,
 				135011A31495736000835626 /* ActivityIntervalModel.m */,
+				135011A5149911BE00835626 /* ProjectSummaryModel.h */,
+				135011A6149911BE00835626 /* ProjectSummaryModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				1350119E1494C08400835626 /* ActivityQueryFilter.m in Sources */,
 				135011A11495733A00835626 /* IntervalParser.m in Sources */,
 				135011A41495736000835626 /* ActivityIntervalModel.m in Sources */,
+				135011A7149911BF00835626 /* ProjectSummaryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 @interface IntervalParser : NSObject
 
--(NSMutableArray*)parseList:(NSMutableArray*)list;
+-(NSMutableArray*)parse:(NSMutableArray*)list;
+-(NSMutableArray*)summarizeForProjects:(NSMutableArray*)list;
 
 @end
