@@ -30,6 +30,7 @@
 }
 
 - (IBAction)deleteButtonDidClick:(id)sender;
+- (IBAction)renameButtonDidClick:(id)sender;
 - (IBAction)viewDidUpdate:(id)sender;
 
 - (ActivityQueryFilter*)buildFilterFromUI;

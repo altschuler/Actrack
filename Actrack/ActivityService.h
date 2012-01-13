@@ -25,5 +25,6 @@
 - (NSMutableArray*) getDistinctDates:(BOOL)archived;
 - (NSMutableArray*) getDistinctProjectIds:(BOOL)archived;
 
+- (NSString*) getLatestUsedProjectId;
 
 @end

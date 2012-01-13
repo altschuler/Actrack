@@ -7,6 +7,7 @@
 //
 
 #import "HotKeyTextField.h"
+#import "KeyCodeName.h"
 
 @implementation HotKeyTextField
 @synthesize selectedKeyCode;
@@ -14,7 +15,7 @@
 -(void)keyUp:(NSEvent *)theEvent
 {
     selectedKeyCode = [theEvent keyCode];
-    [self setStringValue:[NSString stringWithFormat:@"%d",[self selectedKeyCode]]];
+    [self setStringValue:[KeyCodeName getKeyNameFromKeyCode:[self selectedKeyCode]]];
 }
 
 -(void)setEnabled:(BOOL)flag
@@ -27,7 +28,7 @@
     else if (selectedKeyCode)
     {
         [self setTextColor:[NSColor blackColor]];
-        [self setStringValue:[NSString stringWithFormat:@"%d",[self selectedKeyCode]]];
+        [self setStringValue:[KeyCodeName getKeyNameFromKeyCode:[self selectedKeyCode]]];
     }
     else
     {

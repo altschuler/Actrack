@@ -41,6 +41,28 @@
     return success;
 }
 
+- (NSString*) getLatestUsedProjectId
+{
+    //select projectId from acts order by rowId desc limit 1;
+    
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
+
+    [database open];
+    
+    FMResultSet* result = [database executeQuery:@"select projectId from acts order by rowId desc limit 1"];
+    
+    [result next];
+        
+    NSString* latestProjectId = [result stringForColumn:@"projectId"];
+    
+    if ([database hadError])
+        NSLog(@"DB Error %d: %@", [database lastErrorCode], [database lastErrorMessage]); 
+    
+    [database close];
+    
+    return latestProjectId;
+}
+
 - (NSMutableArray*) getActsWithFilter:(ActivityQueryFilter*)filter
 {
     FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];

@@ -30,5 +30,6 @@
 - (void)closeWindow;
 
 - (void)submitEntry;
+- (void)setProjectIdSelection;
 
 @end

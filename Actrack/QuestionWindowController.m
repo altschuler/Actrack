@@ -20,25 +20,7 @@ static QuestionWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"QuestionWindow"];
     if (self) 
     {
-        ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
         
-        NSMutableArray* templogs =  [dbman getActs:NO];    
-        
-        projectIds = [[NSMutableArray alloc] init];
-        
-        lastAct = [templogs objectAtIndex:0];
-        
-        for (ActivityModel* act in templogs) 
-        {
-            if (![projectIds containsObject:act.projectId])
-                [projectIds addObject:act.projectId];
-            
-            if (act.actId > lastAct.actId)
-                lastAct = act;
-        }
-        
-        [projectComboBox selectItemAtIndex:[projectIds count]-1];
-        [projectComboBox reloadData];
     }
     
     return self;
@@ -46,10 +28,18 @@ static QuestionWindowController* activeWindowController;
 
 -(void)awakeFromNib
 {
-    //set current project to the last detected one (assuming this is the latest) -2 because theres a blank entry (to be fixed)
-    [projectComboBox selectItemAtIndex:[projectComboBox numberOfItems]-2];
+    [self setProjectIdSelection];
 }
 
+- (void)setProjectIdSelection;
+{
+    ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
+    
+    projectIds = [dbman getDistinctProjectIds:YES];    
+    [projectComboBox reloadData];
+    
+    [projectComboBox setStringValue:[dbman getLatestUsedProjectId]];
+}
 
 -(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {

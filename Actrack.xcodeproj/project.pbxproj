@@ -49,6 +49,9 @@
 		13CAA3331484128A006A90EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA3311484128A006A90EC /* InfoPlist.strings */; };
 		13CAA3351484128A006A90EC /* ActrackTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 13CAA3341484128A006A90EC /* ActrackTests.h */; };
 		13CAA3371484128A006A90EC /* ActrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13CAA3361484128A006A90EC /* ActrackTests.m */; };
+		13E7E2A014BF37C7008BC3AA /* RenameProjectWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E7E29F14BF37C7008BC3AA /* RenameProjectWindowController.m */; };
+		13E7E2A314BF3E1A008BC3AA /* RenameProjectWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E7E2A214BF3E1A008BC3AA /* RenameProjectWindow.xib */; };
+		13E7E2A614C02CB5008BC3AA /* KeyCodeName.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E7E2A514C02CB5008BC3AA /* KeyCodeName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +148,11 @@
 		13CAA3321484128A006A90EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		13CAA3341484128A006A90EC /* ActrackTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActrackTests.h; sourceTree = "<group>"; };
 		13CAA3361484128A006A90EC /* ActrackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActrackTests.m; sourceTree = "<group>"; };
+		13E7E29E14BF37C7008BC3AA /* RenameProjectWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameProjectWindowController.h; sourceTree = "<group>"; };
+		13E7E29F14BF37C7008BC3AA /* RenameProjectWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameProjectWindowController.m; sourceTree = "<group>"; };
+		13E7E2A214BF3E1A008BC3AA /* RenameProjectWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenameProjectWindow.xib; sourceTree = "<group>"; };
+		13E7E2A414C02CB5008BC3AA /* KeyCodeName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyCodeName.h; sourceTree = "<group>"; };
+		13E7E2A514C02CB5008BC3AA /* KeyCodeName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyCodeName.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +191,8 @@
 				139201221484149F00CFF802 /* QuestionWindowController.m */,
 				1392012B1484149F00CFF802 /* SettingsWindowController.h */,
 				1392012C1484149F00CFF802 /* SettingsWindowController.m */,
+				13E7E29E14BF37C7008BC3AA /* RenameProjectWindowController.h */,
+				13E7E29F14BF37C7008BC3AA /* RenameProjectWindowController.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -224,6 +234,7 @@
 				1392011F1484149F00CFF802 /* MainMenu.xib */,
 				139201201484149F00CFF802 /* QuestionWindow.xib */,
 				1392012A1484149F00CFF802 /* SettingsWindow.xib */,
+				13E7E2A214BF3E1A008BC3AA /* RenameProjectWindow.xib */,
 			);
 			name = Xib;
 			sourceTree = "<group>";
@@ -256,6 +267,8 @@
 				135011A31495736000835626 /* ActivityIntervalModel.m */,
 				135011A5149911BE00835626 /* ProjectSummaryModel.h */,
 				135011A6149911BE00835626 /* ProjectSummaryModel.m */,
+				13E7E2A414C02CB5008BC3AA /* KeyCodeName.h */,
+				13E7E2A514C02CB5008BC3AA /* KeyCodeName.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -462,6 +475,7 @@
 				139201381484149F00CFF802 /* SettingsWindow.xib in Resources */,
 				1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */,
 				1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */,
+				13E7E2A314BF3E1A008BC3AA /* RenameProjectWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +532,8 @@
 				135011A11495733A00835626 /* IntervalParser.m in Sources */,
 				135011A41495736000835626 /* ActivityIntervalModel.m in Sources */,
 				135011A7149911BF00835626 /* ProjectSummaryModel.m in Sources */,
+				13E7E2A014BF37C7008BC3AA /* RenameProjectWindowController.m in Sources */,
+				13E7E2A614C02CB5008BC3AA /* KeyCodeName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

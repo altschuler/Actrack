@@ -37,6 +37,8 @@
     IBOutlet NSButton *hotkeyCheckbox;
     IBOutlet HotKeyTextField *hotkeyTextField;
     IBOutlet NSTextField *hotkeyLabel;
+    
+    int hotkeyValue;
 }
 
 - (IBAction)hotkeyCheckBoxDidClick:(id)sender;

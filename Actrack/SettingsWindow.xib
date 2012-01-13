@@ -125,7 +125,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="270108126">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Actrack 0.9.1 (beta)</string>
+								<string key="NSContents">Actrack 0.9.2 (beta)</string>
 								<reference key="NSSupport" ref="469253235"/>
 								<string key="NSCellIdentifier">_NS:3936</string>
 								<reference key="NSControlView" ref="562431673"/>
@@ -856,7 +856,7 @@
 										<object class="NSTextField" id="276661396">
 											<reference key="NSNextResponder" ref="212083858"/>
 											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{294, 57}, {57, 22}}</string>
+											<string key="NSFrame">{{294, 57}, {179, 22}}</string>
 											<reference key="NSSuperview" ref="212083858"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="458185513"/>
@@ -941,7 +941,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="528963052"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
 				<string key="NSMinSize">{530, 536}</string>
 				<string key="NSMaxSize">{530, 536}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>

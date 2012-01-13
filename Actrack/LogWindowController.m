@@ -13,6 +13,7 @@
 #import "ActivityIntervalModel.h"
 #import "FormattingUtils.h"
 #import "ProjectSummaryModel.h"
+#import "RenameProjectWindowController.h"
 
 @implementation LogWindowController
 
@@ -155,6 +156,11 @@ static LogWindowController* activeWindowController;
         
         [self updateView];
     }
+}
+
+- (IBAction)renameButtonDidClick:(id)sender
+{
+    [RenameProjectWindowController openWindow];
 }
 
 +(void)openWindow
