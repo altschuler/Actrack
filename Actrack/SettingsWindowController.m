@@ -126,7 +126,7 @@ static SettingsWindowController* activeWindowController;
     
     NSString* hotKeySetting;
     if ([hotkeyCheckbox state] == NSOffState)
-        hotKeySetting = @"'none'"; //THIS IS A NASTY FUCKING HACK!
+        hotKeySetting = @"none"; //THIS IS A NASTY FUCKING HACK!
     else
         hotKeySetting = [NSString stringWithFormat:@"%i",[hotkeyTextField selectedKeyCode]];
     
