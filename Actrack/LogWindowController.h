@@ -9,9 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "ActivityQueryFilter.h"
 #import "AbstractWindowController.h"
+#import "RenameProjectWindowController.h"
 
 
-@interface LogWindowController : AbstractWindowController<NSTableViewDelegate, NSTableViewDataSource, NSComboBoxDelegate, NSComboBoxDataSource, NSWindowDelegate>
+@interface LogWindowController : AbstractWindowController<NSTableViewDelegate, NSTableViewDataSource, NSComboBoxDelegate, NSComboBoxDataSource, NSWindowDelegate, RenameProjectWindowControllerDelegate>
 {
     NSMutableArray* logs;
     NSMutableArray* dates;
@@ -36,7 +37,7 @@
 - (ActivityQueryFilter*)buildFilterFromUI;
 
 - (void)updateView;
-
+- (void)didRenameProject;
 + (void)openWindow;
 - (void)closeWindow;
 

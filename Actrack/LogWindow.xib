@@ -725,11 +725,11 @@
 						</object>
 						<object class="NSButton" id="100032630">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 54}, {133, 29}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="810926046"/>
+							<reference key="NSNextKeyView" ref="104927178"/>
 							<string key="NSReuseIdentifierKey">_NS:1566</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="629013423">
@@ -747,22 +747,22 @@
 								<int key="NSPeriodicInterval">75</int>
 							</object>
 						</object>
-						<object class="NSButton" id="810926046">
+						<object class="NSButton" id="104927178">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 19}, {133, 29}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="424126218"/>
 							<string key="NSReuseIdentifierKey">_NS:1566</string>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSButtonCell" key="NSCell" id="425241940">
+							<object class="NSButtonCell" key="NSCell" id="1065518094">
 								<int key="NSCellFlags">-2080244224</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Delete entry</string>
 								<reference key="NSSupport" ref="633450162"/>
 								<string key="NSCellIdentifier">_NS:1566</string>
-								<reference key="NSControlView" ref="810926046"/>
+								<reference key="NSControlView" ref="104927178"/>
 								<int key="NSButtonFlags">-2033434369</int>
 								<int key="NSButtonFlags2">162</int>
 								<string key="NSAlternateContents"/>
@@ -937,7 +937,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">deleteButtonDidClick:</string>
 						<reference key="source" ref="4876850"/>
-						<reference key="destination" ref="810926046"/>
+						<reference key="destination" ref="104927178"/>
 					</object>
 					<int key="connectionID">239</int>
 				</object>
@@ -998,7 +998,7 @@
 							<reference ref="665966495"/>
 							<reference ref="424126218"/>
 							<reference ref="100032630"/>
-							<reference ref="810926046"/>
+							<reference ref="104927178"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1279,17 +1279,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">237</int>
-						<reference key="object" ref="810926046"/>
+						<reference key="object" ref="104927178"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="425241940"/>
+							<reference ref="1065518094"/>
 						</object>
 						<reference key="parent" ref="1006"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">238</int>
-						<reference key="object" ref="425241940"/>
-						<reference key="parent" ref="810926046"/>
+						<reference key="object" ref="1065518094"/>
+						<reference key="parent" ref="104927178"/>
 					</object>
 				</object>
 			</object>

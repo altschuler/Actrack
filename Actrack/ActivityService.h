@@ -18,6 +18,7 @@
 - (BOOL) updateArchivedStatus;
 - (BOOL) insertActivity:(ActivityModel*)activity;
 - (BOOL) removeActivity:(ActivityModel*)activity;
+- (BOOL) renameProject:(NSString*)oldName toName:(NSString*)newName;
 
 - (NSMutableArray*) getActs:(BOOL)archived;
 - (NSMutableArray*) getActsWithFilter:(ActivityQueryFilter*)filter;

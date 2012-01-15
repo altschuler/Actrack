@@ -231,10 +231,10 @@
 			isa = PBXGroup;
 			children = (
 				1392011B1484149F00CFF802 /* LogWindow.xib */,
+				13E7E2A214BF3E1A008BC3AA /* RenameProjectWindow.xib */,
 				1392011F1484149F00CFF802 /* MainMenu.xib */,
 				139201201484149F00CFF802 /* QuestionWindow.xib */,
 				1392012A1484149F00CFF802 /* SettingsWindow.xib */,
-				13E7E2A214BF3E1A008BC3AA /* RenameProjectWindow.xib */,
 			);
 			name = Xib;
 			sourceTree = "<group>";

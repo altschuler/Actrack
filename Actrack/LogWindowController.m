@@ -118,9 +118,7 @@ static LogWindowController* activeWindowController;
     ActivityQueryFilter* filter = [[ActivityQueryFilter alloc] init];
     
     filter.dateString = [[dateComboBox stringValue] isEqualToString:@"All"] ? nil : [dateComboBox stringValue];
-    
     filter.projectId = [[projectComboBox stringValue] isEqualToString:@"All"] ? nil : [projectComboBox stringValue];
-    
     filter.archived = [archiveCheckBox state] == NSOnState;
 
     return filter;
@@ -160,7 +158,12 @@ static LogWindowController* activeWindowController;
 
 - (IBAction)renameButtonDidClick:(id)sender
 {
-    [RenameProjectWindowController openWindow];
+    [RenameProjectWindowController openWindowWithDelegate:self];
+}
+
+- (void)didRenameProject
+{
+    [self updateView];
 }
 
 +(void)openWindow

@@ -258,4 +258,24 @@
     return success;   
 }
 
+- (BOOL) renameProject:(NSString*)oldName toName:(NSString*)newName
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
+    
+    [database open];
+    
+    NSError* err = nil;
+    BOOL success = [database executeUpdate:@"update acts set projectId = ? where projectId = ?",newName,oldName];
+    
+    if (success == NO)
+    {
+        NSAlert *theAlert = [NSAlert alertWithError:err];
+        [theAlert runModal];
+    }
+    
+    [database close];
+    
+    return success; 
+}
+
 @end
