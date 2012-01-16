@@ -258,6 +258,26 @@
     return success;   
 }
 
+-(BOOL)updateActivity:(ActivityModel*)activity
+{
+    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
+    
+    [database open];
+    
+    NSError* err = nil;
+    BOOL success = [database executeUpdate:@"update acts set projectId = ?, comment = ? where rowid = ?", activity.projectId, activity.comment, activity.actId];
+    
+    if (success == NO)
+    {
+        NSAlert *theAlert = [NSAlert alertWithError:err];
+        [theAlert runModal];
+    }
+    
+    [database close];
+    
+    return success;   
+}
+
 - (BOOL) renameProject:(NSString*)oldName toName:(NSString*)newName
 {
     FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];

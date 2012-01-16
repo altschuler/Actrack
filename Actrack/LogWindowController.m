@@ -142,15 +142,42 @@ static LogWindowController* activeWindowController;
     return cell;
 }
 
+-(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
+    
+    if ([tableColumn.identifier isEqualToString:@"comment"])
+    {
+        am.comment = object;
+    }
+    else if ([tableColumn.identifier isEqualToString:@"projectId"])
+    {
+        am.projectId = object;
+    }
+    else 
+    {
+        NSAlert *theAlert = [NSAlert alertWithMessageText:@"Cannot edit date and time" defaultButton:@"Ok..." alternateButton:nil otherButton:nil informativeTextWithFormat:@"This feature is not yet supported"];
+        [theAlert runModal];
+        return;
+    }
+    
+    ActivityService* activityService = [[ActivityService alloc] init];
+    
+    [activityService updateActivity:am];
+    
+    [self updateView];
+    
+}
+
 - (IBAction)deleteButtonDidClick:(id)sender 
 {
     if ([logTableView selectedRow] != -1)
     {
-        ActivityService* dbman = [[ActivityService alloc] init];
+        ActivityService* activityService = [[ActivityService alloc] init];
     
         ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
     
-        [dbman removeActivity:am];
+        [activityService removeActivity:am];
         
         [self updateView];
     }

@@ -44,6 +44,7 @@
 - (IBAction)hotkeyCheckBoxDidClick:(id)sender;
 - (IBAction)saveButtonDidClick:(id)sender;
 - (IBAction)cancelButtonDidClick:(id)sender;
+- (IBAction)aboutButtonDidClick:(id)sender;
 - (IBAction)sliderDidChange:(id)sender;
 
 - (void)updateView;

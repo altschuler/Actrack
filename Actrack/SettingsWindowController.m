@@ -139,6 +139,13 @@ static SettingsWindowController* activeWindowController;
         NSLog(@"Error saving settings.");
 }
 
+- (IBAction)aboutButtonDidClick:(id)sender
+{
+    NSAlert *theAlert = [NSAlert alertWithMessageText:@"Actrack v0.9.2b" defaultButton:@"Great" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Actrack is developed and maintained by Simon Altschuler (simon@altschuler.dk). Any feedback is greatly appreciated!\n\nActrack is open sourced via GitHub: https://github.com/altschuler/Actrack"];
+
+    [theAlert runModal];
+}
+
 +(void)openWindow
 {
     if (activeWindowController == nil)

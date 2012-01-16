@@ -15,12 +15,11 @@
 
 static RenameProjectWindowController* activeWindowController;
 
-- (id) init
+- (id)init
 {
     self = [super initWithWindowNibName:@"RenameProjectWindow"];
     if (self)
     {
-        
     }
     return self;
 }
@@ -51,9 +50,8 @@ static RenameProjectWindowController* activeWindowController;
     if (activeWindowController == nil)
     {
         activeWindowController = [[RenameProjectWindowController alloc] init];
-        [activeWindowController setDelegate:del];
     }
-    
+    [activeWindowController setDelegate:del];
     [activeWindowController showWindow:self];
     [NSApp arrangeInFront:activeWindowController.window];
     [NSApp activateIgnoringOtherApps:YES];
@@ -86,11 +84,13 @@ static RenameProjectWindowController* activeWindowController;
             [alert release];
             alert = nil;
         }
-        
-        [self.delegate didRenameProject];
+             
+        [activeWindowController.delegate didRenameProject];
         [self closeWindow];
     }
 }
+
+
 
 - (IBAction)cancelButtonDidClick:(id)sender
 {

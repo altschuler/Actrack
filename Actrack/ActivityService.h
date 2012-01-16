@@ -17,6 +17,7 @@
 - (BOOL) validateDatabase;
 - (BOOL) updateArchivedStatus;
 - (BOOL) insertActivity:(ActivityModel*)activity;
+- (BOOL) updateActivity:(ActivityModel*)activity;
 - (BOOL) removeActivity:(ActivityModel*)activity;
 - (BOOL) renameProject:(NSString*)oldName toName:(NSString*)newName;
 

@@ -116,16 +116,16 @@
 						<object class="NSTextField" id="562431673">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 20}, {129, 17}}</string>
+							<string key="NSFrame">{{18, 20}, {113, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="547040520"/>
+							<reference key="NSNextKeyView" ref="763753421"/>
 							<string key="NSReuseIdentifierKey">_NS:3936</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="270108126">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Actrack 0.9.2 (beta)</string>
+								<string key="NSContents">Actrack 0.9.2b - </string>
 								<reference key="NSSupport" ref="469253235"/>
 								<string key="NSCellIdentifier">_NS:3936</string>
 								<reference key="NSControlView" ref="562431673"/>
@@ -726,7 +726,7 @@
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">0</int>
 								<string key="NSContents">Asking rules</string>
-								<object class="NSFont" key="NSSupport">
+								<object class="NSFont" key="NSSupport" id="295870789">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
@@ -933,6 +933,31 @@
 								<reference key="NSControlView" ref="73047228"/>
 								<reference key="NSBackgroundColor" ref="136662983"/>
 								<reference key="NSTextColor" ref="516685334"/>
+							</object>
+						</object>
+						<object class="NSButton" id="763753421">
+							<reference key="NSNextResponder" ref="1006"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{127, 18}, {42, 22}}</string>
+							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="547040520"/>
+							<string key="NSReuseIdentifierKey">_NS:161</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="322788653">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">About</string>
+								<reference key="NSSupport" ref="469253235"/>
+								<string key="NSCellIdentifier">_NS:161</string>
+								<reference key="NSControlView" ref="763753421"/>
+								<int key="NSButtonFlags">-2046672641</int>
+								<int key="NSButtonFlags2">129</int>
+								<reference key="NSAlternateImage" ref="295870789"/>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
 							</object>
 						</object>
 					</object>
@@ -1201,6 +1226,14 @@
 					</object>
 					<int key="connectionID">192</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">aboutButtonDidClick:</string>
+						<reference key="source" ref="1041582419"/>
+						<reference key="destination" ref="763753421"/>
+					</object>
+					<int key="connectionID">195</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1261,6 +1294,7 @@
 							<reference ref="479491615"/>
 							<reference ref="547040520"/>
 							<reference ref="562431673"/>
+							<reference ref="763753421"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1767,6 +1801,20 @@
 						<reference key="object" ref="741451486"/>
 						<reference key="parent" ref="276661396"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">193</int>
+						<reference key="object" ref="763753421"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="322788653"/>
+						</object>
+						<reference key="parent" ref="1006"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">194</int>
+						<reference key="object" ref="322788653"/>
+						<reference key="parent" ref="763753421"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1834,6 +1882,8 @@
 					<string>179.CustomClassName</string>
 					<string>179.IBPluginDependency</string>
 					<string>180.IBPluginDependency</string>
+					<string>193.IBPluginDependency</string>
+					<string>194.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>24.IBPluginDependency</string>
 					<string>25.IBPluginDependency</string>
@@ -1934,6 +1984,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1948,7 +2000,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">192</int>
+			<int key="maxID">195</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1976,6 +2028,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>aboutButtonDidClick:</string>
 							<string>cancelButtonDidClick:</string>
 							<string>hotkeyCheckBoxDidClick:</string>
 							<string>saveButtonDidClick:</string>
@@ -1983,6 +2036,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1993,6 +2047,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>aboutButtonDidClick:</string>
 							<string>cancelButtonDidClick:</string>
 							<string>hotkeyCheckBoxDidClick:</string>
 							<string>saveButtonDidClick:</string>
@@ -2000,6 +2055,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">aboutButtonDidClick:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">cancelButtonDidClick:</string>
 								<string key="candidateClassName">id</string>

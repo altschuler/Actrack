@@ -18,31 +18,17 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Actrack/LogWindowController.m"
-         timestampString = "348311252.410811"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
-         landmarkName = "-didRenameProject"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Actrack/RenameProjectWindowController.m"
-         timestampString = "348311905.112625"
+         timestampString = "348399601.150017"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
-         landmarkName = "+openWindowWithDelegate:"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
+         landmarkName = "-renameButtonDidClick:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
