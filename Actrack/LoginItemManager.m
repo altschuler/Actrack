@@ -2,8 +2,8 @@
 //  LoginItem.m
 //  Actrack
 //
-//  Created by Matz De Katz on 30/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 30/11/11.
+//  
 //
 
 #import "LoginItemManager.h"

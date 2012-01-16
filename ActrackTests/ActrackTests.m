@@ -2,8 +2,8 @@
 //  ActrackTests.m
 //  ActrackTests
 //
-//  Created by Matz De Katz on 28/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 28/11/11.
+//  
 //
 
 #import "ActrackTests.h"

@@ -2,8 +2,8 @@
 //  KeyHandl+erTextField.m
 //  Actrack
 //
-//  Created by Matz De Katz on 07/12/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 07/12/11.
+//  
 //
 
 #import "HotKeyTextField.h"

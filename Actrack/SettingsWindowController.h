@@ -1,9 +1,9 @@
 //
 //  SettingsWindowController.h
-//  Activity Tracker
+//  Actrack
 //
-//  Created by zupa-sia on 18/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 18/11/11.
+//  
 //
 
 #import <Cocoa/Cocoa.h>

@@ -1,9 +1,9 @@
 //
-//  Activity_TrackerAppDelegate.h
-//  Activity Tracker
+//  ActrackAppDelegate.h
+//  Actrack
 //
-//  Created by zupa-sia on 05/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 05/11/11.
+//  
 //
 
 #import <Cocoa/Cocoa.h>

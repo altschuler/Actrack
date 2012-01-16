@@ -1,9 +1,9 @@
 //
 //  ScheduleController.m
-//  Activity Tracker
+//  Actrack
 //
-//  Created by zupa-sia on 15/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Simon Altschuler on 15/11/11.
+//  
 //
 
 #import "AskingController.h"
