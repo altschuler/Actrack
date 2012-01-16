@@ -38,6 +38,8 @@
     IBOutlet HotKeyTextField *hotkeyTextField;
     IBOutlet NSTextField *hotkeyLabel;
     
+    IBOutlet NSView *aboutButton;
+    
     int hotkeyValue;
 }
 

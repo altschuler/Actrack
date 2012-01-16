@@ -11,6 +11,7 @@
 @interface FormattingUtils : NSObject
 
 +(NSString*)secondsToTimeString:(NSInteger)seconds delimiter:(NSString*)delim;
++(NSString*)secondsToNiceTime:(NSInteger)seconds;
 +(NSString*)secondsToClockString:(NSInteger)seconds;
 
 @end

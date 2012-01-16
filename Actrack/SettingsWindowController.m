@@ -20,8 +20,7 @@ static SettingsWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"SettingsWindow"];
     if (self)
     {
-
-
+        
     }
     
     return self;
@@ -72,6 +71,8 @@ static SettingsWindowController* activeWindowController;
     }
     else
         [hotkeyCheckbox setState:NSOffState];
+    
+    [aboutButton addCursorRect:[aboutButton bounds] cursor:[NSCursor pointingHandCursor]];
 }
 
 //Updates dependant ui (labels, enabled, etc)
@@ -81,7 +82,7 @@ static SettingsWindowController* activeWindowController;
     [formatter setMaximumFractionDigits:1];
     [formatter setRoundingMode: NSNumberFormatterRoundHalfEven];
 
-    [selectedAskInterval setStringValue:[NSString stringWithFormat:@"%@ hours",[formatter stringForObjectValue:[NSNumber numberWithDouble:[intervalSlider doubleValue]]]]];
+    [selectedAskInterval setStringValue:[FormattingUtils secondsToNiceTime:[intervalSlider doubleValue] * 3600]];
     
     [formatter release];
     
@@ -118,7 +119,11 @@ static SettingsWindowController* activeWindowController;
 {
     [LoginItemManager setStartAtLogin:[[NSBundle mainBundle] bundleURL] enabled:[autoStartCheckBox state] == NSOnState];
             
-    BOOL askIntervalSuccess = [SettingService setSetting:AskInterval toValue:[[NSNumber numberWithInt:([intervalSlider doubleValue])*3600] stringValue]];
+    NSInteger askInterval = ([intervalSlider doubleValue])*3600;
+    //Round interval to nearest minute (looks awful with random seconds and nobody cares about them)
+    askInterval -= askInterval % 60;
+    
+    BOOL askIntervalSuccess = [SettingService setSetting:AskInterval toValue:[[NSNumber numberWithLong:askInterval] stringValue]];
     BOOL archiveTimeSuccess = [SettingService setSetting:ArchiveTime toValue:[archiveTimeSlider stringValue]];
     BOOL daysToAskSuccess = [SettingService setSetting:DaysToAsk toValue:[NSString stringWithFormat:@"%i",[self askDayStatesToInt]]];
     BOOL allowedTimeMinSuccess = [SettingService setSetting:AllowedTimeMin toValue:[NSString stringWithFormat:@"%i",[allowedTimeKnobMin intValue]]];
@@ -141,9 +146,7 @@ static SettingsWindowController* activeWindowController;
 
 - (IBAction)aboutButtonDidClick:(id)sender
 {
-    NSAlert *theAlert = [NSAlert alertWithMessageText:@"Actrack v0.9.2b" defaultButton:@"Great" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Actrack is developed and maintained by Simon Altschuler (simon@altschuler.dk). Any feedback is greatly appreciated!\n\nActrack is open sourced via GitHub: https://github.com/altschuler/Actrack"];
-
-    [theAlert runModal];
+    [NSApp orderFrontStandardAboutPanelWithOptions:nil];
 }
 
 +(void)openWindow

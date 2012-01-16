@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		132075491485B08F00AE7E3A /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 132075481485B08F00AE7E3A /* LoginItemManager.m */; };
 		1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1320754E1487C86300AE7E3A /* AbstractWindowController.m */; };
+		13415E5614C45D680044972C /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 13415E5514C45D680044972C /* Credits.html */; };
 		134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DB4CE148E235200AF9BB0 /* FormattingUtils.m */; };
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
 		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
@@ -83,6 +84,7 @@
 		1320754D1487C86300AE7E3A /* AbstractWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractWindowController.h; sourceTree = "<group>"; };
 		1320754E1487C86300AE7E3A /* AbstractWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWindowController.m; sourceTree = "<group>"; };
 		133D688E148CFF15000240AA /* QuestionWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowDelegate.h; sourceTree = "<group>"; };
+		13415E5514C45D680044972C /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		134DB4CD148E235100AF9BB0 /* FormattingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattingUtils.h; sourceTree = "<group>"; };
 		134DB4CE148E235200AF9BB0 /* FormattingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattingUtils.m; sourceTree = "<group>"; };
 		134DB4D2148E36E600AF9BB0 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -373,6 +375,7 @@
 				139201101484147000CFF802 /* InfoPlist.strings */,
 				13CAA31714841289006A90EC /* main.m */,
 				13CAA31914841289006A90EC /* Actrack-Prefix.pch */,
+				13415E5514C45D680044972C /* Credits.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				1392013A1484149F00CFF802 /* sparkle_dsa_pub.pem in Resources */,
 				1382666D1485411B00BBCDC1 /* Icon128.icns in Resources */,
 				13E7E2A314BF3E1A008BC3AA /* RenameProjectWindow.xib in Resources */,
+				13415E5614C45D680044972C /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
