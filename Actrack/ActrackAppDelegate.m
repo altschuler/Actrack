@@ -17,21 +17,42 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {   
+    //Validate the database structure
     ActivityService* databaseService = [[ActivityService alloc] init];
     BOOL databaseIsValid = [databaseService validateDatabase];
     
     if (!databaseIsValid)
-        [[NSAlert alertWithMessageText:@"Database is invalid" defaultButton:@"Damn" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The database structure could not be verified"] runModal];
-    
+        [[NSAlert alertWithMessageText:@"Database is invalid" defaultButton:@"Damn" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The database structure could not be verified. It is recommended to install a fresh copy of Actrack."] runModal];
     [databaseService release];
     
+    //Init asking controller
     askingController = [[AskingController alloc] initWithDelegate:self];
-    [askingController start:YES];
     
+    //Setup event handling
+    //Local events
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsDidUpdate:) name:@"SettingsDidUpdate" object:nil];
     
+    //System events
+    NSNotificationCenter* workspaceNotificationCenter = [[[NSWorkspace alloc] init] notificationCenter];
+    [workspaceNotificationCenter addObserver:self selector:@selector(systemWillSleep) name:NSWorkspaceWillSleepNotification object:nil];
+    [workspaceNotificationCenter addObserver:self selector:@selector(systemDidWake) name:NSWorkspaceDidWakeNotification object:nil];
+    
+    //Register the hot key (if applicable)
     hotKeyController = [[HotKeyController alloc] initWithDelegate:self];
     [hotKeyController registerKeyFromSettings];
+    
+    //Start asking in the specified interval
+    [askingController start:YES];
+}
+
+- (void)systemWillSleep
+{
+    [askingController handleSystemWillSleep];
+}
+
+- (void)systemDidWake
+{
+    [askingController handleSystemDidWake];
 }
 
 -(void)hotKeyActivated
@@ -52,8 +73,7 @@
 }
 
 -(void)awakeFromNib
-{
-       
+{   
     //Init status item
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
     [statusItem setMenu:statusMenu];

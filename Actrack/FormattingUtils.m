@@ -28,7 +28,6 @@
     return timeLabel;
 }
 
-
 +(NSString*)secondsToNiceTime:(NSInteger)seconds
 {
     NSInteger sec = seconds % 60;

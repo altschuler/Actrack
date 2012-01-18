@@ -197,7 +197,7 @@
 						<object class="NSTextField" id="276163309">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{199, 466}, {128, 17}}</string>
+							<string key="NSFrame">{{106, 466}, {315, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="29597489"/>
@@ -701,7 +701,7 @@
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">0</int>
 								<string key="NSContents">Asking rules</string>
-								<object class="NSFont" key="NSSupport" id="332462637">
+								<object class="NSFont" key="NSSupport" id="573659819">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
@@ -762,7 +762,7 @@
 											<string key="NSFrame">{{16, 16}, {165, 25}}</string>
 											<reference key="NSSuperview" ref="212083858"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="238767131"/>
+											<reference key="NSNextKeyView" ref="200907031"/>
 											<string key="NSReuseIdentifierKey">_NS:239</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="631944801">
@@ -910,7 +910,7 @@
 								<reference key="NSTextColor" ref="516685334"/>
 							</object>
 						</object>
-						<object class="NSButton" id="238767131">
+						<object class="NSButton" id="200907031">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 16}, {94, 31}}</string>
@@ -919,16 +919,16 @@
 							<reference key="NSNextKeyView" ref="547040520"/>
 							<string key="NSReuseIdentifierKey">_NS:161</string>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSButtonCell" key="NSCell" id="331338768">
+							<object class="NSButtonCell" key="NSCell" id="55038256">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">About Actrack</string>
 								<reference key="NSSupport" ref="469253235"/>
 								<string key="NSCellIdentifier">_NS:161</string>
-								<reference key="NSControlView" ref="238767131"/>
+								<reference key="NSControlView" ref="200907031"/>
 								<int key="NSButtonFlags">-2046672641</int>
 								<int key="NSButtonFlags2">129</int>
-								<reference key="NSAlternateImage" ref="332462637"/>
+								<reference key="NSAlternateImage" ref="573659819"/>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -1197,7 +1197,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">aboutButtonDidClick:</string>
 						<reference key="source" ref="1041582419"/>
-						<reference key="destination" ref="238767131"/>
+						<reference key="destination" ref="200907031"/>
 					</object>
 					<int key="connectionID">195</int>
 				</object>
@@ -1268,7 +1268,7 @@
 							<reference ref="479491615"/>
 							<reference ref="547040520"/>
 							<reference ref="372815241"/>
-							<reference ref="238767131"/>
+							<reference ref="200907031"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1763,17 +1763,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">193</int>
-						<reference key="object" ref="238767131"/>
+						<reference key="object" ref="200907031"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="331338768"/>
+							<reference ref="55038256"/>
 						</object>
 						<reference key="parent" ref="1006"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">194</int>
-						<reference key="object" ref="331338768"/>
-						<reference key="parent" ref="238767131"/>
+						<reference key="object" ref="55038256"/>
+						<reference key="parent" ref="200907031"/>
 					</object>
 				</object>
 			</object>

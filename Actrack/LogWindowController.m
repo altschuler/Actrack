@@ -14,6 +14,8 @@
 #import "FormattingUtils.h"
 #import "ProjectSummaryModel.h"
 #import "RenameProjectWindowController.h"
+#import "Painter.h"
+#import "CanvasView.h"
 
 @implementation LogWindowController
 
@@ -26,6 +28,8 @@ static LogWindowController* activeWindowController;
     {
         ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
         [dbman updateArchivedStatus];
+        
+        sortAscending = YES;
     }
     
     return self;
@@ -33,6 +37,9 @@ static LogWindowController* activeWindowController;
 
 -(void)awakeFromNib
 {
+    CanvasView* cv = [[CanvasView alloc] initWithFrame:visualCanvas.frame];
+    [visualCanvas addSubview:cv];
+    
     [self updateView];
 }
 
@@ -43,6 +50,9 @@ static LogWindowController* activeWindowController;
 
 - (void)updateView
 {
+    //Remove sorting indicator
+    [logTableView setIndicatorImage:nil inTableColumn:lastClickedColumn];
+    
     ActivityService* activityService = [[ActivityService alloc] init];
     
     BOOL archived = [archiveCheckBox state] == NSOnState;
@@ -126,9 +136,10 @@ static LogWindowController* activeWindowController;
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row 
 {
+    //TODO cell caching?
     NSCell* cell = [[NSCell alloc] init];
     
-    ActivityModel* am = [logs objectAtIndex:row];
+    ActivityModel* am = [logs objectAtIndex:sortAscending ? row : [logs count] - 1 - row];
     
     if ([[tableColumn identifier] isEqualToString: @"comment"])
         cell.title = am.comment;
@@ -142,9 +153,19 @@ static LogWindowController* activeWindowController;
     return cell;
 }
 
+-(BOOL)tableView:(NSTableView *)tableView 
+{
+    NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
+    ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
+    NSLog(@"Entry: pid:%@, comment:%@", am.projectId, am.comment);
+    return YES;
+}
+
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
+    //If sorting is applied descending we need to mirror the number in the count of entries
+    NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
+    ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
     
     if ([tableColumn.identifier isEqualToString:@"comment"])
     {
@@ -156,7 +177,7 @@ static LogWindowController* activeWindowController;
     }
     else 
     {
-        NSAlert *theAlert = [NSAlert alertWithMessageText:@"Cannot edit date and time" defaultButton:@"Ok..." alternateButton:nil otherButton:nil informativeTextWithFormat:@"This feature is not yet supported"];
+        NSAlert *theAlert = [NSAlert alertWithMessageText:@"Cannot edit date and time" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"This feature is not yet supported"];
         [theAlert runModal];
         return;
     }
@@ -166,7 +187,63 @@ static LogWindowController* activeWindowController;
     [activityService updateActivity:am];
     
     [self updateView];
+}
+
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectTableColumn:(NSTableColumn *)tableColumn
+{
+    return NO;
+}
+
+-(void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn
+{
+    if (![lastClickedColumn.identifier isEqualToString:tableColumn.identifier])
+    {
+        sortAscending = YES;
+        
+        if ([tableColumn.identifier isEqualToString:@"projectId"])
+        {
+            [logs sortUsingComparator:^(id a, id b) {
+                NSString *first = [(ActivityModel*)a projectId];
+                NSString *second = [(ActivityModel*)b projectId];
+                return [first compare:second];
+            }];
+        }
+        else if ([tableColumn.identifier isEqualToString:@"comment"])
+        {    
+            [logs sortUsingComparator:^(id a, id b) {
+                NSString *first = [(ActivityModel*)a comment];
+                NSString *second = [(ActivityModel*)b comment];
+                return [first compare:second];
+            }];
+        }
+        else if ([tableColumn.identifier isEqualToString:@"date"])
+        {
+            [logs sortUsingComparator:^(id a, id b) {
+                NSString *first = [(ActivityModel*)a timeStringDay];
+                NSString *second = [(ActivityModel*)b timeStringDay];
+                return [first compare:second];
+            }];
+        }
+        else if ([tableColumn.identifier isEqualToString:@"time"])
+        {
+            [logs sortUsingComparator:^(id a, id b) {
+                NSString *first = [(ActivityModel*)a timeStringTime];
+                NSString *second = [(ActivityModel*)b timeStringTime];
+                return [first compare:second];
+            }];
+        }
+    } 
+    else
+    {
+        sortAscending = !sortAscending;
+    }
     
+    [tableView setIndicatorImage:nil inTableColumn:lastClickedColumn];
+
+    [tableView setIndicatorImage: sortAscending ? [NSImage imageNamed:@"NSAscendingSortIndicator"] : [NSImage imageNamed:@"NSDescendingSortIndicator"]  inTableColumn:tableColumn];
+    
+    lastClickedColumn = [tableColumn retain];
+    [logTableView reloadData];
 }
 
 - (IBAction)deleteButtonDidClick:(id)sender 
@@ -174,8 +251,11 @@ static LogWindowController* activeWindowController;
     if ([logTableView selectedRow] != -1)
     {
         ActivityService* activityService = [[ActivityService alloc] init];
-    
-        ActivityModel* am = [logs objectAtIndex:[logTableView selectedRow]];
+        
+        //If sorting is applied descending we need to mirror the number in the count of entries
+        NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
+        
+        ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
     
         [activityService removeActivity:am];
         

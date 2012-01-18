@@ -28,6 +28,8 @@
 - (void)askNow;
 - (void)showWindow:(int)windowId;
 - (void)updateTimerInfoMenuItem;
+- (void)systemWillSleep;
+- (void)systemDidWake;
 - (void)settingsDidUpdate:(NSNotification *)notification;
 - (void)setStatusItemImage:(NSString*)imageId;
 

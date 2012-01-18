@@ -121,6 +121,23 @@
     return timer != nil;
 }
 
+-(void)handleSystemWillSleep
+{
+    //Save the state so we can resume on wake if needed
+    wasRunningWhenSleepOccured = self.isRunning;
+    
+    if (wasRunningWhenSleepOccured)
+        [self pause];
+}
+
+-(void)handleSystemDidWake
+{
+    if (wasRunningWhenSleepOccured)
+    {
+        [self start:NO];   
+    }
+}
+
 -(void)dealloc
 {
     [timer invalidate];

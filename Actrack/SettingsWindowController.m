@@ -81,8 +81,15 @@ static SettingsWindowController* activeWindowController;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setMaximumFractionDigits:1];
     [formatter setRoundingMode: NSNumberFormatterRoundHalfEven];
-
-    [selectedAskInterval setStringValue:[FormattingUtils secondsToNiceTime:[intervalSlider doubleValue] * 3600]];
+    
+    if ([intervalSlider doubleValue] != 0)
+    {
+        [selectedAskInterval setStringValue:[FormattingUtils secondsToNiceTime:[intervalSlider doubleValue] * 3600]];
+    }
+    else
+    {
+        [selectedAskInterval setStringValue:@"Don't ask automatically"];
+    }
     
     [formatter release];
     

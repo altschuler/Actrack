@@ -16,6 +16,7 @@
 
 @interface AskingController : NSObject
 {
+    BOOL wasRunningWhenSleepOccured;
     int restTimeFromPause;
     
     NSTimer* timer;
@@ -23,8 +24,6 @@
 }
 
 @property (nonatomic, assign) id<AskingControllerDelegate>delegate;
-
-
 
 -(void)pause;
 -(void)start:(BOOL)reset;
@@ -34,6 +33,8 @@
 -(BOOL)askingIsAllowed;
 -(int)remainingTime;
 
+-(void)handleSystemWillSleep;
+-(void)handleSystemDidWake;
 
 - (id)initWithDelegate:(id<AskingControllerDelegate>)del;
 

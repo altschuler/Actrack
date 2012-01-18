@@ -24,10 +24,15 @@
     IBOutlet NSTableView *logTableView;
     IBOutlet NSTextField *queryTextField;
     IBOutlet NSButton* archiveCheckBox;
+    NSTableColumn* lastClickedColumn;
+    BOOL sortAscending;
     
     /* Summary view */
     IBOutlet NSTextField *summaryTextfield;
     IBOutlet NSTextField *summaryTitleTextfield;
+    
+    /* Visual view */
+    IBOutlet NSView *visualCanvas;
 }
 
 - (IBAction)deleteButtonDidClick:(id)sender;

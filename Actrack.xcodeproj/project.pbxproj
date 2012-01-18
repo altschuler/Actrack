@@ -10,6 +10,9 @@
 		132075491485B08F00AE7E3A /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 132075481485B08F00AE7E3A /* LoginItemManager.m */; };
 		1320754F1487C86300AE7E3A /* AbstractWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1320754E1487C86300AE7E3A /* AbstractWindowController.m */; };
 		13415E5614C45D680044972C /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 13415E5514C45D680044972C /* Credits.html */; };
+		13415E5A14C4C31E0044972C /* Painter.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5914C4C31D0044972C /* Painter.m */; };
+		13415E5D14C4C8BB0044972C /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5C14C4C8BB0044972C /* CanvasView.m */; };
+		13415E6014C5D83B0044972C /* LogTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5F14C5D83B0044972C /* LogTableView.m */; };
 		134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DB4CE148E235200AF9BB0 /* FormattingUtils.m */; };
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
 		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
@@ -85,6 +88,12 @@
 		1320754E1487C86300AE7E3A /* AbstractWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractWindowController.m; sourceTree = "<group>"; };
 		133D688E148CFF15000240AA /* QuestionWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionWindowDelegate.h; sourceTree = "<group>"; };
 		13415E5514C45D680044972C /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		13415E5814C4C31D0044972C /* Painter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Painter.h; sourceTree = "<group>"; };
+		13415E5914C4C31D0044972C /* Painter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Painter.m; sourceTree = "<group>"; };
+		13415E5B14C4C8BB0044972C /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		13415E5C14C4C8BB0044972C /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
+		13415E5E14C5D83B0044972C /* LogTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableView.h; sourceTree = "<group>"; };
+		13415E5F14C5D83B0044972C /* LogTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableView.m; sourceTree = "<group>"; };
 		134DB4CD148E235100AF9BB0 /* FormattingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattingUtils.h; sourceTree = "<group>"; };
 		134DB4CE148E235200AF9BB0 /* FormattingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattingUtils.m; sourceTree = "<group>"; };
 		134DB4D2148E36E600AF9BB0 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -205,6 +214,10 @@
 				138C902C14842B5600646A04 /* Xib */,
 				13501192148FF35D00835626 /* HotKeyTextField.h */,
 				13501193148FF35D00835626 /* HotKeyTextField.m */,
+				13415E5B14C4C8BB0044972C /* CanvasView.h */,
+				13415E5C14C4C8BB0044972C /* CanvasView.m */,
+				13415E5E14C5D83B0044972C /* LogTableView.h */,
+				13415E5F14C5D83B0044972C /* LogTableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -254,6 +267,8 @@
 				13501196148FFCC600835626 /* HotKeyController.m */,
 				1350119F1495733A00835626 /* IntervalParser.h */,
 				135011A01495733A00835626 /* IntervalParser.m */,
+				13415E5814C4C31D0044972C /* Painter.h */,
+				13415E5914C4C31D0044972C /* Painter.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -538,6 +553,9 @@
 				135011A7149911BF00835626 /* ProjectSummaryModel.m in Sources */,
 				13E7E2A014BF37C7008BC3AA /* RenameProjectWindowController.m in Sources */,
 				13E7E2A614C02CB5008BC3AA /* KeyCodeName.m in Sources */,
+				13415E5A14C4C31E0044972C /* Painter.m in Sources */,
+				13415E5D14C4C8BB0044972C /* CanvasView.m in Sources */,
+				13415E6014C5D83B0044972C /* LogTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

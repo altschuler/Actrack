@@ -158,7 +158,7 @@
     
     [database open];
     
-    FMResultSet* result = [database executeQuery:@"select distinct projectId from acts where archived like ?",archived ? @"%" : [NSNumber numberWithBool:archived]];
+    FMResultSet* result = [database executeQuery:@"select distinct projectId from acts where archived like ? and projectId != null",archived ? @"%" : [NSNumber numberWithBool:archived]];
     
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
