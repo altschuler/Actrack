@@ -7,10 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AbstractWindowController.h"
 #import "HotKeyTextField.h"
 
-@interface SettingsWindowController : AbstractWindowController <NSWindowDelegate, NSTextFieldDelegate>
+@interface SettingsWindowController : NSWindowController <NSWindowDelegate, NSTextFieldDelegate>
 {
     IBOutlet NSTextField* appVersionTextField;
     IBOutlet NSButton *autoStartCheckBox;

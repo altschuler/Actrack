@@ -7,13 +7,6 @@
 //
 
 #import "LogWindowController.h"
-#import "ActivityService.h"
-#import "ActivityQueryFilter.h"
-#import "IntervalParser.h"
-#import "ActivityIntervalModel.h"
-#import "FormattingUtils.h"
-#import "ProjectSummaryModel.h"
-#import "RenameProjectWindowController.h"
 #import "Painter.h"
 #import "CanvasView.h"
 
@@ -26,12 +19,7 @@ static LogWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"LogWindow"];
     if (self)
     {
-        ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
-        [dbman updateArchivedStatus];
-        
-        sortAscending = YES;
     }
-    
     return self;
 }
 
@@ -39,238 +27,6 @@ static LogWindowController* activeWindowController;
 {
     CanvasView* cv = [[CanvasView alloc] initWithFrame:visualCanvas.frame];
     [visualCanvas addSubview:cv];
-    
-    [self updateView];
-}
-
-- (IBAction)viewDidUpdate:(id)sender
-{
-    [self updateView];
-}
-
-- (void)updateView
-{
-    //Remove sorting indicator
-    [logTableView setIndicatorImage:nil inTableColumn:lastClickedColumn];
-    
-    ActivityService* activityService = [[ActivityService alloc] init];
-    
-    BOOL archived = [archiveCheckBox state] == NSOnState;
-    
-    dates = [[NSMutableArray alloc] init];
-    [dates addObject:@"All"];
-    [dates addObjectsFromArray:[activityService getDistinctDates:archived]];
-    [dateComboBox reloadData];
-    
-    projectIds = [[NSMutableArray alloc] init];
-    [projectIds addObject:@"All"];
-    [projectIds addObjectsFromArray:[activityService getDistinctProjectIds:archived]];
-    [projectComboBox reloadData];
-    
-    if ([[projectComboBox stringValue] length] == 0)
-        [projectComboBox selectItemAtIndex:0];
-    
-    if ([[dateComboBox stringValue] length] == 0)
-        [dateComboBox selectItemAtIndex:0];
-    
-    logs = [activityService getActsWithFilter:[self buildFilterFromUI]];
-    
-    [logTableView reloadData];
-    
-    IntervalParser* intervalParser = [[IntervalParser alloc] init];
-    NSMutableArray* parsed = [intervalParser summarizeForProjects:[intervalParser parse:logs]];
-
-    [summaryTextfield setStringValue:@""];
-    for (ProjectSummaryModel* intervalModel in parsed) 
-    {
-        NSString* summaryEntry = [NSString stringWithFormat:@"%@Worked on %@ (%@)\n", [summaryTextfield stringValue], intervalModel.projectId, 
-                                  [FormattingUtils secondsToTimeString:[intervalModel.timeInterval intValue] delimiter:@":"]];
-        
-        [summaryTextfield setStringValue:summaryEntry];
-    }
-}
-
--(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
-{
-    if ([[aComboBox identifier] isEqual:@"dateComboBox"]) 
-    {
-        return [dates objectAtIndex:index];
-    }
-    else if ([[aComboBox identifier] isEqual:@"projectComboBox"]) 
-    {
-        return [projectIds objectAtIndex:index];
-    }
-    
-    return nil;
-}
-
--(NSInteger)numberOfItemsInComboBox:(NSComboBox *)comboBox
-{
-    if ([[comboBox identifier] isEqual:@"dateComboBox"]) 
-    {
-        return [dates count];
-    }
-    else if ([[comboBox identifier] isEqual:@"projectComboBox"]) 
-    {
-        return [projectIds count];
-    }
-    
-    return 0;
-}
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView 
-{
-    return logs.count;
-}
-
-- (ActivityQueryFilter*)buildFilterFromUI
-{ 
-    ActivityQueryFilter* filter = [[ActivityQueryFilter alloc] init];
-    
-    filter.dateString = [[dateComboBox stringValue] isEqualToString:@"All"] ? nil : [dateComboBox stringValue];
-    filter.projectId = [[projectComboBox stringValue] isEqualToString:@"All"] ? nil : [projectComboBox stringValue];
-    filter.archived = [archiveCheckBox state] == NSOnState;
-
-    return filter;
-}
-
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row 
-{
-    //TODO cell caching?
-    NSCell* cell = [[NSCell alloc] init];
-    
-    ActivityModel* am = [logs objectAtIndex:sortAscending ? row : [logs count] - 1 - row];
-    
-    if ([[tableColumn identifier] isEqualToString: @"comment"])
-        cell.title = am.comment;
-    else if ([[tableColumn identifier] isEqualToString: @"projectId"])
-        cell.title = am.projectId;
-    else if ([[tableColumn identifier] isEqualToString: @"date"])
-        cell.title = am.timeStringDay;
-    else if ([[tableColumn identifier] isEqualToString: @"time"])
-        cell.title = am.timeStringTime;
-    
-    return cell;
-}
-
--(BOOL)tableView:(NSTableView *)tableView 
-{
-    NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
-    ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
-    NSLog(@"Entry: pid:%@, comment:%@", am.projectId, am.comment);
-    return YES;
-}
-
--(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-    //If sorting is applied descending we need to mirror the number in the count of entries
-    NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
-    ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
-    
-    if ([tableColumn.identifier isEqualToString:@"comment"])
-    {
-        am.comment = object;
-    }
-    else if ([tableColumn.identifier isEqualToString:@"projectId"])
-    {
-        am.projectId = object;
-    }
-    else 
-    {
-        NSAlert *theAlert = [NSAlert alertWithMessageText:@"Cannot edit date and time" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"This feature is not yet supported"];
-        [theAlert runModal];
-        return;
-    }
-    
-    ActivityService* activityService = [[ActivityService alloc] init];
-    
-    [activityService updateActivity:am];
-    
-    [self updateView];
-}
-
--(BOOL)tableView:(NSTableView *)tableView shouldSelectTableColumn:(NSTableColumn *)tableColumn
-{
-    return NO;
-}
-
--(void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn
-{
-    if (![lastClickedColumn.identifier isEqualToString:tableColumn.identifier])
-    {
-        sortAscending = YES;
-        
-        if ([tableColumn.identifier isEqualToString:@"projectId"])
-        {
-            [logs sortUsingComparator:^(id a, id b) {
-                NSString *first = [(ActivityModel*)a projectId];
-                NSString *second = [(ActivityModel*)b projectId];
-                return [first compare:second];
-            }];
-        }
-        else if ([tableColumn.identifier isEqualToString:@"comment"])
-        {    
-            [logs sortUsingComparator:^(id a, id b) {
-                NSString *first = [(ActivityModel*)a comment];
-                NSString *second = [(ActivityModel*)b comment];
-                return [first compare:second];
-            }];
-        }
-        else if ([tableColumn.identifier isEqualToString:@"date"])
-        {
-            [logs sortUsingComparator:^(id a, id b) {
-                NSString *first = [(ActivityModel*)a timeStringDay];
-                NSString *second = [(ActivityModel*)b timeStringDay];
-                return [first compare:second];
-            }];
-        }
-        else if ([tableColumn.identifier isEqualToString:@"time"])
-        {
-            [logs sortUsingComparator:^(id a, id b) {
-                NSString *first = [(ActivityModel*)a timeStringTime];
-                NSString *second = [(ActivityModel*)b timeStringTime];
-                return [first compare:second];
-            }];
-        }
-    } 
-    else
-    {
-        sortAscending = !sortAscending;
-    }
-    
-    [tableView setIndicatorImage:nil inTableColumn:lastClickedColumn];
-
-    [tableView setIndicatorImage: sortAscending ? [NSImage imageNamed:@"NSAscendingSortIndicator"] : [NSImage imageNamed:@"NSDescendingSortIndicator"]  inTableColumn:tableColumn];
-    
-    lastClickedColumn = [tableColumn retain];
-    [logTableView reloadData];
-}
-
-- (IBAction)deleteButtonDidClick:(id)sender 
-{
-    if ([logTableView selectedRow] != -1)
-    {
-        ActivityService* activityService = [[ActivityService alloc] init];
-        
-        //If sorting is applied descending we need to mirror the number in the count of entries
-        NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
-        
-        ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
-    
-        [activityService removeActivity:am];
-        
-        [self updateView];
-    }
-}
-
-- (IBAction)renameButtonDidClick:(id)sender
-{
-    [RenameProjectWindowController openWindowWithDelegate:self];
-}
-
-- (void)didRenameProject
-{
-    [self updateView];
 }
 
 +(void)openWindow
@@ -279,22 +35,12 @@ static LogWindowController* activeWindowController;
         activeWindowController = [[LogWindowController alloc] init];
     
     [activeWindowController showWindow:self];
-    [NSApp arrangeInFront:activeWindowController.window];
     [NSApp activateIgnoringOtherApps:YES];
     [activeWindowController.window makeKeyAndOrderFront:nil];
 }
 
--(void)showWindow:(id)sender
-{
-    [[self window] makeFirstResponder:projectComboBox];
-    
-    [super showWindow:sender];
-}
-
-
 -(void)closeWindow
 {
-    //since activeWindowController and self is the same, close first then kill
     [self close];
     
     [activeWindowController release];

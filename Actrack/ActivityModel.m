@@ -10,7 +10,7 @@
 
 @implementation ActivityModel
 
-@synthesize actId, projectId, comment, timeStamp;
+@synthesize actId, projectId, comment, timeStamp, isIdle;
 
 - (id)init
 {

@@ -6,14 +6,14 @@
 //  
 //
 
-#import "HotKeyController.h"
+#import "HotKeyManager.h"
 #import "SettingService.h"
 
-@implementation HotKeyController
+@implementation HotKeyManager
 
 @synthesize delegate;
 
-- (id)initWithDelegate:(id<HotKeyControllerDelegate>)del
+- (id)initWithDelegate:(id<HotKeyManagerDelegate>)del
 {
     self = [super init];
     if (self) 
@@ -50,7 +50,7 @@
 
 OSStatus hotKeyHandler(EventHandlerCallRef nextHandler, EventRef anEvent, void *userData) 
 {         
-    HotKeyController* selfRef = (HotKeyController*)userData;
+    HotKeyManager* selfRef = (HotKeyManager*)userData;
     [[selfRef delegate] hotKeyActivated];
     return noErr; 
 }

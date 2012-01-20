@@ -68,12 +68,13 @@
     FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
     
     [database open];
-
+    
     NSString* archived = filter.archived ? @"%" : [[NSNumber numberWithBool:filter.archived] stringValue];
+    NSString* idle = filter.isIdle ? @"%" : [[NSNumber numberWithBool:filter.isIdle] stringValue];
     NSString* projectId = filter.projectId == nil ? [NSString stringWithString:@"%"] : filter.projectId;
     NSString* dateString = filter.dateString == nil ? [NSString stringWithString:@"%"] : [NSString stringWithFormat:@"%@%%",filter.dateString];
     
-    FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ? and projectId like ? and timeStamp like ?", archived, projectId, dateString];
+    FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ? and projectId like ? and timeStamp like ? and idle like ?", archived, projectId, dateString, idle];
     
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
@@ -84,6 +85,7 @@
         am.comment = [result stringForColumn:@"comment"];
         am.timeStamp = [NSDate dateWithNaturalLanguageString:[result stringForColumn:@"timeStamp"]];
         am.actId = [result stringForColumn:@"rowid"];
+        am.isIdle = [[result stringForColumn:@"idle"] isEqualToString:@"1"];
         
         if (am.timeStamp == nil)
         {
@@ -99,34 +101,15 @@
     return logs;
 }
 
-- (NSMutableArray*) getActs:(BOOL)archived
+- (NSMutableArray*) getActs:(BOOL)archived withIdles:(BOOL)isIdle
 {
-    FMDatabase* database = [FMDatabase databaseWithPath:[SettingService pathForDatabaseFile]];
+    ActivityQueryFilter* actFilter = [[ActivityQueryFilter alloc] init];
+    actFilter.isIdle = isIdle;
+    actFilter.archived = archived;
     
-    [database open];
+    NSMutableArray* logs = [self getActsWithFilter:actFilter];
     
-    FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ?",archived ? @"%" : [NSNumber numberWithBool:archived]];
-    
-    NSMutableArray* logs = [[NSMutableArray alloc] init];
-    
-    while ([result next])
-    {
-        ActivityModel* am = [[ActivityModel alloc] init];
-        am.projectId = [result stringForColumn:@"projectId"];
-        am.comment = [result stringForColumn:@"comment"];
-        am.timeStamp = [NSDate dateWithNaturalLanguageString:[result stringForColumn:@"timeStamp"]];
-        am.actId = [result stringForColumn:@"rowid"];
-        
-        if (am.timeStamp == nil)
-        {
-            NSLog(@"Skipping log due to invalid date");
-            continue;
-        }
-        
-        [logs addObject:am];
-    }
-    
-    [database close];
+    [actFilter release];
     
     return logs;
 }
@@ -158,13 +141,18 @@
     
     [database open];
     
-    FMResultSet* result = [database executeQuery:@"select distinct projectId from acts where archived like ? and projectId != null",archived ? @"%" : [NSNumber numberWithBool:archived]];
+    FMResultSet* result = [database executeQuery:@"select distinct projectId from acts where archived like ? and projectId != '' and idle = 0",archived ? @"%" : [NSNumber numberWithBool:archived]];
     
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
     while ([result next])
     {   
         [logs addObject:[result stringForColumn:@"projectId"]];
+    }
+    
+    if ([database hadError])
+    {
+        NSLog(@"%@",[database lastErrorMessage]);
     }
     
     [database close];
@@ -180,7 +168,7 @@
     NSString* settingsQuery = @"create table if not exists settings (askInterval int default 3600, archiveTime int default 7, daysToAsk int default 124, allowedTimeSpanMin int default 8, allowedTimeSpanMax int default 20, hotkey text default 'none')";
     BOOL settingsSuccess = [database executeUpdate:settingsQuery error:nil withArgumentsInArray:nil orVAList:nil];
     
-    BOOL actsSuccess = [database executeUpdate:@"create table if not exists acts (projectId int, comment text, timeStamp text, archived int)" error:nil withArgumentsInArray:nil orVAList:nil];
+    BOOL actsSuccess = [database executeUpdate:@"create table if not exists acts (projectId text, comment text, timeStamp text, archived int, idle int)" error:nil withArgumentsInArray:nil orVAList:nil];
     
     /*
      
@@ -223,8 +211,8 @@
     [database open];
     
     NSError* err = nil;
-    NSArray* args = [NSArray arrayWithObjects:activity.projectId, activity.comment, activity.timeString, nil];
-    BOOL success = [database executeUpdate:@"insert into acts (projectId, comment, timeStamp) values (?,?,?)" error:&err withArgumentsInArray:args orVAList:nil];
+    NSArray* args = [NSArray arrayWithObjects:activity.projectId, activity.comment, activity.timeString, activity.isIdle ? @"1" : @"0", nil];
+    BOOL success = [database executeUpdate:@"insert into acts (projectId, comment, timeStamp, idle) values (?,?,?,?)" error:&err withArgumentsInArray:args orVAList:nil];
     
     if (success == NO)
     {

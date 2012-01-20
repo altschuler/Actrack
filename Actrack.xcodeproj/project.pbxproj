@@ -13,6 +13,8 @@
 		13415E5A14C4C31E0044972C /* Painter.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5914C4C31D0044972C /* Painter.m */; };
 		13415E5D14C4C8BB0044972C /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5C14C4C8BB0044972C /* CanvasView.m */; };
 		13415E6014C5D83B0044972C /* LogTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E5F14C5D83B0044972C /* LogTableView.m */; };
+		13415E6714C97A640044972C /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E6514C97A590044972C /* OverviewViewController.m */; };
+		13415E6C14C985B20044972C /* OverviewTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 13415E6B14C985B20044972C /* OverviewTabItem.m */; };
 		134DB4CF148E235200AF9BB0 /* FormattingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 134DB4CE148E235200AF9BB0 /* FormattingUtils.m */; };
 		134DB4D3148E36E600AF9BB0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134DB4D2148E36E600AF9BB0 /* Carbon.framework */; };
 		13501194148FF35D00835626 /* HotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 13501193148FF35D00835626 /* HotKeyTextField.m */; };
@@ -94,6 +96,10 @@
 		13415E5C14C4C8BB0044972C /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		13415E5E14C5D83B0044972C /* LogTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableView.h; sourceTree = "<group>"; };
 		13415E5F14C5D83B0044972C /* LogTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableView.m; sourceTree = "<group>"; };
+		13415E6414C97A570044972C /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
+		13415E6514C97A590044972C /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
+		13415E6A14C985B20044972C /* OverviewTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewTabItem.h; sourceTree = "<group>"; };
+		13415E6B14C985B20044972C /* OverviewTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewTabItem.m; sourceTree = "<group>"; };
 		134DB4CD148E235100AF9BB0 /* FormattingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattingUtils.h; sourceTree = "<group>"; };
 		134DB4CE148E235200AF9BB0 /* FormattingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattingUtils.m; sourceTree = "<group>"; };
 		134DB4D2148E36E600AF9BB0 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -233,6 +239,17 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		13415E6914C97A7E0044972C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13415E6414C97A570044972C /* OverviewViewController.h */,
+				13415E6514C97A590044972C /* OverviewViewController.m */,
+				13415E6A14C985B20044972C /* OverviewTabItem.h */,
+				13415E6B14C985B20044972C /* OverviewTabItem.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		134DB4D1148E235600AF9BB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +276,7 @@
 			children = (
 				138C902F148444BE00646A04 /* Main */,
 				132075501488E32500AE7E3A /* Window Controllers */,
+				13415E6914C97A7E0044972C /* View Controllers */,
 				132075471485B08F00AE7E3A /* LoginItemManager.h */,
 				132075481485B08F00AE7E3A /* LoginItemManager.m */,
 				139201261484149F00CFF802 /* AskingController.h */,
@@ -556,6 +574,8 @@
 				13415E5A14C4C31E0044972C /* Painter.m in Sources */,
 				13415E5D14C4C8BB0044972C /* CanvasView.m in Sources */,
 				13415E6014C5D83B0044972C /* LogTableView.m in Sources */,
+				13415E6714C97A640044972C /* OverviewViewController.m in Sources */,
+				13415E6C14C985B20044972C /* OverviewTabItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,22 +8,22 @@
 
 //Delegate protocol
 
-@protocol AskingControllerDelegate <NSObject>
+@protocol AskingManagerDelegate <NSObject>
 
 -(void)performScheduledTask;
 
 @end
 
-@interface AskingController : NSObject
+@interface AskingManager : NSObject
 {
     BOOL wasRunningWhenSleepOccured;
     int restTimeFromPause;
     
     NSTimer* timer;
-    id<AskingControllerDelegate> delegate;
+    id<AskingManagerDelegate> delegate;
 }
 
-@property (nonatomic, assign) id<AskingControllerDelegate>delegate;
+@property (nonatomic, assign) id<AskingManagerDelegate>delegate;
 
 -(void)pause;
 -(void)start:(BOOL)reset;
@@ -36,7 +36,7 @@
 -(void)handleSystemWillSleep;
 -(void)handleSystemDidWake;
 
-- (id)initWithDelegate:(id<AskingControllerDelegate>)del;
+- (id)initWithDelegate:(id<AskingManagerDelegate>)del;
 
 - (void)settingsDidUpdate:(NSNotification *)notification;
 

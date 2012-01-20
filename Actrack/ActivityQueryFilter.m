@@ -10,6 +10,6 @@
 
 @implementation ActivityQueryFilter
 
-@synthesize archived, projectId, dateString;
+@synthesize archived, projectId, dateString, isIdle;
 
 @end

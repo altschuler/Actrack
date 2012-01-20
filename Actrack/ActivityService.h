@@ -21,7 +21,7 @@
 - (BOOL) removeActivity:(ActivityModel*)activity;
 - (BOOL) renameProject:(NSString*)oldName toName:(NSString*)newName;
 
-- (NSMutableArray*) getActs:(BOOL)archived;
+- (NSMutableArray*) getActs:(BOOL)archived withIdles:(BOOL)isIdle;
 - (NSMutableArray*) getActsWithFilter:(ActivityQueryFilter*)filter;
 
 - (NSMutableArray*) getDistinctDates:(BOOL)archived;

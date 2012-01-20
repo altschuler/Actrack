@@ -11,11 +11,11 @@
 
 @implementation RenameProjectWindowController
 
-@synthesize delegate;
+@synthesize delegate, projectId;
 
 static RenameProjectWindowController* activeWindowController;
 
-- (id)init
+-(id)init
 {
     self = [super initWithWindowNibName:@"RenameProjectWindow"];
     if (self)
@@ -30,14 +30,18 @@ static RenameProjectWindowController* activeWindowController;
     
     projectIds = [[NSMutableArray alloc] init];
     [projectIds addObjectsFromArray:[activityService getDistinctProjectIds:YES]];
+    
+    if (activeWindowController.projectId != nil)
+        [projectToRenameComboBox setStringValue:activeWindowController.projectId];
+    
     [projectToRenameComboBox reloadData];
+    
+    [activityService release];
 }
 
 -(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
     return [projectIds objectAtIndex:index];
-    
-    return nil;
 }
 
 -(NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
@@ -45,17 +49,21 @@ static RenameProjectWindowController* activeWindowController;
     return [projectIds count];
 }
 
-+ (void)openWindowWithDelegate:(id<RenameProjectWindowControllerDelegate>)del
++ (RenameProjectWindowController*)openWindowWithDelegate:(id<RenameProjectWindowControllerDelegate>)del defaultProjectId:(NSString*)projectId
 {
     if (activeWindowController == nil)
     {
         activeWindowController = [[RenameProjectWindowController alloc] init];
+        [activeWindowController setDelegate:del];
+        [activeWindowController setProjectId:projectId];
     }
-    [activeWindowController setDelegate:del];
+    
     [activeWindowController showWindow:self];
     [NSApp arrangeInFront:activeWindowController.window];
     [NSApp activateIgnoringOtherApps:YES];
     [activeWindowController.window makeKeyAndOrderFront:nil];
+    
+    return activeWindowController;
 }
 
 -(void)closeWindow

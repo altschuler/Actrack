@@ -6,14 +6,14 @@
 //  
 //
 
-#import "AskingController.h"
+#import "AskingManager.h"
 #import "SettingService.h"
 
-@implementation AskingController
+@implementation AskingManager
 
 @synthesize delegate;
 
-- (id)initWithDelegate:(id<AskingControllerDelegate>)del
+- (id)initWithDelegate:(id<AskingManagerDelegate>)del
 {
     self = [super init];
     if (self) 
@@ -126,12 +126,20 @@
     //Save the state so we can resume on wake if needed
     wasRunningWhenSleepOccured = self.isRunning;
     
-    if (wasRunningWhenSleepOccured)
-        [self pause];
+    @try {
+        if (wasRunningWhenSleepOccured)
+            [self pause];
+    }
+    @catch (NSException *exception) {
+        //There's not much we can do here :-(
+    }
 }
 
 -(void)handleSystemDidWake
 {
+    // if something went wrong when handling system sleep, the timer might not have been paused. 
+    // thus we need to check if it has gone below zero
+    
     if (wasRunningWhenSleepOccured)
     {
         [self start:NO];   

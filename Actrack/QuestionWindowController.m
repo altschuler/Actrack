@@ -55,6 +55,10 @@ static QuestionWindowController* activeWindowController;
 
 -(IBAction)submitButtonDidClick:(id)sender
 {
+    //TODO tell the user to put in some data
+    if ([[projectComboBox stringValue] isEqualToString:@""] && ![isIdleCheckbox state])
+        return;
+    
     [self submitEntry];
 }
 
@@ -73,6 +77,12 @@ static QuestionWindowController* activeWindowController;
     am.comment = [commentTextField stringValue];
     am.projectId = [projectComboBox stringValue];
     am.timeStamp = [NSDate date];
+    am.isIdle = [isIdleCheckbox state];
+    
+    if (am.isIdle)
+    {
+        am.projectId = @"";
+    }
     
     ActivityService* dbman = [[ActivityService alloc] init];
     [dbman insertActivity:am];
@@ -102,6 +112,11 @@ static QuestionWindowController* activeWindowController;
     [activeWindowController showWindow:self];
     [[activeWindowController window] makeKeyAndOrderFront:nil];
     [NSApp arrangeInFront:[activeWindowController window]];
+}
+
+- (IBAction)isIdleCheckboxDidChange:(id)sender
+{
+    [projectComboBox setEnabled:![isIdleCheckbox state]];
 }
 
 -(void)showWindow:(id)sender

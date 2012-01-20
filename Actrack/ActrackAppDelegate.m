@@ -26,7 +26,7 @@
     [databaseService release];
     
     //Init asking controller
-    askingController = [[AskingController alloc] initWithDelegate:self];
+    askingController = [[AskingManager alloc] initWithDelegate:self];
     
     //Setup event handling
     //Local events
@@ -38,7 +38,7 @@
     [workspaceNotificationCenter addObserver:self selector:@selector(systemDidWake) name:NSWorkspaceDidWakeNotification object:nil];
     
     //Register the hot key (if applicable)
-    hotKeyController = [[HotKeyController alloc] initWithDelegate:self];
+    hotKeyController = [[HotKeyManager alloc] initWithDelegate:self];
     [hotKeyController registerKeyFromSettings];
     
     //Start asking in the specified interval
@@ -114,27 +114,14 @@
 }
 
 - (IBAction)menuItemDidClick:(NSMenuItem*)sender
-{
-    if (sender.tag == 1)
+{    
+    if (sender.tag == 1) // pause
     {
         [askingController toggle];
         
-        NSString* logoName;   
-        if ([askingController isRunning])
-        {
-            logoName = @"Logo";
-            [[statusMenu itemWithTag:1] setTitle:@"Pause asking"];
-        }
-        else
-        {
-            logoName = @"Logo_paused";
-            [[statusMenu itemWithTag:1] setTitle:@"Resume asking"];
-        }  
-        
-        [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:[logoName stringByAppendingString:@"_normal.png"]]]];
-        [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:[logoName stringByAppendingString:@"_alternative.png"]]]];
+        [self updateStatusItem];
     }
-    else if (sender.tag == 4)
+    else if (sender.tag == 4) // quit
     {
         [NSApp terminate:nil];
     }
@@ -144,13 +131,31 @@
     }
 }
 
+- (void)updateStatusItem
+{ 
+    NSString* logoName;   
+    if ([askingController isRunning])
+    {
+        logoName = @"Logo";
+        [[statusMenu itemWithTag:1] setTitle:@"Pause asking"];
+    }
+    else
+    {
+        logoName = @"Logo_paused";
+        [[statusMenu itemWithTag:1] setTitle:@"Resume asking"];
+    }  
+    
+    [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:[logoName stringByAppendingString:@"_normal.png"]]]];
+    [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:[logoName stringByAppendingString:@"_alternative.png"]]]];
+}
+
 -(void)showWindow:(int)windowId
 {
-    if (windowId == 0) //Ask now
+    if (windowId == 0) // ask now
         [QuestionWindowController openWindowWithDelegate:self];
-    else if (windowId == 2) //Settings
+    else if (windowId == 2) // settings
         [SettingsWindowController openWindow];
-    else if (windowId == 3) //Log
+    else if (windowId == 3) // log
         [LogWindowController openWindow];
 }
 
@@ -158,10 +163,7 @@
 {
     [askingController pause];
     
-    [[statusMenu itemWithTag:1] setTitle:@"Resume asking"];
-    
-    [statusItem setImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_paused_normal.png"]]];
-    [statusItem setAlternateImage:[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"Logo_paused_alternative.png"]]];
+    [self updateStatusItem];
 }
 
 - (void)dealloc

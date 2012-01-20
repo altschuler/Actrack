@@ -7,15 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AbstractWindowController.h"
 #import "QuestionWindowDelegate.h"
 #import "ActivityModel.h"
 
-@interface QuestionWindowController : AbstractWindowController <NSTextFieldDelegate, NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
+@interface QuestionWindowController : NSWindowController <NSTextFieldDelegate, NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
 {
     IBOutlet NSTextField* commentTextField;
     IBOutlet NSButton *notTodayCheckbox;
     IBOutlet NSComboBox *projectComboBox;
+    IBOutlet NSButton *isIdleCheckbox;
     NSMutableArray* projectIds;
     ActivityModel* lastAct;
     id<QuestionWindowDelegate> delegate;
@@ -25,6 +25,7 @@
 
 - (IBAction)submitButtonDidClick:(id)sender;
 - (IBAction)skipButtonDidClick:(id)sender;
+- (IBAction)isIdleCheckboxDidChange:(id)sender;
 
 + (void)openWindowWithDelegate:(id<QuestionWindowDelegate>)del;
 - (void)closeWindow;

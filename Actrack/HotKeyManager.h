@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "Carbon/Carbon.h"
 
-@protocol HotKeyControllerDelegate <NSObject>
+@protocol HotKeyManagerDelegate <NSObject>
 
 - (void) hotKeyActivated;
 
 @end
 
 
-@interface HotKeyController : NSObject
+@interface HotKeyManager : NSObject
 {
-    id<HotKeyControllerDelegate> delegate;
+    id<HotKeyManagerDelegate> delegate;
     EventHotKeyRef myHotKeyRef;
 }
 
-@property (nonatomic, assign) id<HotKeyControllerDelegate>delegate;
+@property (nonatomic, assign) id<HotKeyManagerDelegate>delegate;
 
 - (void)registerKeyFromSettings;
 

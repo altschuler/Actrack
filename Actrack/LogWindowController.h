@@ -7,42 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ActivityQueryFilter.h"
-#import "AbstractWindowController.h"
-#import "RenameProjectWindowController.h"
 
-
-@interface LogWindowController : AbstractWindowController<NSTableViewDelegate, NSTableViewDataSource, NSComboBoxDelegate, NSComboBoxDataSource, NSWindowDelegate, RenameProjectWindowControllerDelegate>
-{
-    NSMutableArray* logs;
-    NSMutableArray* dates;
-    NSMutableArray* projectIds;
-    
-    /* List view */
-    IBOutlet NSComboBox *projectComboBox;
-    IBOutlet NSComboBox *dateComboBox;
-    IBOutlet NSTableView *logTableView;
-    IBOutlet NSTextField *queryTextField;
-    IBOutlet NSButton* archiveCheckBox;
-    NSTableColumn* lastClickedColumn;
-    BOOL sortAscending;
-    
-    /* Summary view */
-    IBOutlet NSTextField *summaryTextfield;
-    IBOutlet NSTextField *summaryTitleTextfield;
-    
+@interface LogWindowController : NSWindowController<NSWindowDelegate>
+{     
     /* Visual view */
     IBOutlet NSView *visualCanvas;
 }
 
-- (IBAction)deleteButtonDidClick:(id)sender;
-- (IBAction)renameButtonDidClick:(id)sender;
-- (IBAction)viewDidUpdate:(id)sender;
-
-- (ActivityQueryFilter*)buildFilterFromUI;
-
-- (void)updateView;
-- (void)didRenameProject;
 + (void)openWindow;
 - (void)closeWindow;
 

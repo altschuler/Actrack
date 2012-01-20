@@ -10,16 +10,16 @@
 #import "QuestionWindowController.h"
 #import "LogWindowController.h"
 #import "SettingsWindowController.h"
-#import "AskingController.h"
+#import "AskingManager.h"
 #import "QuestionWindowDelegate.h"
-#import "HotKeyController.h"
+#import "HotKeyManager.h"
 
-@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingControllerDelegate, QuestionWindowDelegate, HotKeyControllerDelegate> 
+@interface ActrackAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, AskingManagerDelegate, QuestionWindowDelegate, HotKeyManagerDelegate> 
 {
     IBOutlet NSMenu* statusMenu;
     NSStatusItem* statusItem;
-    AskingController* askingController;
-    HotKeyController* hotKeyController;
+    AskingManager* askingController;
+    HotKeyManager* hotKeyController;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -28,8 +28,12 @@
 - (void)askNow;
 - (void)showWindow:(int)windowId;
 - (void)updateTimerInfoMenuItem;
+
 - (void)systemWillSleep;
 - (void)systemDidWake;
+
+- (void)updateStatusItem;
+
 - (void)settingsDidUpdate:(NSNotification *)notification;
 - (void)setStatusItemImage:(NSString*)imageId;
 

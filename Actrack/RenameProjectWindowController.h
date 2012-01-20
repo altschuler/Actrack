@@ -6,29 +6,30 @@
 //
 //
 
-#import "AbstractWindowController.h"
-
 @protocol RenameProjectWindowControllerDelegate
 
 - (void)didRenameProject;
 
 @end
 
-@interface RenameProjectWindowController : AbstractWindowController<NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
+@interface RenameProjectWindowController : NSWindowController<NSWindowDelegate, NSComboBoxDelegate, NSComboBoxDataSource>
 {
     id delegate;
     NSMutableArray* projectIds;
+    NSString* projectId;
     
     IBOutlet NSComboBox *projectToRenameComboBox;
     IBOutlet NSTextField *newNameTextfield;
 }
 
 @property (nonatomic, assign) id<RenameProjectWindowControllerDelegate> delegate;
+@property (nonatomic, copy) NSString* projectId;
 
 - (IBAction)renameButtonDidClick:(id)sender;
 - (IBAction)cancelButtonDidClick:(id)sender;
 
-+ (void)openWindowWithDelegate:(id<RenameProjectWindowControllerDelegate>)del;
++ (RenameProjectWindowController*)openWindowWithDelegate:(id<RenameProjectWindowControllerDelegate>)del defaultProjectId:(NSString*)projectId;
+
 - (void)closeWindow;
 
 @end
