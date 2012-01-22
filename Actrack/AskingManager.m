@@ -88,7 +88,7 @@
     
     //Kill the timer thoroughly
     [timer invalidate];
-    [timer release];
+    //[timer release];
     timer = nil;
 }
 

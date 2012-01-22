@@ -29,35 +29,35 @@
         case kVK_RightOption: return @"RightOption";
         case kVK_RightControl: return @"RightControl";
         case kVK_Function: return @"Function";
-        case kVK_F17: return @"F17";
         case kVK_VolumeUp: return @"VolumeUp";
         case kVK_VolumeDown: return @"VolumeDown";
         case kVK_Mute: return @"Mute";
-        case kVK_F18: return @"F18";
-        case kVK_F19: return @"F19";
-        case kVK_F20: return @"F20";
+        case kVK_F1: return @"F1";
+        case kVK_F2: return @"F2";
+        case kVK_F3: return @"F3";
+        case kVK_F4: return @"F4";
         case kVK_F5: return @"F5";
         case kVK_F6: return @"F6";
         case kVK_F7: return @"F7";
-        case kVK_F3: return @"F3";
         case kVK_F8: return @"F8";
         case kVK_F9: return @"F9";
-        case kVK_F11: return @"F11";
-        case kVK_F13: return @"F13";
-        case kVK_F16: return @"F16";
-        case kVK_F14: return @"F14";
         case kVK_F10: return @"F10";
+        case kVK_F11: return @"F11";
         case kVK_F12: return @"F12";
+        case kVK_F13: return @"F13";
+        case kVK_F14: return @"F14";
         case kVK_F15: return @"F15";
+        case kVK_F16: return @"F16";
+        case kVK_F18: return @"F18";
+        case kVK_F17: return @"F17";
+        case kVK_F19: return @"F19";
+        case kVK_F20: return @"F20";
         case kVK_Help: return @"Help";
         case kVK_Home: return @"Home";
         case kVK_PageUp: return @"PageUp";
         case kVK_ForwardDelete: return @"ForwardDelete";
-        case kVK_F4: return @"F4";
         case kVK_End: return @"End";
-        case kVK_F2: return @"F2";
         case kVK_PageDown: return @"PageDown";
-        case kVK_F1: return @"F1";
         case kVK_LeftArrow: return @"LeftArrow";
         case kVK_RightArrow: return @"RightArrow";
         case kVK_DownArrow: return @"DownArrow";
@@ -130,7 +130,7 @@
         case kVK_ANSI_Quote: return @"Quote";
         case kVK_ANSI_K: return @"K";
         case kVK_ANSI_Semicolon: return @"Semicolon";
-        default : return @"Unkown";    
+        default : return @"Unknown";    
     }
 }
 

@@ -10,6 +10,7 @@
 #import "ActivityIntervalModel.h"
 #import "ActivityModel.h"
 #import "ProjectSummaryModel.h"
+#import "DateSummaryModel.h"
 
 @implementation IntervalParser
 
@@ -35,7 +36,11 @@
         
         ActivityIntervalModel* intervalModel = [[ActivityIntervalModel alloc] init];
         intervalModel.activityModel = [lastActivityModel copy];
-        intervalModel.endDate = [activityModel.timeStamp copy];
+        
+        if ([lastActivityModel.timeStringDay isEqualToString:activityModel.timeStringDay])
+            intervalModel.endDate = [activityModel.timeStamp copy];
+        else //different days, so dont use the interval
+            intervalModel.endDate = [lastActivityModel.timeStamp dateByAddingTimeInterval:3600];
         
         lastActivityModel = activityModel;
         
@@ -80,6 +85,37 @@
     }
     
     return parsed;
+}
+
+-(NSMutableArray*)summarizeForDates:(NSMutableArray*)list
+{
+    NSMutableArray* parsed = [[NSMutableArray alloc] init];
+    
+    for (ActivityIntervalModel* intervalModel in list) 
+    {
+        BOOL found = false;
+        for (DateSummaryModel* summaryModel in parsed)
+        {
+            if ([summaryModel.timeStringDay isEqualToString:intervalModel.activityModel.timeStringDay])
+            {
+                summaryModel.timeInterval = [NSNumber numberWithDouble:[summaryModel.timeInterval doubleValue] + [intervalModel.timeInterval doubleValue]];
+                [[summaryModel activityModels] addObject:intervalModel.activityModel];
+                found = true;
+            }
+        }
+        
+        if (!found)
+        {
+            DateSummaryModel* summaryModel = [[DateSummaryModel alloc] init];
+            summaryModel.timeInterval = intervalModel.timeInterval;
+            summaryModel.timeStringDay = intervalModel.activityModel.timeStringDay;
+            [summaryModel.activityModels addObject:summaryModel];
+            [parsed addObject:summaryModel];
+        }
+        
+    }
+    
+    return parsed; 
 }
 
 @end

@@ -25,8 +25,7 @@ static LogWindowController* activeWindowController;
 
 -(void)awakeFromNib
 {
-    CanvasView* cv = [[CanvasView alloc] initWithFrame:visualCanvas.frame];
-    [visualCanvas addSubview:cv];
+
 }
 
 +(void)openWindow
@@ -37,6 +36,11 @@ static LogWindowController* activeWindowController;
     [activeWindowController showWindow:self];
     [NSApp activateIgnoringOtherApps:YES];
     [activeWindowController.window makeKeyAndOrderFront:nil];
+}
+
+-(void)showWindow:(id)sender
+{
+    [super showWindow:sender];
 }
 
 -(void)closeWindow

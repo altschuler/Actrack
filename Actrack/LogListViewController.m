@@ -13,16 +13,16 @@
 #import "FormattingUtils.h"
 #import "ProjectSummaryModel.h"
 #import "RenameProjectWindowController.h"
+#import "NSMutableArray+Reverse.h"
 
 @implementation LogListViewController
 
 -(void)awakeFromNib
 {
-    ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
+    ActivityService* dbman = [[ActivityService alloc] init];
     [dbman updateArchivedStatus];
     
     sortAscending = YES;
-    [dbman release];
     
     [self updateView];
 }
@@ -83,7 +83,7 @@
     
     dates = [[NSMutableArray alloc] init];
     [dates addObject:@"All"];
-    [dates addObjectsFromArray:[activityService getDistinctDates:archived]];
+    [dates addObjectsFromArray:[[activityService getDistinctDates:archived] reverse]];
     [dateComboBox reloadData];
     
     projectIds = [[NSMutableArray alloc] init];

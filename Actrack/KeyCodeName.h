@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface KeyCodeName : NSObject
-{
-    NSDictionary* keyCodeNameRelation;
-}
 
 + (NSString*) getKeyNameFromKeyCode:(NSInteger)keyCode;
 

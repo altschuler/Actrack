@@ -12,13 +12,19 @@
 
     IBOutlet NSTextField *infoTextField;
     IBOutlet NSComboBox *dateComboBox;
+    IBOutlet NSComboBox *projectComboBox;
+    
+    IBOutlet NSButton *dateRadioButton;
+    IBOutlet NSButton *projectRadioButton;
     
     NSMutableArray* logs;
     NSMutableArray* dates;
+    NSMutableArray* projects;
 }
 
--(IBAction)viewDidUpdate:(id)sender;
+- (IBAction)viewDidUpdate:(id)sender;
+- (IBAction)radioButtonDidClick:(id)sender;
 
--(void)updateView;
+- (void)updateView;
 
 @end
