@@ -58,4 +58,11 @@ static LogWindowController* activeWindowController;
     return NO;
 }
 
+-(void)dealloc
+{
+    [activeWindowController release];
+    
+    [super dealloc];
+}
+
 @end

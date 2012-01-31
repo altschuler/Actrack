@@ -19,20 +19,6 @@
 
 -(void)awakeFromNib
 {   
-    ActivityService* activityService = [[[ActivityService alloc] init] autorelease];
-
-    dates = [activityService getDistinctDates:YES];
-    [dates reverse];
-    
-    [dateComboBox reloadData];
-    [dateComboBox setStringValue:[dates objectAtIndex:0]];
-    
-    projects = [activityService getDistinctProjectIds:YES];
-    [projects reverse];
-    
-    [projectComboBox reloadData];
-    [projectComboBox setStringValue:[projects objectAtIndex:0]];
-    
     [self updateView];
 }
 
@@ -43,7 +29,39 @@
 
 -(void)updateView
 {
-    ActivityService* activityService = [[[ActivityService alloc] init] autorelease];
+    ActivityService* activityService = [[ActivityService alloc] init];
+    
+    
+    if (dates != nil)
+    {
+        [dates removeAllObjects];
+        [dates release];
+    }
+    dates = [[NSMutableArray alloc] init];
+    NSMutableArray* tempDates = [[activityService getDistinctDates:YES] reverse];
+    [dates addObjectsFromArray:tempDates];
+    //[tempDates release];
+    [dateComboBox reloadData];
+    
+    if (projects != nil)
+    {
+        [projects removeAllObjects];
+        [projects release];
+    }
+    projects = [[NSMutableArray alloc] init];
+    NSMutableArray* tempProjectIds = [activityService getDistinctProjectIds:YES];
+    [projects addObjectsFromArray:tempProjectIds];
+    //[tempProjectIds release];
+    [projectComboBox reloadData];
+    
+    if ([[projectComboBox stringValue] length] == 0)
+        [projectComboBox selectItemAtIndex:0];
+    
+    if ([[dateComboBox stringValue] length] == 0)
+        [dateComboBox selectItemAtIndex:0];
+    
+    [projectComboBox setStringValue:[projects objectAtIndex:0]];
+    
     
     ActivityQueryFilter* filter = [[ActivityQueryFilter alloc] init];
     filter.archived = YES;
@@ -58,7 +76,8 @@
     {
         //Collect entries
         filter.dateString = [dateComboBox stringValue];
-        
+
+        [logs release];
         logs = [activityService getActsWithFilter:filter];
         
         parsed = [intervalParser parse:logs];
@@ -67,7 +86,7 @@
         [projectComboBox setEnabled:NO];
         [dateComboBox setEnabled:YES];
         
-        NSMutableArray* summarized = [intervalParser summarizeForProjects:parsed];
+        NSMutableArray* summarized = [[intervalParser summarizeForProjects:parsed] retain];
         
         for (ProjectSummaryModel* intervalModel in summarized)
         {
@@ -78,6 +97,7 @@
             [infoTextField setStringValue:summaryEntry];
         }
         
+        //[summarized removeAllObjects];
         [summarized release];
     }
     else if ([projectRadioButton state] == NSOnState) //Project selected
@@ -85,6 +105,7 @@
         //Collect entries
         filter.projectId = [projectComboBox stringValue];
         
+        [logs release];
         logs = [activityService getActsWithFilter:filter];
         
         parsed = [intervalParser parse:logs];
@@ -93,7 +114,7 @@
         [projectComboBox setEnabled:YES];
         [dateComboBox setEnabled:NO];
         
-        NSMutableArray* summarized = [intervalParser summarizeForDates:parsed];
+        NSMutableArray* summarized = [[intervalParser summarizeForDates:parsed] retain];
         
         for (DateSummaryModel* intervalModel in summarized)
         {
@@ -104,9 +125,11 @@
             [infoTextField setStringValue:summaryEntry];
         }
         
+        //[summarized removeAllObjects];
         [summarized release];
     }
     
+    [activityService release];
     [parsed release];
     [intervalParser release];
     [filter release];
@@ -152,6 +175,15 @@
         return [dates objectAtIndex:index];
     else
         return nil;
+}
+
+-(void)dealloc
+{
+    //[dates release];
+    [logs release];
+    //[projects release];
+    
+    [super dealloc];
 }
 
 @end

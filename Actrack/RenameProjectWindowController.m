@@ -29,7 +29,9 @@ static RenameProjectWindowController* activeWindowController;
     ActivityService* activityService = [[ActivityService alloc] init];
     
     projectIds = [[NSMutableArray alloc] init];
-    [projectIds addObjectsFromArray:[activityService getDistinctProjectIds:YES]];
+    NSMutableArray* tempProjectIds = [activityService getDistinctProjectIds:YES];
+    [projectIds addObjectsFromArray:tempProjectIds];
+    //[tempProjectIds release];
     
     if (activeWindowController.projectId != nil)
         [projectToRenameComboBox setStringValue:activeWindowController.projectId];

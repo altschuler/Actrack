@@ -63,14 +63,14 @@ static SettingsWindowController* activeWindowController;
     [askTue setState:askDays & 32];
     [askMon setState:askDays & 64];
     
-    NSString* hotkey = [SettingService getSetting:HotKey];
-    if (![hotkey isEqualToString:@"none"]) // kill magic string!
+    if (![[SettingService getSetting:HotKey] isEqualToString:@"none"]) // kill magic string!
     {
         [hotkeyCheckbox setState:NSOnState];
-        [hotkeyTextField setSelectedKeyCode:[hotkey intValue]];
+        [hotkeyTextField setSelectedKeyCode:[[SettingService getSetting:HotKey] intValue]];
     }
     else
         [hotkeyCheckbox setState:NSOffState];
+    
     
     [aboutButton addCursorRect:[aboutButton bounds] cursor:[NSCursor pointingHandCursor]];
 }
@@ -143,7 +143,8 @@ static SettingsWindowController* activeWindowController;
         hotKeySetting = [NSString stringWithFormat:@"%i",[hotkeyTextField selectedKeyCode]];
     
     BOOL hotKeySuccess = [SettingService setSetting:HotKey toValue:hotKeySetting];
-    
+
+    [hotKeySetting release];
     
     if (askIntervalSuccess && archiveTimeSuccess && daysToAskSuccess && allowedTimeMinSuccess && allowedTimeMaxSuccess & hotKeySuccess)
         [self closeWindow];

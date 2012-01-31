@@ -26,7 +26,7 @@ static NSString* databaseFilePath = nil;
     
     FMResultSet* result = [db executeQuery:@"select * from settings"];
 
-    NSString* settingValue;
+    NSString* settingValue = nil;
     if ([result next])
         settingValue = [result stringForColumn:[SettingService getSettingStringForId:settingId]];
     

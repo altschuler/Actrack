@@ -9,6 +9,7 @@
 #import "QuestionWindowController.h"
 #import "ActivityService.h"
 #import "ActivityModel.h"
+#import "NSButton+TextColor.h"
 
 @implementation QuestionWindowController
 @synthesize delegate;
@@ -20,7 +21,6 @@ static QuestionWindowController* activeWindowController;
     self = [super initWithWindowNibName:@"QuestionWindow"];
     if (self) 
     {
-        
     }
     
     return self;
@@ -33,12 +33,20 @@ static QuestionWindowController* activeWindowController;
 
 - (void)setProjectIdSelection;
 {
-    ActivityService* dbman = [[[ActivityService alloc] init] autorelease];
+    ActivityService* activityService = [[ActivityService alloc] init];
     
-    projectIds = [dbman getDistinctProjectIds:YES];    
+    if (projectIds != nil)
+        [projectIds release];
+    
+    projectIds = [[NSMutableArray alloc] init];
+    NSMutableArray* tempProjectIds = [activityService getDistinctProjectIds:YES];
+    [projectIds addObjectsFromArray:tempProjectIds];
+   
     [projectComboBox reloadData];
     
-    [projectComboBox setStringValue:[dbman getLatestUsedProjectId]];
+    [projectComboBox setStringValue:[activityService getLatestUsedProjectId]];
+    
+    [activityService release];
 }
 
 -(id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
@@ -73,6 +81,13 @@ static QuestionWindowController* activeWindowController;
 
 - (void)submitEntry
 {
+    if ([[projectComboBox stringValue] isEqualToString:@""])
+    {
+        NSAlert* alert = [NSAlert alertWithMessageText:@"You must provide a project ID" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        [alert runModal];
+        [alert release];
+    }
+    
     ActivityModel* am = [[ActivityModel alloc] init];
     am.comment = [commentTextField stringValue];
     am.projectId = [projectComboBox stringValue];
@@ -84,8 +99,11 @@ static QuestionWindowController* activeWindowController;
         am.projectId = @"";
     }
     
-    ActivityService* dbman = [[ActivityService alloc] init];
-    [dbman insertActivity:am];
+    ActivityService* activityService = [[ActivityService alloc] init];
+    [activityService insertActivity:am];
+
+    [activityService release];
+    [am release];
     
     [self closeWindow];
 }
@@ -97,6 +115,8 @@ static QuestionWindowController* activeWindowController;
 
 - (void)windowDidLoad
 {
+    [self.window setBackgroundColor:[NSColor colorWithPatternImage:[NSImage imageNamed:@"QuestionWindowBackgroundWithControls.png"]]];
+    
     [super windowDidLoad];
 }
 

@@ -12,4 +12,12 @@
 
 @synthesize archived, projectId, dateString, isIdle;
 
+-(void)dealloc
+{
+    [projectId release];
+    [dateString release];
+    
+    [super dealloc];
+}
+
 @end

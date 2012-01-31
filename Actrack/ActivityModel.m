@@ -74,4 +74,14 @@
     return am;
 }
 
+-(void)dealloc
+{
+    [actId release];
+    [projectId release];
+    [comment release];
+    [timeStamp release];
+    
+    [super dealloc];
+}
+
 @end

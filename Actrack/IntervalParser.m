@@ -45,6 +45,7 @@
         lastActivityModel = activityModel;
         
         [parsed addObject:intervalModel];
+        [intervalModel release];
     }
     
     ActivityIntervalModel* intervalModel = [[ActivityIntervalModel alloc] init];
@@ -52,6 +53,7 @@
     intervalModel.endDate = [intervalModel.startDate dateByAddingTimeInterval:3600]; //Assume last entry was worked on for 1 hour. TODO!
     
     [parsed addObject:intervalModel];
+    [intervalModel release];
     
     return parsed;
 }
@@ -80,11 +82,12 @@
             summaryModel.projectId = intervalModel.activityModel.projectId;
             [summaryModel.activityModels addObject:summaryModel];
             [parsed addObject:summaryModel];
+            [summaryModel release];
         }
         
     }
     
-    return parsed;
+    return [parsed autorelease];
 }
 
 -(NSMutableArray*)summarizeForDates:(NSMutableArray*)list
@@ -111,11 +114,12 @@
             summaryModel.timeStringDay = intervalModel.activityModel.timeStringDay;
             [summaryModel.activityModels addObject:summaryModel];
             [parsed addObject:summaryModel];
+            [summaryModel release];
         }
         
     }
     
-    return parsed; 
+    return [parsed autorelease]; 
 }
 
 @end

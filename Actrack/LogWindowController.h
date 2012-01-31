@@ -10,8 +10,6 @@
 
 @interface LogWindowController : NSWindowController<NSWindowDelegate>
 {     
-    /* Visual view */
-    IBOutlet NSView *visualCanvas;
 }
 
 + (void)openWindow;

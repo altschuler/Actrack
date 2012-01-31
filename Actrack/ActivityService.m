@@ -76,6 +76,8 @@
     
     FMResultSet* result = [database executeQuery:@"select *,rowid from acts where archived like ? and projectId like ? and timeStamp like ? and idle like ?", archived, projectId, dateString, idle];
     
+ 
+    
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
     while ([result next])
@@ -94,8 +96,9 @@
         }
         
         [logs addObject:am];
+        [am release];
     }
-    
+   
     [database close];
     
     return logs;
@@ -127,7 +130,10 @@
     
     while ([result next])
     {   
-        [logs addObject:[result stringForColumn:@"substr(timeStamp,1,10)"]];
+        NSString* t = [result stringForColumn:@"substr(timeStamp,1,10)"];
+        [logs addObject:t];
+        [t release];
+        
     }
     
     [database close];
@@ -146,8 +152,10 @@
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     
     while ([result next])
-    {   
-        [logs addObject:[result stringForColumn:@"projectId"]];
+    { 
+        NSString* t = [result stringForColumn:@"projectId"];
+        [logs addObject:t];
+        [t release];
     }
     
     if ([database hadError])
@@ -200,6 +208,8 @@
         [database executeUpdate:@"insert into settings default values"];
     
     [database close];
+    
+    [settingsQuery release];
     
     return actsSuccess && settingsSuccess;
 }

@@ -19,8 +19,8 @@
 
 -(void)awakeFromNib
 {
-    ActivityService* dbman = [[ActivityService alloc] init];
-    [dbman updateArchivedStatus];
+    ActivityService* activityService = [[[ActivityService alloc] init] autorelease];
+    [activityService updateArchivedStatus];
     
     sortAscending = YES;
     
@@ -41,25 +41,35 @@
         
         [activityService removeActivity:am];
         
+        [activityService release];
+        
         [self updateView];
     }
 }
 
 - (IBAction)renameButtonDidClick:(id)sender
 {
+    if([logTableView selectedRow] == -1)
+    {
+        [RenameProjectWindowController openWindowWithDelegate:self defaultProjectId:nil];
+    }
+    else
+    {
+        
+        NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
+        
+        NSString* defaultProjectId = nil;
+        
+        ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
+        
+        if (!am.isIdle)
+            defaultProjectId = [am.projectId copy];
+        
+        [RenameProjectWindowController openWindowWithDelegate:self defaultProjectId:defaultProjectId];
+        
+        [defaultProjectId release];
+    }
     
-    NSInteger correctedRowIndex = sortAscending ? [logTableView selectedRow] : ([logs count] - 1 - [logTableView selectedRow]);
-    
-    NSString* defaultProjectId;
-    
-    ActivityModel* am = [logs objectAtIndex:correctedRowIndex];
-    
-    if (!am.isIdle)
-        defaultProjectId = [am.projectId copy];
-    
-    [RenameProjectWindowController openWindowWithDelegate:self defaultProjectId:defaultProjectId];
-    
-    [defaultProjectId release];
 }
 
 - (void)didRenameProject
@@ -81,14 +91,26 @@
     
     BOOL archived = [archiveCheckBox state] == NSOnState;
     
+    if (dates != nil)
+    {
+        [dates removeAllObjects];
+        [dates release];
+    }
     dates = [[NSMutableArray alloc] init];
     [dates addObject:@"All"];
-    [dates addObjectsFromArray:[[activityService getDistinctDates:archived] reverse]];
+    NSMutableArray* tempDates = [[activityService getDistinctDates:archived] reverse];
+    [dates addObjectsFromArray:tempDates];
+    //[tempDates release];
     [dateComboBox reloadData];
+    
+    if (projectIds != nil)
+        [projectIds release];
     
     projectIds = [[NSMutableArray alloc] init];
     [projectIds addObject:@"All"];
-    [projectIds addObjectsFromArray:[activityService getDistinctProjectIds:archived]];
+    NSMutableArray* tempProjectIds = [activityService getDistinctProjectIds:archived];
+    [projectIds addObjectsFromArray:tempProjectIds];
+    //[tempProjectIds release];
     [projectComboBox reloadData];
     
     if ([[projectComboBox stringValue] length] == 0)
@@ -97,7 +119,13 @@
     if ([[dateComboBox stringValue] length] == 0)
         [dateComboBox selectItemAtIndex:0];
     
-    logs = [activityService getActsWithFilter:[self buildFilterFromUI]];
+    ActivityQueryFilter* filter = [self buildFilterFromUI];
+    
+    [logs release];
+    logs = [activityService getActsWithFilter:filter];
+    
+    [activityService release];
+    [filter release];
     
     [logTableView reloadData];
 }
@@ -141,7 +169,7 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row 
 {
     //TODO cell caching?
-    NSTextFieldCell* cell = [[NSTextFieldCell alloc] init];
+    NSTextFieldCell* cell = [[[NSTextFieldCell alloc] init] autorelease];
     
     ActivityModel* am = [logs objectAtIndex:sortAscending ? row : [logs count] - 1 - row];
     
@@ -188,12 +216,14 @@
         // since date and time columns has had editing disabled, this will never occur
         NSAlert *theAlert = [NSAlert alertWithMessageText:@"Cannot edit date and time" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"This feature is not yet supported"];
         [theAlert runModal];
+        [theAlert release];
         return;
     }
     
     ActivityService* activityService = [[ActivityService alloc] init];
     
     [activityService updateActivity:am];
+    [activityService release];
     
     [self updateView];
 }
@@ -268,6 +298,15 @@
     filter.isIdle = [idleCheckBox state] == NSOnState;
     
     return filter;
+}
+
+-(void)dealloc
+{
+    [logs release];
+    [dates release];
+    [projectIds release];
+    
+    [super dealloc];
 }
 
 @end

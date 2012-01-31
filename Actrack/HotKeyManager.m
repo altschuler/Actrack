@@ -28,13 +28,14 @@
 {
     UnregisterEventHotKey(myHotKeyRef);
     
-    NSString* hotKeyString = [SettingService getSetting:HotKey];
+    NSString* hotKeyString = [[SettingService getSetting:HotKey] retain];
     
     if ([hotKeyString isEqualToString:@"none"])
         return;
     
     NSInteger hotKeyCode = [hotKeyString intValue];
-      
+    [hotKeyString release];
+    
     EventHotKeyID myHotKeyID;     
     EventTypeSpec eventType;
     eventType.eventClass = kEventClassKeyboard;     

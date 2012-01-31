@@ -168,6 +168,10 @@
 
 - (void)dealloc
 {
+    [statusItem release];
+    [hotKeyController release];
+    [askingController release];
+    
     [super dealloc];
 }
 
